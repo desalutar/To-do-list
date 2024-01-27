@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject {
+    func didSelected(_ cell: Cell)
+}
+
 class Cell: UITableViewCell {
 
     @IBOutlet weak var todoImageView: UIImageView!
@@ -15,11 +19,13 @@ class Cell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var circleButton: UIButton!
     
+    weak var delegate: TableViewCellDelegate?
     
     static let cellID = String(describing: Cell.self)
     static func nib() -> UINib {
         return UINib(nibName: "Cell", bundle: nil )
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
@@ -27,9 +33,14 @@ class Cell: UITableViewCell {
     }
     
     func configureCell(with todoItem: ToDoItem) {
+        titleLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.adjustsFontSizeToFitWidth = true
+        
         titleLabel.text = todoItem.title
         descriptionLabel.text = todoItem.description
         dateLabel.text = todoItem.date?.stringValue
+        
         setupLabels(todoItem)
         setupButton(todoItem)
         configureImageView(with: todoItem)
@@ -38,8 +49,7 @@ class Cell: UITableViewCell {
     func configureImageView(with toDoItem: ToDoItem) {
            todoImageView.layer.cornerRadius = todoImageView.frame.size.height / 2
            todoImageView.layer.masksToBounds = true
-       }
-
+    }
     
     func setupLabels(_ toDoItem: ToDoItem) {
         let textColor = toDoItem.isCompleted ? UIColor.systemGray4 : UIColor.label
@@ -47,7 +57,7 @@ class Cell: UITableViewCell {
         descriptionLabel.textColor = textColor
     }
     
-    func setupButton(_ todoItem: ToDoItem) { // button settings for choice
+    func setupButton(_ todoItem: ToDoItem) {
         let circle = UIImage(systemName: "circle")
         let checkMarkCircle = "checkmark.circle.fill"
         let circleCheckMark = UIImage(systemName: checkMarkCircle)
@@ -61,9 +71,6 @@ class Cell: UITableViewCell {
     }
     
     @IBAction func circleButtonAction(_ sender: Any) {
-        print("123")
-        /*
-         делегат нажатия на ячейку для перехода в секцию завершенных и обратно
-        */
+        delegate?.didSelected(self)
     }
 }

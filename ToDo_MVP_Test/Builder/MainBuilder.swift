@@ -28,8 +28,6 @@ final class MainBuilder: MainBuilderProtocol {
         return createVC
         
     }
-    
-    
     // собрать модальный переход в методе did select row at в класс ячейки
     
 }

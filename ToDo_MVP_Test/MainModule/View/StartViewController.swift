@@ -19,6 +19,7 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     weak var coordinator: AppCoordinator?
     var presenter: MainPresentable?
     private var dataSource: DataSource?
+    let cell = Cell()
     @IBOutlet weak var tableView: UITableView!
     
     enum Section {
@@ -41,22 +42,21 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         setNavigationItems()
 
         presenter?.makeDataSource(for: tableView)
+        presenter?.makeSnapshot()
     }
     
     private func setNavigationItems() {
-        let addToDoButton = UIButton(type: .contactAdd)
-        addToDoButton.addTarget(self, action: #selector(logoutUser), for: .touchUpInside)
-        let navigationAddButton = UIBarButtonItem(customView: addToDoButton)
-        navigationItem.rightBarButtonItem = navigationAddButton
+        let addToDoButton = UIBarButtonItem(systemItem: .add)
+        navigationItem.rightBarButtonItem = addToDoButton
+        
     }
-    @objc func logoutUser(){
+    @objc func addToDo(){
         coordinator?.showCreateViewController()
     }
     
     private func setTableView() {
         tableView.delegate = self
         tableView.register(Cell.nib(), forCellReuseIdentifier: Cell.cellID)
-        
     }
     
     //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -76,14 +76,11 @@ extension StartViewController: StartViewControllerProtocol {
         debugPrint("reload")
     }
 }
-
 extension StartViewController: CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
         presenter?.showToDo(with: item)
     }
 }
-
 extension StartViewController: TableViewDiffableDataSourceDelegate {
-    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
-    }
+    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {}
 }

@@ -70,18 +70,19 @@ class CreateViewController: UIViewController {
         datePickerLabel.text = datePicker.date.stringValue
     }
     
-    @IBAction func addPhotoInToDoButton(_ sender: Any) {
+    @IBAction func addPhotoInToDo(_ sender: Any) {
         
     }
-    @IBAction func addDateInToDoButton(_ sender: Any) {
+    @IBAction func addDateInToDo(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {
             self.datePicker.isHidden.toggle()
             self.datePickerLabel.isHidden = false
         }
     }
     
-    @IBAction func saveToDoButton(_ sender: Any) {
-        let itemToDo = ToDoItem(title: titleTextField.text ?? .empty, description: descriptionTextView.text, date: nil)
+    @IBAction func saveToDo(_ sender: Any) {
+        var itemToDo = ToDoItem(title: titleTextField.text ?? .empty, description: descriptionTextView.text,
+                                picture: todoImageView.image, date: datePicker.date)
         delegate?.didCreateToDo(with: itemToDo)
         dismiss(animated: true)
     }

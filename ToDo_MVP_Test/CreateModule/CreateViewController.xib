@@ -72,7 +72,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Add Photo"/>
                             <connections>
-                                <action selector="addPhotoInToDoButton:" destination="-1" eventType="touchUpInside" id="d1I-yT-zCQ"/>
+                                <action selector="addPhotoInToDo:" destination="-1" eventType="touchUpInside" id="d1I-yT-zCQ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QA-nA-aG7">
@@ -85,7 +85,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Add Date"/>
                             <connections>
-                                <action selector="addDateInToDoButton:" destination="-1" eventType="touchUpInside" id="RLJ-to-0EL"/>
+                                <action selector="addDateInToDo:" destination="-1" eventType="touchUpInside" id="RLJ-to-0EL"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfr-Yg-amK">
@@ -98,7 +98,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Save"/>
                             <connections>
-                                <action selector="saveToDoButton:" destination="-1" eventType="touchUpInside" id="mfs-nM-ceJ"/>
+                                <action selector="saveToDo:" destination="-1" eventType="touchUpInside" id="mfs-nM-ceJ"/>
                             </connections>
                         </button>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDp-Je-pM8">

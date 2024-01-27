@@ -17,6 +17,7 @@ protocol MainPresentable: AnyObject {
     func makeDataSource(for tableView: UITableView)
     func makeSnapshot()
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem?
+    func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
 }
 
 final class StartPresenter: MainPresentable {
@@ -24,6 +25,7 @@ final class StartPresenter: MainPresentable {
     var dataSource: DataSource?  
     private var todoItems: [[ToDoItem]] = []
     weak var view: StartViewControllerProtocol?
+    private var selectedToDo: UITableView?
     
     init(todoItems: [[ToDoItem]]) {
         self.todoItems = todoItems
@@ -65,9 +67,12 @@ final class StartPresenter: MainPresentable {
                 withIdentifier: Cell.cellID,
                 for: indexPath
             ) as? Cell else { return UITableViewCell() }
+            self.selectedToDo = tableView
+            cell.delegate = self
             cell.configureCell(with: todo)
             return cell
         }
+        dataSource?.delegate = self
     }
     
     func makeSnapshot() {
@@ -95,5 +100,61 @@ final class StartPresenter: MainPresentable {
     
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem? {
         dataSource?.itemIdentifier(for: indexPath)
+    }
+}
+
+extension StartPresenter: TableViewCellDelegate {
+    func didSelected(_ cell: Cell) {
+        guard var indexPath = selectedToDo?.indexPath(for: cell),
+              var item = dataSource?.itemIdentifier(for: indexPath) else { return }
+        switch !item.isCompleted {
+        case true:
+            item.isCompleted = true
+            todoItems[indexPath.section].remove(at: indexPath.row)
+            switchTaskBy(sectionAt: indexPath, withItem: item)
+        case false:
+            item.isCompleted = false
+            todoItems[indexPath.section].remove(at: indexPath.row)
+            switchTaskBy(sectionAt: indexPath, withItem: item)
+        }
+        makeSnapshot()
+    }
+    
+    func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem) {
+        switch item.isCompleted {
+        case true:
+            if todoItems.count != 2 {
+                todoItems.append([item])
+            } else if todoItems.count == 2 {
+                todoItems[1].append(item)
+            }
+            if todoItems[0].isEmpty {
+                todoItems.remove(at: 0)
+            }
+            
+        case false:
+            if todoItems.count == 1 {
+                todoItems.insert([item], at: 0)
+            } else if todoItems.count == 2 {
+                todoItems[0].append(item)
+            }
+            if todoItems[1].isEmpty {
+                todoItems.remove(at: 1)
+            }
+        }
+    }
+}
+
+extension StartPresenter: TableViewDiffableDataSourceDelegate {
+    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
+        todoItems[indexPath.section].remove(at: indexPath.row)
+        
+        switch todoItems.count {
+        case 1:
+            if todoItems[0].isEmpty { todoItems.remove(at: 0) }
+        default:
+            if todoItems[1].isEmpty { todoItems.remove(at: 1) }
+        }
+        makeSnapshot()
     }
 }
