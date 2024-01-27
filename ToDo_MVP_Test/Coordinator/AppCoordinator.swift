@@ -26,6 +26,9 @@ final class AppCoordinator: CoordinatorProtocol {
     func showCreateViewController() {
         let createViewController = builder.buildCreateVC()
         createViewController.coordinator = self
+        let todoListViewController = navigationController.viewControllers.first as? StartViewController
+        createViewController.delegate = todoListViewController
+        
         navigationController.present(createViewController, animated: true)
     }
     

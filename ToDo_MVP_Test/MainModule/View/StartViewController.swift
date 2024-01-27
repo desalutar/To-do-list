@@ -39,8 +39,7 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         setTableView()
         setNavigationItems()
-        let testTodo = ToDoItem(title: "Foo", description: "Bar", date: .now)
-        presenter?.add(todoItem: testTodo)
+
         presenter?.makeDataSource(for: tableView)
     }
     
@@ -75,6 +74,12 @@ final class StartViewController: UIViewController, UITableViewDelegate {
 extension StartViewController: StartViewControllerProtocol {
     func reload() {
         debugPrint("reload")
+    }
+}
+
+extension StartViewController: CreateViewControllerProtocol {
+    func didCreateToDo(with item: ToDoItem) {
+        presenter?.showToDo(with: item)
     }
 }
 

@@ -9,12 +9,22 @@ import UIKit
 
 protocol CreateViewControllerProtocol: AnyObject {
     func reloadCreate()
+    func didCreateToDo(with item: ToDoItem)
+}
+
+extension CreateViewControllerProtocol {
+    func didCreateToDo(with item: ToDoItem) {}
+}
+
+extension CreateViewControllerProtocol {
+    func reloadCreate() {}
 }
 
 class CreateViewController: UIViewController {
     
     var present: CreatePresenter?
     weak var coordinator: AppCoordinator?
+    weak var delegate: CreateViewControllerProtocol?
     
     @IBOutlet weak var todoImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -71,8 +81,8 @@ class CreateViewController: UIViewController {
     }
     
     @IBAction func saveToDoButton(_ sender: Any) {
-        let createTodo = ToDoItem(title: titleTextField.text ?? "", description: descriptionTextView.text, date: nil)
-        present?.saveToDoInArray(with: createTodo)
+        let itemToDo = ToDoItem(title: titleTextField.text ?? .empty, description: descriptionTextView.text, date: nil)
+        delegate?.didCreateToDo(with: itemToDo)
         dismiss(animated: true)
     }
 }

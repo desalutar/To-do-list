@@ -11,7 +11,7 @@ import UIKit
 protocol MainPresentable: AnyObject {
     var dataSource: DataSource? { get set }
     
-    func add(todoItem: ToDoItem)
+    func showToDo(with item: ToDoItem)
     func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem)
     func delete(todoItemAt indexPath: IndexPath)
     func makeDataSource(for tableView: UITableView)
@@ -29,10 +29,25 @@ final class StartPresenter: MainPresentable {
         self.todoItems = todoItems
     }
     
-    func add(todoItem: ToDoItem) {
-        debugPrint("add \(todoItem)")
-        let testItem = ToDoItem(title: "Bar", description: "Baz", date: .now)
-        todoItems[0].append(testItem)
+    func showToDo(with todoItem: ToDoItem) {
+        switch todoItem.isCompleted {
+        case true:
+            if todoItems.count != 2 {
+                todoItems.append([todoItem])
+            } else if todoItems.count == 2 {
+                todoItems[1].append(todoItem)
+            }
+        case false:
+            if todoItems.isEmpty {
+                todoItems.append([todoItem])
+            } else if !todoItems[0].isEmpty && (todoItems[0].firstIndex(where: {$0.isCompleted == false}) != nil){
+                todoItems[0].append(todoItem)
+            } else if todoItems.count == 1 {
+                todoItems.insert([todoItem], at: 0)
+            } else if todoItems.count == 2 {
+                todoItems[0].append(todoItem)
+            }
+        }
         makeSnapshot()
     }
     
@@ -57,29 +72,25 @@ final class StartPresenter: MainPresentable {
     
     func makeSnapshot() {
         var snapshot = Snapshot()
-        snapshot.appendSections([.unfulfilled])
-        snapshot.appendItems(todoItems.first!)
-        dataSource?.apply(snapshot)
-//        if todos.isEmpty {
-//            dataSource?.apply(snapshot, animatingDifferences: true)
-//            return
-//        }
-//        
-//        if todos.count == 1, let firstSectionTodos = todos.first, let firstItem = firstSectionTodos.first {
-//            if firstItem.isCompleted {
-//                snapshot.appendSections([.completed])
-//                snapshot.appendItems(firstSectionTodos, toSection: .completed)
-//            } else {
-//                snapshot.appendSections([.unfulfilled])
-//                snapshot.appendItems(firstSectionTodos, toSection: .unfulfilled)
-//            }
-//        } else if todos.count == 2 {
-//            snapshot.appendSections([.unfulfilled, .completed])
-//            snapshot.appendItems(todos[0], toSection: .unfulfilled)
-//            snapshot.appendItems(todos[1], toSection: .completed)
-//        }
-//        
-//        dataSource?.apply(snapshot, animatingDifferences: true)
+        if todoItems.isEmpty {
+            dataSource?.apply(snapshot, animatingDifferences: true)
+            return
+        }
+        
+        if todoItems.count == 1, let firstSectionTodos = todoItems.first, let firstItem = firstSectionTodos.first {
+            if firstItem.isCompleted {
+                snapshot.appendSections([.completed])
+                snapshot.appendItems(firstSectionTodos, toSection: .completed)
+            } else {
+                snapshot.appendSections([.unfulfilled])
+                snapshot.appendItems(firstSectionTodos, toSection: .unfulfilled)
+            }
+        } else if todoItems.count == 2 {
+            snapshot.appendSections([.unfulfilled, .completed])
+            snapshot.appendItems(todoItems[0], toSection: .unfulfilled)
+            snapshot.appendItems(todoItems[1], toSection: .completed)
+        }
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem? {
