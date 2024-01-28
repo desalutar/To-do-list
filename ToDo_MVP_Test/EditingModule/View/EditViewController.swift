@@ -44,6 +44,7 @@ class EditViewController: UIViewController {
         settingsTextView()
         settingDatePicker()
         settingsAddDateButton()
+        print(123)
     }
     
     func settingsImageView(with image: UIImage) {

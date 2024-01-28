@@ -15,7 +15,6 @@ protocol MainBuilderProtocol: AnyObject {
 
 final class MainBuilder: MainBuilderProtocol {
     
-    
     func buildTodoList() -> StartViewController {
         let presenter = StartPresenter(todoItems: [[]])
         let startVC = StartViewController(presenter: presenter)
@@ -32,7 +31,7 @@ final class MainBuilder: MainBuilderProtocol {
     }
     
     func buildEditVC() -> EditViewController {
-        let presenter = EditPresenter(todoItems: [[]], viewType: .edit)
+        let presenter = EditPresenter(todoItems: [[]])
         let editVC = EditViewController(presenter: presenter)
         presenter.view = editVC
         return editVC

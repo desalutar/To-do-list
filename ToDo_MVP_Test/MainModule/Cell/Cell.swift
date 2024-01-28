@@ -44,6 +44,7 @@ class Cell: UITableViewCell {
         setupButton(todoItem)
         configureImageView(with: todoItem)
     }
+    
     func configureImageView(with toDoItem: ToDoItem) {
         if toDoItem.picture != nil {
             todoImageView.image = toDoItem.picture

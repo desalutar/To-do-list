@@ -13,16 +13,9 @@ protocol EditViewControllerPresentable: AnyObject {
 
 final class EditPresenter: EditViewControllerPresentable {
     weak var view: EditViewController?
-    var viewType: ViewType
     var todoItems: [[ToDoItem]]
-    enum ViewType {
-        
-        case edit
-    }
-    init(todoItems: [[ToDoItem]], viewType: ViewType) {
+
+    init(todoItems: [[ToDoItem]]) {
         self.todoItems = todoItems
-        self.viewType = viewType
     }
-    
-    
 }
