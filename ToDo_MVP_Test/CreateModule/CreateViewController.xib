@@ -46,7 +46,6 @@
                                 </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N6z-kf-0KU">
                                     <rect key="frame" x="0.0" y="54" width="363" height="128"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="363" id="14x-vd-HkZ"/>
                                         <constraint firstAttribute="width" secondItem="N6z-kf-0KU" secondAttribute="height" multiplier="363:128" id="LfA-Pc-cbV"/>
@@ -141,9 +140,6 @@
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
             <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

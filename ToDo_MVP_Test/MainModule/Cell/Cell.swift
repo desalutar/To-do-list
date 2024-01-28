@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TableViewCellDelegate: AnyObject {
-    func didSelected(_ cell: Cell)
+    func toggleTaskAtSection(_ cell: Cell)
 }
 
 class Cell: UITableViewCell {
@@ -29,7 +29,6 @@ class Cell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
-        todoImageView.isHidden = true
     }
     
     func configureCell(with todoItem: ToDoItem) {
@@ -45,10 +44,19 @@ class Cell: UITableViewCell {
         setupButton(todoItem)
         configureImageView(with: todoItem)
     }
-    
     func configureImageView(with toDoItem: ToDoItem) {
-           todoImageView.layer.cornerRadius = todoImageView.frame.size.height / 2
-           todoImageView.layer.masksToBounds = true
+        if toDoItem.picture != nil {
+            todoImageView.image = toDoItem.picture
+        }
+        
+        todoImageView.isHidden = toDoItem.picture == nil
+        todoImageView.layer.cornerRadius = todoImageView.frame.size.height / 2
+        todoImageView.layer.masksToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        todoImageView.image = nil
     }
     
     func setupLabels(_ toDoItem: ToDoItem) {
@@ -65,12 +73,7 @@ class Cell: UITableViewCell {
         circleButton.setImage(buttonImage, for: .normal)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        todoImageView.image = nil
-    }
-    
     @IBAction func circleButtonAction(_ sender: Any) {
-        delegate?.didSelected(self)
+        delegate?.toggleTaskAtSection(self)
     }
 }

@@ -104,8 +104,8 @@ final class StartPresenter: MainPresentable {
 }
 
 extension StartPresenter: TableViewCellDelegate {
-    func didSelected(_ cell: Cell) {
-        guard var indexPath = selectedToDo?.indexPath(for: cell),
+    func toggleTaskAtSection(_ cell: Cell) {
+         guard let indexPath = selectedToDo?.indexPath(for: cell),
               var item = dataSource?.itemIdentifier(for: indexPath) else { return }
         switch !item.isCompleted {
         case true:

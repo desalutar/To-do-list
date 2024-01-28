@@ -20,6 +20,8 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ylH-QQ-kTo">
                     <rect key="frame" x="0.0" y="23" width="393" height="795"/>
+                    <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.97254902119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="oxf-OH-iv4"/>
                         <outlet property="delegate" destination="-1" id="VQj-pV-EvA"/>

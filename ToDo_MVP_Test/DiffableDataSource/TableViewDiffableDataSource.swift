@@ -26,9 +26,10 @@ final class DiffableDataSource: UITableViewDiffableDataSource<StartViewControlle
         todoItem.isCompleted ? "Completed" : "Unfulfilled"
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, 
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         delegate?.tableView(tableView, didDeleteRowWithSwipeActionAt: indexPath)
-        
     }
 }
 

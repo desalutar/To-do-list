@@ -38,17 +38,15 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 248/255, alpha: 1)
         setTableView()
         setNavigationItems()
-
         presenter?.makeDataSource(for: tableView)
         presenter?.makeSnapshot()
     }
     
     private func setNavigationItems() {
-        let addToDoButton = UIBarButtonItem(systemItem: .add)
-        navigationItem.rightBarButtonItem = addToDoButton
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToDo))
     }
     @objc func addToDo(){
         coordinator?.showCreateViewController()
@@ -67,7 +65,7 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = UIColor.red
         let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.textColor = .darkGray
     }
 }
 
@@ -80,7 +78,4 @@ extension StartViewController: CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
         presenter?.showToDo(with: item)
     }
-}
-extension StartViewController: TableViewDiffableDataSourceDelegate {
-    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {}
 }

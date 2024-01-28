@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol CreateViewControllerProtocol: AnyObject {
     func reloadCreate()
@@ -14,15 +15,12 @@ protocol CreateViewControllerProtocol: AnyObject {
 
 extension CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {}
-}
-
-extension CreateViewControllerProtocol {
     func reloadCreate() {}
 }
 
 class CreateViewController: UIViewController {
     
-    var present: CreatePresenter?
+    var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
     weak var delegate: CreateViewControllerProtocol?
     
@@ -36,7 +34,7 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     init(presenter: CreatePresenter) {
-        self.present = presenter
+        self.presenter = presenter
         super.init(nibName: nil, bundle: .main)
     }
     required init?(coder: NSCoder) {
@@ -45,23 +43,42 @@ class CreateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingButtonLayer()
-        settingButton()
-        present?.imageViewIsHidden(todoImageView)
+        viewsSettings()
+        presenter?.imageViewIsHidden(todoImageView)
     }
-
-    private func settingButtonLayer() {
-        titleTextField.borderStyle = .roundedRect
+    
+    private func viewsSettings() {
+        settingsSaveButton()
+        settingsTextField()
+        settingsTextView()
+        settingDatePicker()
+        settingsAddDateButton()
+    }
+    
+    private func settingsTextField() {
+        let textFieldLayerBorderColor: UIColor = .systemGray2
+        titleTextField.layer.borderColor = textFieldLayerBorderColor.cgColor
+        titleTextField.placeholder = "Enter task name"
+        titleTextField.layer.borderWidth = 0.5
+        titleTextField.layer.cornerRadius = 8.0
+        titleTextField.layer.masksToBounds = true
+    }
+    
+    private func settingsTextView() {
+        let textViewLayerBorderColor: UIColor = .systemGray2
+        descriptionTextView.layer.borderColor = textViewLayerBorderColor.cgColor
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.layer.cornerRadius = 5.0
+    }
+    
+    fileprivate func settingsAddDateButton() {
         addPhotoButton.layer.borderWidth = 0.5
         addPhotoButton.layer.cornerRadius = 5.0
         addDateButton.layer.borderWidth = 0.5
         addDateButton.layer.cornerRadius = 5.0
-        saveButton.layer.borderWidth = 0.5
-        saveButton.layer.cornerRadius = 5.0
     }
-    private func settingButton() {
+    
+    private func settingDatePicker() {
         datePickerLabel.isHidden = true
         datePicker.addTarget(self, action: #selector(handlerDatePicker), for: .valueChanged)
         datePicker.isHidden = true
@@ -70,9 +87,15 @@ class CreateViewController: UIViewController {
         datePickerLabel.text = datePicker.date.stringValue
     }
     
-    @IBAction func addPhotoInToDo(_ sender: Any) {
-        
+    private func settingsSaveButton() {
+        saveButton.layer.borderWidth = 0.5
+        saveButton.layer.cornerRadius = 5.0
     }
+    
+    @IBAction func addPhotoInToDo(_ sender: Any) {
+        didTappedAddPictureButton()
+    }
+    
     @IBAction func addDateInToDo(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {
             self.datePicker.isHidden.toggle()
@@ -81,15 +104,50 @@ class CreateViewController: UIViewController {
     }
     
     @IBAction func saveToDo(_ sender: Any) {
-        var itemToDo = ToDoItem(title: titleTextField.text ?? .empty, description: descriptionTextView.text,
+        let itemToDo = ToDoItem(title: titleTextField.text ?? .empty, 
+                                description: descriptionTextView.text,
                                 picture: todoImageView.image, date: datePicker.date)
         delegate?.didCreateToDo(with: itemToDo)
         dismiss(animated: true)
     }
 }
 
-extension CreateViewController: CreateViewControllerProtocol {
-    func reloadCreate() {
-        print("123")
+extension CreateViewController: CreateViewControllerProtocol,
+                                ViewControllerPhotosPickerable,
+                                ViewControllerAlertPresentable,
+                                CameraPresentableDelegate {
+    func configureImageView(with image: UIImage) {
+        todoImageView.isHidden = false
+        todoImageView.image = image
+    }
+    
+    func picker(_ picker: PHPickerViewController, didPickedImage image: UIImage) {
+        configureImageView(with: image)
+    }
+    
+    func didTappedAddPictureButton() {
+        alertAction { [weak self] source in
+            guard let self = self else { return }
+            switch source {
+            case .gallery:
+                showPhotosPicker(with: self)
+            case .camera:
+                showCameraPicker()
+            }
+        }
+    }
+    
+    func showCameraPicker() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        configureImageView(with: selectedImage)
     }
 }

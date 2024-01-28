@@ -10,6 +10,7 @@ import UIKit
 
 protocol CreatePresentable: AnyObject {
     func imageViewIsHidden(_ imageView: UIImageView)
+    func showCameraPicker()
 }
 
 class CreatePresenter: CreatePresentable {

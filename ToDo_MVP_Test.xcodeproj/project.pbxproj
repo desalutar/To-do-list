@@ -185,9 +185,9 @@
 		2394D1812B5BFC440043287D /* CreateModule */ = {
 			isa = PBXGroup;
 			children = (
+				236804602B6016580043EEA8 /* CreatePresenter.swift */,
 				2368047A2B6175B50043EEA8 /* CreateViewController.swift */,
 				2368047B2B6175B50043EEA8 /* CreateViewController.xib */,
-				236804602B6016580043EEA8 /* CreatePresenter.swift */,
 			);
 			path = CreateModule;
 			sourceTree = "<group>";
