@@ -10,9 +10,11 @@ import UIKit
 protocol MainBuilderProtocol: AnyObject {
     func buildTodoList() -> StartViewController
     func buildCreateVC() -> CreateViewController
+    func buildEditVC() -> EditViewController
 }
 
 final class MainBuilder: MainBuilderProtocol {
+    
     
     func buildTodoList() -> StartViewController {
         let presenter = StartPresenter(todoItems: [[]])
@@ -24,10 +26,17 @@ final class MainBuilder: MainBuilderProtocol {
     func buildCreateVC() -> CreateViewController {
         let presenter = CreatePresenter()
         let createVC = CreateViewController(presenter: presenter)
-        presenter.view = createVC
+        presenter.view = createVC as? any CreateViewControllerProtocol
         return createVC
         
     }
-    // собрать модальный переход в методе did select row at в класс ячейки
+    
+    func buildEditVC() -> EditViewController {
+        let presenter = EditPresenter(todoItems: [[]], viewType: .edit)
+        let editVC = EditViewController(presenter: presenter)
+        presenter.view = editVC
+        return editVC
+    }
+    
     
 }

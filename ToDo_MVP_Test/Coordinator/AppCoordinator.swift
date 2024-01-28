@@ -32,5 +32,9 @@ final class AppCoordinator: CoordinatorProtocol {
         navigationController.present(createViewController, animated: true)
     }
     
-    // отправить модальный переход в методе did select row at в класс ячейки
+    func showEditViewController() {
+        let editViewController = builder.buildEditVC()
+        editViewController.coordinator = self
+        navigationController.pushViewController(editViewController, animated: true)
+    }
 }

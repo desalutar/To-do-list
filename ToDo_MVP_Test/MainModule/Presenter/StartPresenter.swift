@@ -8,19 +8,18 @@
 import Foundation
 import UIKit
 
-protocol MainPresentable: AnyObject {
+protocol StartPresenterProtocol: AnyObject {
     var dataSource: DataSource? { get set }
     
     func showToDo(with item: ToDoItem)
     func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem)
-    func delete(todoItemAt indexPath: IndexPath)
     func makeDataSource(for tableView: UITableView)
     func makeSnapshot()
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem?
     func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
 }
 
-final class StartPresenter: MainPresentable {
+final class StartPresenter: StartPresenterProtocol {
 
     var dataSource: DataSource?  
     private var todoItems: [[ToDoItem]] = []
@@ -55,10 +54,6 @@ final class StartPresenter: MainPresentable {
     
     func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem) {
         debugPrint("update at \(indexPath) with \(todoItem)")
-    }
-    
-    func delete(todoItemAt indexPath: IndexPath) {
-        debugPrint("delete at \(indexPath)")
     }
     
     func makeDataSource(for tableView: UITableView) {

@@ -9,13 +9,11 @@ import UIKit
 import PhotosUI
 
 protocol CreateViewControllerProtocol: AnyObject {
-    func reloadCreate()
     func didCreateToDo(with item: ToDoItem)
 }
 
 extension CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {}
-    func reloadCreate() {}
 }
 
 class CreateViewController: UIViewController {
@@ -55,6 +53,11 @@ class CreateViewController: UIViewController {
         settingsAddDateButton()
     }
     
+    func settingsImageView(with image: UIImage) {
+        todoImageView.isHidden = false
+        todoImageView.image = image
+    }
+    
     private func settingsTextField() {
         let textFieldLayerBorderColor: UIColor = .systemGray2
         titleTextField.layer.borderColor = textFieldLayerBorderColor.cgColor
@@ -71,7 +74,7 @@ class CreateViewController: UIViewController {
         descriptionTextView.layer.cornerRadius = 5.0
     }
     
-    fileprivate func settingsAddDateButton() {
+    private func settingsAddDateButton() {
         addPhotoButton.layer.borderWidth = 0.5
         addPhotoButton.layer.cornerRadius = 5.0
         addDateButton.layer.borderWidth = 0.5
@@ -112,17 +115,12 @@ class CreateViewController: UIViewController {
     }
 }
 
-extension CreateViewController: CreateViewControllerProtocol,
-                                ViewControllerPhotosPickerable,
+extension CreateViewController: ViewControllerPhotosPickerable,
                                 ViewControllerAlertPresentable,
                                 CameraPresentableDelegate {
-    func configureImageView(with image: UIImage) {
-        todoImageView.isHidden = false
-        todoImageView.image = image
-    }
     
     func picker(_ picker: PHPickerViewController, didPickedImage image: UIImage) {
-        configureImageView(with: image)
+        settingsImageView(with: image)
     }
     
     func didTappedAddPictureButton() {
@@ -148,6 +146,6 @@ extension CreateViewController: CreateViewControllerProtocol,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
-        configureImageView(with: selectedImage)
+        settingsImageView(with: selectedImage)
     }
 }

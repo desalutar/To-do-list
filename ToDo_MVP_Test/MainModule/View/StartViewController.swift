@@ -17,9 +17,8 @@ typealias Snapshot = NSDiffableDataSourceSnapshot<StartViewController.Section, T
 final class StartViewController: UIViewController, UITableViewDelegate {
     
     weak var coordinator: AppCoordinator?
-    var presenter: MainPresentable?
+    var presenter: StartPresenterProtocol?
     private var dataSource: DataSource?
-    let cell = Cell()
     @IBOutlet weak var tableView: UITableView!
     
     enum Section {
@@ -27,7 +26,7 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         case completed
     }
     
-    init(presenter: MainPresentable) {
+    init(presenter: StartPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: String(describing: StartViewController.self), bundle: .main)
     }
@@ -57,10 +56,10 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         tableView.register(Cell.nib(), forCellReuseIdentifier: Cell.cellID)
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        guard let item = presenter?.getToDoItem(at: indexPath) else { return }
-    //        // coordinator.navigateToEdit(todoItem: item)
-    //    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard (presenter?.getToDoItem(at: indexPath)) != nil else { return }
+        coordinator?.showEditViewController()
+    }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = UIColor.red
