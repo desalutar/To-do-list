@@ -9,6 +9,7 @@ import UIKit
 
 protocol EditViewControllerProtocol: AnyObject {
     func reload() 
+    func configureToDo(with item: ToDoItem)
 }
 
 class EditViewController: UIViewController {
@@ -44,7 +45,8 @@ class EditViewController: UIViewController {
         settingsTextView()
         settingDatePicker()
         settingsAddDateButton()
-        print(123)
+//        configureToDo(with: presenter.todoItem)
+        presenter.configureToDo(with: presenter.todoItem)
     }
     
     func settingsImageView(with image: UIImage) {

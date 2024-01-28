@@ -32,8 +32,8 @@ final class AppCoordinator: CoordinatorProtocol {
         navigationController.present(createViewController, animated: true)
     }
     
-    func showEditViewController() {
-        let editViewController = builder.buildEditVC()
+    func showEditViewController(todo: ToDoItem) {
+        let editViewController = builder.buildEditVC(todo: todo)
         editViewController.coordinator = self
         navigationController.pushViewController(editViewController, animated: true)
     }

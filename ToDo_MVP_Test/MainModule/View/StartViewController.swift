@@ -57,8 +57,8 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard (presenter?.getToDoItem(at: indexPath)) != nil else { return }
-        coordinator?.showEditViewController()
+        guard let todoItem = presenter?.getToDoItem(at: indexPath) else { return }
+        coordinator?.showEditViewController(todo: todoItem)
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
