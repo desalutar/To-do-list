@@ -48,6 +48,11 @@ class EditViewController: UIViewController {
         settingDatePicker()
         settingsAddDateButton()
         presenter.configureToDo(with: presenter.todoItem)
+        imageViewIsHidden(todoImageView)
+    }
+    
+    func imageViewIsHidden(_ imageView: UIImageView) {
+        imageView.isHidden = true
     }
     
     func settingsImageView(with image: UIImage) {

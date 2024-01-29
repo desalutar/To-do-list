@@ -33,7 +33,6 @@ final class EditPresenter: EditViewControllerPresentable {
                                 description: view?.descriptionTextView.text ?? .empty ,
                                 picture: view?.todoImageView.image,
                                 date: view?.datePicker.date)
-//        view.didEditToDo(with: itemToDo)
         view?.delegate?.didEditToDo(with: itemToDo)
     }
 }
