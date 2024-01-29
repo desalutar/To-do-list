@@ -25,4 +25,15 @@ final class EditPresenter: EditViewControllerPresentable {
         view?.descriptionTextView.text = item.description
         view?.datePickerLabel.text = item.date?.stringValue
     }
+    
+    func editToDo() {
+        let itemToDo = ToDoItem(id: todoItem.id,
+                                isCompleted: todoItem.isCompleted,
+                                title: view?.titleTextField.text ?? .empty,
+                                description: view?.descriptionTextView.text ?? .empty ,
+                                picture: view?.todoImageView.image,
+                                date: view?.datePicker.date)
+//        view.didEditToDo(with: itemToDo)
+        view?.delegate?.didEditToDo(with: itemToDo)
+    }
 }

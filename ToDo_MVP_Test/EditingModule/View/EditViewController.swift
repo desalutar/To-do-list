@@ -10,11 +10,13 @@ import PhotosUI
 
 protocol EditViewControllerProtocol: AnyObject {
     func reload()
+    func didEditToDo(with todo: ToDoItem)
 }
 
 class EditViewController: UIViewController {
 
     weak var coordinator: AppCoordinator?
+    var delegate: EditViewControllerProtocol?
     var presenter: EditPresenter
     
     @IBOutlet weak var todoImageView: UIImageView!
@@ -102,14 +104,8 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        let todo = presenter.todoItem
-        let itemToDo = ToDoItem(id: todo.id,
-                                isCompleted: todo.isCompleted,
-                                title: todo.title,
-                                description: todo.description,
-                                picture: todo.picture,
-                                date: todo.date)
-        dismiss(animated: true)
+        presenter.editToDo()
+        coordinator?.popToRootVC()
     }
 }
 

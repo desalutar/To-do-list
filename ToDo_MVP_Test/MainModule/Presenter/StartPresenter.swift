@@ -17,6 +17,7 @@ protocol StartPresenterProtocol: AnyObject {
     func makeSnapshot()
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem?
     func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
+    func editToDo(with item: ToDoItem)
 }
 
 final class StartPresenter: StartPresenterProtocol {
@@ -29,28 +30,6 @@ final class StartPresenter: StartPresenterProtocol {
     
     init(todoItems: [[ToDoItem]]) {
         self.todoItems = todoItems
-    }
-    
-    func showToDo(with todoItem: ToDoItem) {
-        switch todoItem.isCompleted {
-        case true:
-            if todoItems.count != 2 {
-                todoItems.append([todoItem])
-            } else if todoItems.count == 2 {
-                todoItems[1].append(todoItem)
-            }
-        case false:
-            if todoItems.isEmpty {
-                todoItems.append([todoItem])
-            } else if !todoItems[0].isEmpty && (todoItems[0].firstIndex(where: {$0.isCompleted == false}) != nil){
-                todoItems[0].append(todoItem)
-            } else if todoItems.count == 1 {
-                todoItems.insert([todoItem], at: 0)
-            } else if todoItems.count == 2 {
-                todoItems[0].append(todoItem)
-            }
-        }
-        makeSnapshot()
     }
     
     func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem) {
@@ -94,8 +73,41 @@ final class StartPresenter: StartPresenterProtocol {
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
+    func showToDo(with todoItem: ToDoItem) {
+        switch todoItem.isCompleted {
+        case true:
+            if todoItems.count != 2 {
+                todoItems.append([todoItem])
+            } else if todoItems.count == 2 {
+                todoItems[1].append(todoItem)
+            }
+        case false:
+            if todoItems.isEmpty {
+                todoItems.append([todoItem])
+            } else if !todoItems[0].isEmpty && (todoItems[0].firstIndex(where: {$0.isCompleted == false}) != nil){
+                todoItems[0].append(todoItem)
+            } else if todoItems.count == 1 {
+                todoItems.insert([todoItem], at: 0)
+            } else if todoItems.count == 2 {
+                todoItems[0].append(todoItem)
+            }
+        }
+        makeSnapshot()
+    }
+    
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem? {
         dataSource?.itemIdentifier(for: indexPath)
+    }
+    
+    func editToDo(with item: ToDoItem) {
+        if let index = todoItems[0].firstIndex(where: {$0.id == item.id }) {
+            todoItems[0].remove(at: index)
+            todoItems[0].insert(item, at: index)
+        } else if let secondIndex = todoItems[1].firstIndex(where: { $0.id == item.id}) {
+            todoItems[1].remove(at: secondIndex)
+            todoItems[1].insert(item, at: secondIndex)
+        }
+        makeSnapshot()
     }
 }
 

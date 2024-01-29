@@ -35,6 +35,12 @@ final class AppCoordinator: CoordinatorProtocol {
     func showEditViewController(todo: ToDoItem) {
         let editViewController = builder.buildEditVC(todo: todo)
         editViewController.coordinator = self
+        let todoListViewController = navigationController.viewControllers.first as? StartViewController
+        editViewController.delegate = todoListViewController
         navigationController.pushViewController(editViewController, animated: true)
+    }
+    
+    func popToRootVC() {
+        navigationController.popViewController(animated: true)
     }
 }

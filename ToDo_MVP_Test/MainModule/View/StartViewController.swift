@@ -78,3 +78,9 @@ extension StartViewController: CreateViewControllerProtocol {
         presenter?.showToDo(with: item)
     }
 }
+
+extension StartViewController: EditViewControllerProtocol {
+    func didEditToDo(with todo: ToDoItem) {
+        presenter?.editToDo(with: todo)
+    }
+}
