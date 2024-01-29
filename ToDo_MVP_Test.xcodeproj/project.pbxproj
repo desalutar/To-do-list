@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD4F2B6668A2003737A9 /* EditViewController.swift */; };
 		2313DD522B6668A2003737A9 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2313DD502B6668A2003737A9 /* EditViewController.xib */; };
-		2313DD552B6668C9003737A9 /* PresenterEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD542B6668C9003737A9 /* PresenterEditViewController.swift */; };
+		2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD542B6668C9003737A9 /* EditPresenter.swift */; };
 		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
@@ -56,7 +56,7 @@
 /* Begin PBXFileReference section */
 		2313DD4F2B6668A2003737A9 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		2313DD502B6668A2003737A9 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
-		2313DD542B6668C9003737A9 /* PresenterEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterEditViewController.swift; sourceTree = "<group>"; };
+		2313DD542B6668C9003737A9 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
 		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		2313DD562B6668D3003737A9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD542B6668C9003737A9 /* PresenterEditViewController.swift */,
+				2313DD542B6668C9003737A9 /* EditPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 				2394D1992B5D44230043287D /* StartPresenter.swift in Sources */,
 				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
 				2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */,
-				2313DD552B6668C9003737A9 /* PresenterEditViewController.swift in Sources */,
+				2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */,
 				2394D1922B5C17BD0043287D /* ToDoItem.swift in Sources */,
 				2368046A2B611D220043EEA8 /* Cell.swift in Sources */,
 				2394D19D2B5D4C3C0043287D /* MainBuilder.swift in Sources */,

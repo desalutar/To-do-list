@@ -21,7 +21,8 @@ protocol StartPresenterProtocol: AnyObject {
 
 final class StartPresenter: StartPresenterProtocol {
 
-    var dataSource: DataSource?  
+    
+    var dataSource: DataSource?
     private var todoItems: [[ToDoItem]] = []
     weak var view: StartViewControllerProtocol?
     private var selectedToDo: UITableView?
@@ -53,7 +54,7 @@ final class StartPresenter: StartPresenterProtocol {
     }
     
     func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem) {
-        debugPrint("update at \(indexPath) with \(todoItem)")
+        
     }
     
     func makeDataSource(for tableView: UITableView) {

@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol EditViewControllerProtocol: AnyObject {
-    func reload() 
-    func configureToDo(with item: ToDoItem)
+    func reload()
 }
 
 class EditViewController: UIViewController {
@@ -45,7 +45,6 @@ class EditViewController: UIViewController {
         settingsTextView()
         settingDatePicker()
         settingsAddDateButton()
-//        configureToDo(with: presenter.todoItem)
         presenter.configureToDo(with: presenter.todoItem)
     }
     
@@ -70,7 +69,7 @@ class EditViewController: UIViewController {
         descriptionTextView.layer.cornerRadius = 5.0
     }
     
-    fileprivate func settingsAddDateButton() {
+    private func settingsAddDateButton() {
         addPhotoButton.layer.borderWidth = 0.5
         addPhotoButton.layer.cornerRadius = 5.0
         addPhotoButton.layer.borderWidth = 0.5
@@ -92,14 +91,59 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func addPhotoButton(_ sender: Any) {
-        
+        didTappedAddPictureButton()
     }
     
     @IBAction func addDateButton(_ sender: Any) {
-        
+        UIView.animate(withDuration: 0.5) {
+            self.datePicker.isHidden.toggle()
+            self.datePickerLabel.isHidden = false
+        }
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        
+        let todo = presenter.todoItem
+        let itemToDo = ToDoItem(id: todo.id,
+                                isCompleted: todo.isCompleted,
+                                title: todo.title,
+                                description: todo.description,
+                                picture: todo.picture,
+                                date: todo.date)
+        dismiss(animated: true)
+    }
+}
+
+extension EditViewController: ViewControllerPhotosPickerable,
+                              ViewControllerAlertPresentable,
+                              CameraPresentableDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didPickedImage image: UIImage) {
+        settingsImageView(with: image)
+    }
+    
+    func didTappedAddPictureButton() {
+        alertAction { [weak self] source in
+            guard let self = self else { return }
+            switch source {
+            case .gallery:
+                showPhotosPicker(with: self)
+            case .camera:
+                showCameraPicker()
+            }
+        }
+    }
+    
+    func showCameraPicker() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        settingsImageView(with: selectedImage)
     }
 }
