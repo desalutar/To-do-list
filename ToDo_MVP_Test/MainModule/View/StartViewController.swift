@@ -62,7 +62,6 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor.red
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .darkGray
     }

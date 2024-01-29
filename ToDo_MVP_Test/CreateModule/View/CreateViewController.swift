@@ -16,7 +16,7 @@ extension CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {}
 }
 
-class CreateViewController: UIViewController {
+final class CreateViewController: UIViewController {
     
     var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
@@ -53,7 +53,7 @@ class CreateViewController: UIViewController {
         settingsAddDateButton()
     }
     
-    func settingsImageView(with image: UIImage) {
+    private func settingsImageView(with image: UIImage) {
         todoImageView.isHidden = false
         todoImageView.image = image
     }

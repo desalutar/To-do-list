@@ -13,7 +13,7 @@ protocol EditViewControllerProtocol: AnyObject {
     func didEditToDo(with todo: ToDoItem)
 }
 
-class EditViewController: UIViewController {
+final class EditViewController: UIViewController {
 
     weak var coordinator: AppCoordinator?
     var delegate: EditViewControllerProtocol?
@@ -39,6 +39,7 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewsSettings()
+        configureToDo()
     }
     
     private func viewsSettings() {
@@ -47,15 +48,23 @@ class EditViewController: UIViewController {
         settingsTextView()
         settingDatePicker()
         settingsAddDateButton()
-        presenter.configureToDo(with: presenter.todoItem)
         imageViewIsHidden(todoImageView)
     }
     
-    func imageViewIsHidden(_ imageView: UIImageView) {
+    
+    private func configureToDo() {
+        let todoItem = presenter.todoItem
+        todoImageView.image = todoItem.picture
+        titleTextField.text = todoItem.title
+        descriptionTextView.text = todoItem.description
+        datePickerLabel.text = todoItem.date?.stringValue
+    }
+    
+    private func imageViewIsHidden(_ imageView: UIImageView) {
         imageView.isHidden = true
     }
     
-    func settingsImageView(with image: UIImage) {
+    private func settingsImageView(with image: UIImage) {
         todoImageView.isHidden = false
         todoImageView.image = image
     }
@@ -109,7 +118,14 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        presenter.editToDo()
+        let todoItem = presenter.todoItem
+        let itemToDo = ToDoItem(id: todoItem.id,
+                                isCompleted: todoItem.isCompleted,
+                                title: titleTextField.text ?? .empty,
+                                description: descriptionTextView.text ?? .empty ,
+                                picture: todoImageView.image,
+                                date: datePicker.date)
+        delegate?.didEditToDo(with: itemToDo)
         coordinator?.popToRootVC()
     }
 }
@@ -122,7 +138,7 @@ extension EditViewController: ViewControllerPhotosPickerable,
         settingsImageView(with: image)
     }
     
-    func didTappedAddPictureButton() {
+    private func didTappedAddPictureButton() {
         alertAction { [weak self] source in
             guard let self = self else { return }
             switch source {
@@ -134,7 +150,7 @@ extension EditViewController: ViewControllerPhotosPickerable,
         }
     }
     
-    func showCameraPicker() {
+    private func showCameraPicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.allowsEditing = true

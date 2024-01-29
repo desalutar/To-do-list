@@ -8,31 +8,16 @@
 import Foundation
 
 protocol EditViewControllerPresentable: AnyObject {
-    func configureToDo(with item: ToDoItem)
+    
 }
 
 final class EditPresenter: EditViewControllerPresentable {
-    weak var view: EditViewController?
+    weak var view: EditViewControllerProtocol?
     var todoItem: ToDoItem
 
     init(todoItem: ToDoItem) {
         self.todoItem = todoItem
     }
     
-    func configureToDo(with item: ToDoItem) {
-        view?.todoImageView.image = item.picture
-        view?.titleTextField.text = item.title
-        view?.descriptionTextView.text = item.description
-        view?.datePickerLabel.text = item.date?.stringValue
-    }
     
-    func editToDo() {
-        let itemToDo = ToDoItem(id: todoItem.id,
-                                isCompleted: todoItem.isCompleted,
-                                title: view?.titleTextField.text ?? .empty,
-                                description: view?.descriptionTextView.text ?? .empty ,
-                                picture: view?.todoImageView.image,
-                                date: view?.datePicker.date)
-        view?.delegate?.didEditToDo(with: itemToDo)
-    }
 }
