@@ -189,11 +189,11 @@
 			children = (
 				2394D19E2B5D4DB70043287D /* Builder */,
 				2394D1882B5BFFC70043287D /* Coordinator */,
-				2394D1812B5BFC440043287D /* CreateModule */,
+				2394D1812B5BFC440043287D /* CreateToDo */,
 				2394D18F2B5C013A0043287D /* DiffableDataSource */,
-				2394D1822B5BFC510043287D /* EditingModule */,
+				2394D1822B5BFC510043287D /* EditToDo */,
 				2368046C2B6153350043EEA8 /* Extension */,
-				2394D1832B5BFC7C0043287D /* MainModule */,
+				2394D1832B5BFC7C0043287D /* MainController */,
 				236804712B615D880043EEA8 /* PhotoPickerable */,
 				2394D1902B5C17780043287D /* ToDoItemModel */,
 				2394D1512B5BFA9E0043287D /* AppDelegate.swift */,
@@ -222,32 +222,32 @@
 			path = ToDo_MVP_TestUITests;
 			sourceTree = "<group>";
 		};
-		2394D1812B5BFC440043287D /* CreateModule */ = {
+		2394D1812B5BFC440043287D /* CreateToDo */ = {
 			isa = PBXGroup;
 			children = (
 				2313DD582B667709003737A9 /* Presenter */,
 				2313DD572B6676FB003737A9 /* View */,
 			);
-			path = CreateModule;
+			path = CreateToDo;
 			sourceTree = "<group>";
 		};
-		2394D1822B5BFC510043287D /* EditingModule */ = {
+		2394D1822B5BFC510043287D /* EditToDo */ = {
 			isa = PBXGroup;
 			children = (
 				2313DD532B6668AB003737A9 /* View */,
 				2313DD562B6668D3003737A9 /* Presenter */,
 			);
-			path = EditingModule;
+			path = EditToDo;
 			sourceTree = "<group>";
 		};
-		2394D1832B5BFC7C0043287D /* MainModule */ = {
+		2394D1832B5BFC7C0043287D /* MainController */ = {
 			isa = PBXGroup;
 			children = (
 				2394D19B2B5D47BF0043287D /* View */,
 				2394D1952B5C3AF00043287D /* Cell */,
 				2394D19A2B5D478F0043287D /* Presenter */,
 			);
-			path = MainModule;
+			path = MainController;
 			sourceTree = "<group>";
 		};
 		2394D1882B5BFFC70043287D /* Coordinator */ = {

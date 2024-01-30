@@ -19,5 +19,4 @@ final class EditPresenter: EditViewControllerPresentable {
         self.todoItem = todoItem
     }
     
-    
 }

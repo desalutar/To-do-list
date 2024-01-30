@@ -1,37 +1,34 @@
 //
-//  CreateViewController.swift
+//  EditViewController.swift
 //  ToDo_MVP_Test
 //
-//  Created by Ишхан Багратуни on 23.01.24.
+//  Created by Ишхан Багратуни on 28.01.24.
 //
 
 import UIKit
 import PhotosUI
 
-protocol CreateViewControllerProtocol: AnyObject {
-    func didCreateToDo(with item: ToDoItem)
+protocol EditViewControllerProtocol: AnyObject {
+    func reload()
+    func didEditToDo(with todo: ToDoItem)
 }
 
-extension CreateViewControllerProtocol {
-    func didCreateToDo(with item: ToDoItem) {}
-}
+final class EditViewController: UIViewController {
 
-final class CreateViewController: UIViewController {
-    
-    var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
-    weak var delegate: CreateViewControllerProtocol?
+    var delegate: EditViewControllerProtocol?
+    var presenter: EditPresenter
     
     @IBOutlet weak var todoImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var addPhotoButton: UIButton!
-    @IBOutlet weak var addDateButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var datePickerLabel: UILabel!
+    @IBOutlet weak var addPhotoButton: UIButton!
+    @IBOutlet weak var addDateButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    init(presenter: CreatePresenter) {
+    init(presenter: EditPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: .main)
     }
@@ -42,15 +39,28 @@ final class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewsSettings()
-        presenter?.imageViewIsHidden(todoImageView)
+        configureToDo()
     }
     
     private func viewsSettings() {
-        settingsSaveButton()
-        settingsTextField()
-        settingsTextView()
-        settingDatePicker()
-        settingsAddDateButton()
+        setupSaveButton()
+        setupTextField()
+        setupTextView()
+        setupDatePicker()
+        setupAddDateButton()
+        imageViewIsHidden(todoImageView)
+    }
+    
+    private func configureToDo() {
+        let todoItem = presenter.todoItem
+        todoImageView.image = todoItem.picture
+        titleTextField.text = todoItem.title
+        descriptionTextView.text = todoItem.description
+        datePickerLabel.text = todoItem.date?.stringValue
+    }
+    
+    private func imageViewIsHidden(_ imageView: UIImageView) {
+        imageView.isHidden = true
     }
     
     private func settingsImageView(with image: UIImage) {
@@ -58,7 +68,7 @@ final class CreateViewController: UIViewController {
         todoImageView.image = image
     }
     
-    private func settingsTextField() {
+    private func setupTextField() {
         let textFieldLayerBorderColor: UIColor = .systemGray2
         titleTextField.layer.borderColor = textFieldLayerBorderColor.cgColor
         titleTextField.placeholder = "Enter task name"
@@ -67,21 +77,21 @@ final class CreateViewController: UIViewController {
         titleTextField.layer.masksToBounds = true
     }
     
-    private func settingsTextView() {
+    private func setupTextView() {
         let textViewLayerBorderColor: UIColor = .systemGray2
         descriptionTextView.layer.borderColor = textViewLayerBorderColor.cgColor
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.layer.cornerRadius = 5.0
     }
     
-    private func settingsAddDateButton() {
+    private func setupAddDateButton() {
         addPhotoButton.layer.borderWidth = 0.5
         addPhotoButton.layer.cornerRadius = 5.0
-        addDateButton.layer.borderWidth = 0.5
-        addDateButton.layer.cornerRadius = 5.0
+        addPhotoButton.layer.borderWidth = 0.5
+        addPhotoButton.layer.cornerRadius = 5.0
     }
     
-    private func settingDatePicker() {
+    private func setupDatePicker() {
         datePickerLabel.isHidden = true
         datePicker.addTarget(self, action: #selector(handlerDatePicker), for: .valueChanged)
         datePicker.isHidden = true
@@ -90,40 +100,44 @@ final class CreateViewController: UIViewController {
         datePickerLabel.text = datePicker.date.stringValue
     }
     
-    private func settingsSaveButton() {
+    private func setupSaveButton() {
         saveButton.layer.borderWidth = 0.5
         saveButton.layer.cornerRadius = 5.0
     }
     
-    @IBAction func addPhotoInToDo(_ sender: Any) {
+    @IBAction func addPhotoButton(_ sender: Any) {
         didTappedAddPictureButton()
     }
     
-    @IBAction func addDateInToDo(_ sender: Any) {
+    @IBAction func addDateButton(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {
             self.datePicker.isHidden.toggle()
             self.datePickerLabel.isHidden = false
         }
     }
     
-    @IBAction func saveToDo(_ sender: Any) {
-        let itemToDo = ToDoItem(title: titleTextField.text ?? .empty, 
-                                description: descriptionTextView.text,
-                                picture: todoImageView.image, date: datePicker.date)
-        delegate?.didCreateToDo(with: itemToDo)
-        dismiss(animated: true)
+    @IBAction func saveButton(_ sender: Any) {
+        let todoItem = presenter.todoItem
+        let itemToDo = ToDoItem(id: todoItem.id,
+                                isCompleted: todoItem.isCompleted,
+                                title: titleTextField.text ?? .empty,
+                                description: descriptionTextView.text ?? .empty ,
+                                picture: todoImageView.image,
+                                date: datePicker.date)
+        delegate?.didEditToDo(with: itemToDo)
+        coordinator?.popToRootVC()
     }
 }
 
-extension CreateViewController: ViewControllerPhotosPickerable,
-                                ViewControllerAlertPresentable,
-                                CameraPresentableDelegate {
+extension EditViewController: ViewControllerPhotosPickerable,
+                              ViewControllerAlertPresentable,
+                              CameraPresentableDelegate {
     
     func picker(_ picker: PHPickerViewController, didPickedImage image: UIImage) {
         settingsImageView(with: image)
     }
     
-    func didTappedAddPictureButton() {
+    private func didTappedAddPictureButton() {
         alertAction { [weak self] source in
             guard let self = self else { return }
             switch source {
@@ -135,7 +149,7 @@ extension CreateViewController: ViewControllerPhotosPickerable,
         }
     }
     
-    func showCameraPicker() {
+    private func showCameraPicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .camera
         picker.allowsEditing = true
