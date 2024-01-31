@@ -20,11 +20,11 @@ enum ImagePicker {
 extension ViewControllerAlertPresentable where Self: UIViewController {
 
     func alertAction(_ action: @escaping (ImagePicker) -> Void) {
-        let alertTitle: String = "showPhotoPicker_AlertController_Title"
-        let alertMessage = "showPhotoPicker_AlertController_Message"
-        let galleryAlertTitle = "Open gallery"
-        let cameraAlertTitle = "Take Camera"
-        let cancelAlertTitle = "Cancel"
+        let alertTitle: String = "showPhotoPicker_AlertController_Title".localized
+        let alertMessage = "showPhotoPicker_AlertController_Message".localized
+        let galleryAlertTitle = "Open gallery".localized
+        let cameraAlertTitle = "Take Camera".localized
+        let cancelAlertTitle = "Cancel".localized
         
         let alert = UIAlertController(title: alertTitle,
                                       message: alertMessage,

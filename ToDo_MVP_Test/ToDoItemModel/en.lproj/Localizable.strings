@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  ToDo_MVP_Test
+
+  Created by Ишхан Багратуни on 31.01.24.
+  
+*/
+"First section name unfulfilled" = "Unfulfilled";
+"Second section name completed" = "Completed";
+"Enter name" = "Enter a name";
+"Enter title" = "Enter a title";
+"Enter a description" = "Enter a description";
+"title_of_the_deletion_pop_up_window" = "Are you sure you want to delete?";
+"description_of_the_pop_up_deletion_window" = "Choose one of the actions.";
+"Delete" = "Delete";
+"Save" = "Save";
+"Cancel" = "Cancel";
+
+"showPhotoPicker_AlertController_Title" = "Specify";
+"showPhotoPicker_AlertController_Message" = "Where to get the photo from.";
+"Open gallery" = "Open gallery";
+"Take Camera" = "Take camera";
+
+"What will the task be called" = "What will the task be called ";
+"saveButtonTitle" = "Save ";
+"deleteButtonTitle" = "Delete ";
+"Set photo " = "Attach photo ";
+
+"Set date" = "Set date ";

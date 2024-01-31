@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD4F2B6668A2003737A9 /* EditViewController.swift */; };
-		2313DD522B6668A2003737A9 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2313DD502B6668A2003737A9 /* EditViewController.xib */; };
 		2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD542B6668C9003737A9 /* EditPresenter.swift */; };
+		2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */; };
+		2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */; };
+		2313DD672B6ACDF8003737A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2313DD692B6ACDF8003737A9 /* Localizable.strings */; };
+		2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */; };
 		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
@@ -18,8 +21,6 @@
 		236804732B615DC80043EEA8 /* CameraPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804722B615DC80043EEA8 /* CameraPresentable.swift */; };
 		236804752B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804742B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift */; };
 		236804772B615DFA0043EEA8 /* ViewControllerAlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804762B615DFA0043EEA8 /* ViewControllerAlertPresentable.swift */; };
-		2368047C2B6175B50043EEA8 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368047A2B6175B50043EEA8 /* CreateViewController.swift */; };
-		2368047D2B6175B50043EEA8 /* CreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2368047B2B6175B50043EEA8 /* CreateViewController.xib */; };
 		2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1512B5BFA9E0043287D /* AppDelegate.swift */; };
 		2394D15B2B5BFAA00043287D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2394D15A2B5BFAA00043287D /* Assets.xcassets */; };
 		2394D15E2B5BFAA00043287D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2394D15C2B5BFAA00043287D /* LaunchScreen.storyboard */; };
@@ -55,8 +56,13 @@
 
 /* Begin PBXFileReference section */
 		2313DD4F2B6668A2003737A9 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		2313DD502B6668A2003737A9 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		2313DD542B6668C9003737A9 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditToDoView.swift; sourceTree = "<group>"; };
+		2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		2313DD642B6ACDC6003737A9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2313DD682B6ACDF8003737A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2313DD6A2B6ACDFB003737A9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsLocalizable.swift; sourceTree = "<group>"; };
 		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
@@ -65,8 +71,6 @@
 		236804722B615DC80043EEA8 /* CameraPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresentable.swift; sourceTree = "<group>"; };
 		236804742B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPhotosPickerable.swift; sourceTree = "<group>"; };
 		236804762B615DFA0043EEA8 /* ViewControllerAlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertPresentable.swift; sourceTree = "<group>"; };
-		2368047A2B6175B50043EEA8 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
-		2368047B2B6175B50043EEA8 /* CreateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateViewController.xib; sourceTree = "<group>"; };
 		2394D14E2B5BFA9E0043287D /* ToDo_MVP_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo_MVP_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2394D1512B5BFA9E0043287D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2394D15A2B5BFAA00043287D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,15 +116,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2313DD532B6668AB003737A9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2313DD4F2B6668A2003737A9 /* EditViewController.swift */,
-				2313DD502B6668A2003737A9 /* EditViewController.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2313DD562B6668D3003737A9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,21 +124,20 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		2313DD572B6676FB003737A9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2368047A2B6175B50043EEA8 /* CreateViewController.swift */,
-				2368047B2B6175B50043EEA8 /* CreateViewController.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2313DD582B667709003737A9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				236804602B6016580043EEA8 /* CreatePresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		2313DD632B6ACB9B003737A9 /* CreateEditView */ = {
+			isa = PBXGroup;
+			children = (
+				2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */,
+			);
+			path = CreateEditView;
 			sourceTree = "<group>";
 		};
 		2368046C2B6153350043EEA8 /* Extension */ = {
@@ -196,6 +190,7 @@
 				2394D1832B5BFC7C0043287D /* MainController */,
 				236804712B615D880043EEA8 /* PhotoPickerable */,
 				2394D1902B5C17780043287D /* ToDoItemModel */,
+				2313DD632B6ACB9B003737A9 /* CreateEditView */,
 				2394D1512B5BFA9E0043287D /* AppDelegate.swift */,
 				2394D15A2B5BFAA00043287D /* Assets.xcassets */,
 				2394D15C2B5BFAA00043287D /* LaunchScreen.storyboard */,
@@ -225,8 +220,8 @@
 		2394D1812B5BFC440043287D /* CreateToDo */ = {
 			isa = PBXGroup;
 			children = (
+				2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */,
 				2313DD582B667709003737A9 /* Presenter */,
-				2313DD572B6676FB003737A9 /* View */,
 			);
 			path = CreateToDo;
 			sourceTree = "<group>";
@@ -234,7 +229,7 @@
 		2394D1822B5BFC510043287D /* EditToDo */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD532B6668AB003737A9 /* View */,
+				2313DD4F2B6668A2003737A9 /* EditViewController.swift */,
 				2313DD562B6668D3003737A9 /* Presenter */,
 			);
 			path = EditToDo;
@@ -271,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				2394D1912B5C17BD0043287D /* ToDoItem.swift */,
+				2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */,
+				2313DD692B6ACDF8003737A9 /* Localizable.strings */,
 			);
 			path = ToDoItemModel;
 			sourceTree = "<group>";
@@ -395,6 +392,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 2394D1452B5BFA9E0043287D;
 			productRefGroup = 2394D14F2B5BFA9E0043287D /* Products */;
@@ -413,9 +411,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2313DD522B6668A2003737A9 /* EditViewController.xib in Resources */,
+				2313DD672B6ACDF8003737A9 /* Localizable.strings in Resources */,
 				2368046B2B611D220043EEA8 /* Cell.xib in Resources */,
-				2368047D2B6175B50043EEA8 /* CreateViewController.xib in Resources */,
 				2394D15E2B5BFAA00043287D /* LaunchScreen.storyboard in Resources */,
 				2394D15B2B5BFAA00043287D /* Assets.xcassets in Resources */,
 				2394D1872B5BFD920043287D /* StartViewController.xib in Resources */,
@@ -445,13 +442,15 @@
 			files = (
 				236804752B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift in Sources */,
 				236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */,
-				2368047C2B6175B50043EEA8 /* CreateViewController.swift in Sources */,
 				2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */,
+				2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */,
 				2394D18D2B5C00080043287D /* AppCoordinator.swift in Sources */,
 				236804702B6153770043EEA8 /* DateFormatter.swift in Sources */,
 				2394D1992B5D44230043287D /* StartPresenter.swift in Sources */,
 				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
 				2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */,
+				2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */,
+				2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */,
 				2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */,
 				2394D1922B5C17BD0043287D /* ToDoItem.swift in Sources */,
 				2368046A2B611D220043EEA8 /* Cell.swift in Sources */,
@@ -497,10 +496,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2313DD692B6ACDF8003737A9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2313DD682B6ACDF8003737A9 /* en */,
+				2313DD6A2B6ACDFB003737A9 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2394D15C2B5BFAA00043287D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2394D15D2B5BFAA00043287D /* Base */,
+				2313DD642B6ACDC6003737A9 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -576,6 +586,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

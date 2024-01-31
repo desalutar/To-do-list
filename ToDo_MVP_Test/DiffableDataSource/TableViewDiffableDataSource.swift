@@ -23,7 +23,8 @@ final class DiffableDataSource: UITableViewDiffableDataSource<StartViewControlle
     }
     
     private func makeHeaderTitle(with todoItem: ToDoItem) -> String {
-        todoItem.isCompleted ? "Completed" : "Unfulfilled"
+        todoItem.isCompleted ? "Second section name completed".localized :
+                               "First section name unfulfilled".localized
     }
     
     override func tableView(_ tableView: UITableView, 

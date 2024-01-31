@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  ToDo_MVP_Test
+
+  Created by Ишхан Багратуни on 31.01.24.
+  
+*/
+
+"First section name unfulfilled" = "Невыполненный";
+"Second section name completed" = "Завершенный";
+"Enter name" = "Введите имя";
+"Enter title" = "Введите название";
+"Enter a description" = "Введите описание";
+"Save" = "Сохранить";
+"Delete" = "Удалить";
+"title_of_the_deletion_pop_up_window" = "Вы уверены, что хотите удалить?";
+"description_of_the_pop_up_deletion_window" = "Выберите одно из действий.";
+"Cancel" = "Отменить";
+
+"showPhotoPicker_AlertController_Title" = "Укажите";
+"showPhotoPicker_AlertController_Message" = "Откуда взять фотографию ?";
+"Open gallery" = "Открыть галерею";
+"Take Camera" = "Сделать фото";
+
+"What will the task be called"  = "Как назвать задачу ? ";
+"saveButtonTitle" = "Сохранить ";
+"deleteButtonTitle" = "Удалить ";
+"Set photo" = "Добавить фото  ";
+
+"Set date" = "Установить крайний день ";
+
