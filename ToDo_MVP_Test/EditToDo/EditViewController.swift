@@ -9,7 +9,6 @@ import UIKit
 import PhotosUI
 
 protocol EditViewControllerProtocol: AnyObject {
-    func reload()
     func didEditToDo(with todo: ToDoItem)
 }
 final class EditViewController: UIViewController, CreateEditTodoViewDelegate {

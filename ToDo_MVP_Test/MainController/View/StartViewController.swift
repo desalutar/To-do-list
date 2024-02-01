@@ -66,10 +66,6 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .darkGray
     }
-    
-    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
-        
-    }
 }
 
 extension StartViewController: StartViewControllerProtocol {
