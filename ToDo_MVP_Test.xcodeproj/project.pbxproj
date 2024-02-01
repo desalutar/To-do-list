@@ -13,6 +13,10 @@
 		2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */; };
 		2313DD672B6ACDF8003737A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2313DD692B6ACDF8003737A9 /* Localizable.strings */; };
 		2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */; };
+		2313DD7F2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD7D2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld */; };
+		2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */; };
+		2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */; };
+		2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD852B6B8B99003737A9 /* CoreDataManager.swift */; };
 		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
@@ -63,6 +67,10 @@
 		2313DD682B6ACDF8003737A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2313DD6A2B6ACDFB003737A9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsLocalizable.swift; sourceTree = "<group>"; };
+		2313DD7E2B6B8A8D003737A9 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2313DD852B6B8B99003737A9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
@@ -138,6 +146,17 @@
 				2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */,
 			);
 			path = CreateEditView;
+			sourceTree = "<group>";
+		};
+		2313DD842B6B8B26003737A9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2313DD7D2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld */,
+				2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */,
+				2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */,
+				2313DD852B6B8B99003737A9 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		2368046C2B6153350043EEA8 /* Extension */ = {
@@ -265,6 +284,7 @@
 		2394D1902B5C17780043287D /* ToDoItemModel */ = {
 			isa = PBXGroup;
 			children = (
+				2313DD842B6B8B26003737A9 /* CoreData */,
 				2394D1912B5C17BD0043287D /* ToDoItem.swift */,
 				2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */,
 				2313DD692B6ACDF8003737A9 /* Localizable.strings */,
@@ -442,13 +462,17 @@
 			files = (
 				236804752B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift in Sources */,
 				236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */,
+				2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */,
 				2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */,
 				2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */,
 				2394D18D2B5C00080043287D /* AppCoordinator.swift in Sources */,
+				2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */,
+				2313DD7F2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld in Sources */,
 				236804702B6153770043EEA8 /* DateFormatter.swift in Sources */,
 				2394D1992B5D44230043287D /* StartPresenter.swift in Sources */,
 				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
 				2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */,
+				2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */,
 				2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */,
 				2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */,
 				2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */,
@@ -808,6 +832,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2313DD7D2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2313DD7E2B6B8A8D003737A9 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 2313DD7E2B6B8A8D003737A9 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2394D1462B5BFA9E0043287D /* Project object */;
 }

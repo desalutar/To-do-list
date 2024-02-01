@@ -13,6 +13,10 @@ protocol EditViewControllerProtocol: AnyObject {
     func didEditToDo(with todo: ToDoItem)
 }
 
+//extension EditViewControllerProtocol {
+//    func didEditToDo(with todo: ToDoItem) {}
+//}
+
 final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
 
     weak var coordinator: AppCoordinator?

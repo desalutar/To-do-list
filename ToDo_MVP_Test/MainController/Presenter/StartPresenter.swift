@@ -12,12 +12,12 @@ protocol StartPresenterProtocol: AnyObject {
     var dataSource: DataSource? { get set }
     
     func showToDo(with item: ToDoItem)
-    func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem)
     func makeDataSource(for tableView: UITableView)
     func makeSnapshot()
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem?
     func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
     func editToDo(with item: ToDoItem)
+    func fetchTodos()
 }
 
 final class StartPresenter: StartPresenterProtocol {
@@ -27,13 +27,10 @@ final class StartPresenter: StartPresenterProtocol {
     private var todoItems: [[ToDoItem]] = []
     weak var view: StartViewControllerProtocol?
     private var selectedToDo: UITableView?
+    private let coreDataManager = CoreDataManager.shared
     
     init(todoItems: [[ToDoItem]]) {
         self.todoItems = todoItems
-    }
-    
-    func update(todoItemAt indexPath: IndexPath, with todoItem: ToDoItem) {
-        
     }
     
     func makeDataSource(for tableView: UITableView) {
@@ -93,6 +90,7 @@ final class StartPresenter: StartPresenterProtocol {
             }
         }
         makeSnapshot()
+        coreDataManager.save(todoItem: todoItem)
     }
     
     func getToDoItem(at indexPath: IndexPath) -> ToDoItem? {
@@ -139,7 +137,7 @@ extension StartPresenter: TableViewCellDelegate {
             if todoItems[0].isEmpty {
                 todoItems.remove(at: 0)
             }
-            
+            coreDataManager.update(todoItem: item)
         case false:
             if todoItems.count == 1 {
                 todoItems.insert([item], at: 0)
@@ -149,7 +147,13 @@ extension StartPresenter: TableViewCellDelegate {
             if todoItems[1].isEmpty {
                 todoItems.remove(at: 1)
             }
+            coreDataManager.update(todoItem: item)
         }
+    }
+    
+    func fetchTodos() {
+        todoItems = coreDataManager.fetchAllTodos()
+        makeSnapshot()
     }
 }
 

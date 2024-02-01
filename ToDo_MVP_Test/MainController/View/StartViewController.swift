@@ -42,6 +42,7 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         setNavigationItems()
         presenter?.makeDataSource(for: tableView)
         presenter?.makeSnapshot()
+        presenter?.fetchTodos()
     }
     
     private func setNavigationItems() {
@@ -64,6 +65,10 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = .darkGray
+    }
+    
+    func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
+        
     }
 }
 

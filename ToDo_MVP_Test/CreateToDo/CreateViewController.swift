@@ -43,7 +43,6 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     func didCreate(todo: ToDoItem) {

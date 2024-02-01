@@ -9,13 +9,10 @@ import Foundation
 import UIKit
 
 protocol CreatePresentable: AnyObject {
-    func imageViewIsHidden(_ imageView: UIImageView)
+    
 }
 
 class CreatePresenter: CreatePresentable {
     weak var view: CreateViewControllerProtocol?
     
-    func imageViewIsHidden(_ imageView: UIImageView) {
-        imageView.isHidden = true
-    }
 }
