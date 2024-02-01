@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController()
         let builder = MainBuilder()
         coordinator = AppCoordinator(navigationController: navigationController, builder: builder)
-        coordinator?.showStartScreen()
+        coordinator?.showToDoList()
          
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationController

@@ -10,5 +10,5 @@ import UIKit
 protocol CoordinatorProtocol {
     var navigationController: UINavigationController { get }
     var builder: MainBuilderProtocol { get }
-    func showStartScreen()
+    func showToDoList()
 }

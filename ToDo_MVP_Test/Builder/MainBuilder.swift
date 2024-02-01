@@ -8,18 +8,18 @@
 import UIKit
 
 protocol MainBuilderProtocol: AnyObject {
-    func buildTodoList() -> StartViewController
+    func buildTodoList() -> ToDoListController
     func buildCreateVC() -> CreateViewController
     func buildEditVC(todo: ToDoItem) -> EditViewController
 }
 
 final class MainBuilder: MainBuilderProtocol {
     
-    func buildTodoList() -> StartViewController {
-        let presenter = StartPresenter(todoItems: [[]])
-        let startVC = StartViewController(presenter: presenter)
-        presenter.view = startVC
-        return startVC
+    func buildTodoList() -> ToDoListController {
+        let presenter = ToDoListPresenter(todoItems: [[]])
+        let todoListVC = ToDoListController(presenter: presenter)
+        presenter.view = todoListVC
+        return todoListVC
     }
     
     func buildCreateVC() -> CreateViewController {

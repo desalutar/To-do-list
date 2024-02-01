@@ -17,7 +17,7 @@ final class AppCoordinator: CoordinatorProtocol {
         self.builder = builder
     }
     
-    func showStartScreen() {
+    func showToDoList() {
         let mainViewController = builder.buildTodoList()
         mainViewController.coordinator = self
         navigationController.pushViewController(mainViewController, animated: false)
@@ -26,7 +26,7 @@ final class AppCoordinator: CoordinatorProtocol {
     func showCreateViewController() {
         let createViewController = builder.buildCreateVC()
         createViewController.coordinator = self
-        let todoListViewController = navigationController.viewControllers.first as? StartViewController
+        let todoListViewController = navigationController.viewControllers.first as? ToDoListController
         createViewController.delegate = todoListViewController
         
         navigationController.present(createViewController, animated: true)
@@ -35,7 +35,7 @@ final class AppCoordinator: CoordinatorProtocol {
     func showEditViewController(todo: ToDoItem) {
         let editViewController = builder.buildEditVC(todo: todo)
         editViewController.coordinator = self
-        let todoListViewController = navigationController.viewControllers.first as? StartViewController
+        let todoListViewController = navigationController.viewControllers.first as? ToDoListController
         editViewController.delegate = todoListViewController
         navigationController.pushViewController(editViewController, animated: true)
     }

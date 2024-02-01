@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol StartViewControllerProtocol: AnyObject {
+protocol ToDoListControllerProtocol: AnyObject {
     func reload()
 }
 
 typealias DataSource = DiffableDataSource
-typealias Snapshot = NSDiffableDataSourceSnapshot<StartViewController.Section, ToDoItem>
+typealias Snapshot = NSDiffableDataSourceSnapshot<ToDoListController.Section, ToDoItem>
 
-final class StartViewController: UIViewController, UITableViewDelegate {
+final class ToDoListController: UIViewController, UITableViewDelegate {
     
     weak var coordinator: AppCoordinator?
-    var presenter: StartPresenterProtocol?
+    var presenter: ToDoListPresentProtocol?
     private var dataSource: DataSource?
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,9 +26,9 @@ final class StartViewController: UIViewController, UITableViewDelegate {
         case completed
     }
     
-    init(presenter: StartPresenterProtocol) {
+    init(presenter: ToDoListPresentProtocol) {
         self.presenter = presenter
-        super.init(nibName: String(describing: StartViewController.self), bundle: .main)
+        super.init(nibName: String(describing: ToDoListController.self), bundle: .main)
     }
     
     required init?(coder: NSCoder) {
@@ -68,18 +68,18 @@ final class StartViewController: UIViewController, UITableViewDelegate {
     }
 }
 
-extension StartViewController: StartViewControllerProtocol {
+extension ToDoListController: ToDoListControllerProtocol {
     func reload() {
         debugPrint("reload")
     }
 }
-extension StartViewController: CreateViewControllerProtocol {
+extension ToDoListController: CreateViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
         presenter?.showToDo(with: item)
     }
 }
 
-extension StartViewController: EditViewControllerProtocol {
+extension ToDoListController: EditViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
         presenter?.editToDo(with: todo)
     }

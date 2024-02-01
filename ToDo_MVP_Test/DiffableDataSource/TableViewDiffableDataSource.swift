@@ -12,7 +12,7 @@ protocol TableViewDiffableDataSourceDelegate: AnyObject {
     func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath)
 }
 
-final class DiffableDataSource: UITableViewDiffableDataSource<StartViewController.Section, ToDoItem> {
+final class DiffableDataSource: UITableViewDiffableDataSource<ToDoListController.Section, ToDoItem> {
     weak var delegate: TableViewDiffableDataSourceDelegate?
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

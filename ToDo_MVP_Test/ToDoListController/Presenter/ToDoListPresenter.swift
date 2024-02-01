@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol StartPresenterProtocol: AnyObject {
+protocol ToDoListPresentProtocol: AnyObject {
     var dataSource: DataSource? { get set }
     
     func showToDo(with item: ToDoItem)
@@ -20,12 +20,11 @@ protocol StartPresenterProtocol: AnyObject {
     func fetchTodos()
 }
 
-final class StartPresenter: StartPresenterProtocol {
+final class ToDoListPresenter: ToDoListPresentProtocol {
 
-    
     var dataSource: DataSource?
     private var todoItems: [[ToDoItem]] = []
-    weak var view: StartViewControllerProtocol?
+    weak var view: ToDoListControllerProtocol?
     private var selectedToDo: UITableView?
     private let coreDataManager = CoreDataManager.shared
     
@@ -109,7 +108,7 @@ final class StartPresenter: StartPresenterProtocol {
     }
 }
 
-extension StartPresenter: TableViewCellDelegate {
+extension ToDoListPresenter: TableViewCellDelegate {
     func toggleTaskAtSection(_ cell: Cell) {
          guard let indexPath = selectedToDo?.indexPath(for: cell),
               var item = dataSource?.itemIdentifier(for: indexPath) else { return }
@@ -157,7 +156,7 @@ extension StartPresenter: TableViewCellDelegate {
     }
 }
 
-extension StartPresenter: TableViewDiffableDataSourceDelegate {
+extension ToDoListPresenter: TableViewDiffableDataSourceDelegate {
     func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
         let todo = todoItems[indexPath.section].remove(at: indexPath.row)
         coreDataManager.swipeDeletion(todoItem: todo)
