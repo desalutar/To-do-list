@@ -6,8 +6,8 @@
   
 */
 
-"First section name unfulfilled" = "Невыполненный";
-"Second section name completed" = "Завершенный";
+"First section name unfulfilled" = "Невыполненные";
+"Second section name completed" = "Выполненные";
 "Enter name" = "Введите имя";
 "Enter title" = "Введите название";
 "Enter a description" = "Введите описание";
