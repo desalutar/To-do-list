@@ -17,6 +17,8 @@
 		2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */; };
 		2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */; };
 		2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD852B6B8B99003737A9 /* CoreDataManager.swift */; };
+		2313DD8B2B6BB717003737A9 /* EditViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */; };
+		2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */; };
 		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
@@ -71,6 +73,8 @@
 		2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2313DD852B6B8B99003737A9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditViewController+Extension.swift"; sourceTree = "<group>"; };
+		2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateToDo+Extension.swift"; sourceTree = "<group>"; };
 		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */,
+				2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */,
 				2313DD582B667709003737A9 /* Presenter */,
 			);
 			path = CreateToDo;
@@ -251,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				2313DD4F2B6668A2003737A9 /* EditViewController.swift */,
+				2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */,
 				2313DD562B6668D3003737A9 /* Presenter */,
 			);
 			path = EditToDo;
@@ -472,8 +478,10 @@
 				236804702B6153770043EEA8 /* DateFormatter.swift in Sources */,
 				2394D1992B5D44230043287D /* StartPresenter.swift in Sources */,
 				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
+				2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */,
 				2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */,
 				2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */,
+				2313DD8B2B6BB717003737A9 /* EditViewController+Extension.swift in Sources */,
 				2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */,
 				2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */,
 				2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */,

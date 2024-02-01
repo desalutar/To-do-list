@@ -12,18 +12,13 @@ protocol EditViewControllerProtocol: AnyObject {
     func reload()
     func didEditToDo(with todo: ToDoItem)
 }
-
-//extension EditViewControllerProtocol {
-//    func didEditToDo(with todo: ToDoItem) {}
-//}
-
 final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
 
     weak var coordinator: AppCoordinator?
     var delegate: EditViewControllerProtocol?
     var presenter: EditPresenter
     
-    private lazy var contentView: CreateEditTodoView = {
+    lazy var contentView: CreateEditTodoView = {
         CreateEditTodoView(viewType: .edit, todoItem: presenter.todoItem)
     }()
     
@@ -52,37 +47,3 @@ final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
     }
 }
 
-extension EditViewController: ViewControllerPhotosPickerable,
-                              ViewControllerAlertPresentable,
-                              CameraPresentableDelegate {
-    
-    func picker(_ picker: PHPickerViewController, didPickedImage image: UIImage) {
-        contentView.configureImageView(with: image)
-    }
-    
-    func didTappedAddPictureButton() {
-        alertAction { [weak self] source in
-            guard let self = self else { return }
-            switch source {
-            case .gallery:
-                showPhotosPicker(with: self)
-            case .camera:
-                showCameraPicker()
-            }
-        }
-    }
-    
-    private func showCameraPicker() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        guard let selectedImage = info[.editedImage] as? UIImage else { return }
-        contentView.configureImageView(with: selectedImage)
-    }
-}
