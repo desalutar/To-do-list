@@ -159,8 +159,8 @@ extension StartPresenter: TableViewCellDelegate {
 
 extension StartPresenter: TableViewDiffableDataSourceDelegate {
     func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
-        todoItems[indexPath.section].remove(at: indexPath.row)
-        
+        let todo = todoItems[indexPath.section].remove(at: indexPath.row)
+        coreDataManager.swipeDeletion(todoItem: todo)
         switch todoItems.count {
         case 1:
             if todoItems[0].isEmpty { todoItems.remove(at: 0) }

@@ -156,7 +156,8 @@
 				2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */,
 				2313DD852B6B8B99003737A9 /* CoreDataManager.swift */,
 			);
-			path = CoreData;
+			name = CoreData;
+			path = Coordinator/CoreData;
 			sourceTree = "<group>";
 		};
 		2368046C2B6153350043EEA8 /* Extension */ = {
@@ -202,6 +203,7 @@
 			children = (
 				2394D19E2B5D4DB70043287D /* Builder */,
 				2394D1882B5BFFC70043287D /* Coordinator */,
+				2313DD842B6B8B26003737A9 /* CoreData */,
 				2394D1812B5BFC440043287D /* CreateToDo */,
 				2394D18F2B5C013A0043287D /* DiffableDataSource */,
 				2394D1822B5BFC510043287D /* EditToDo */,
@@ -284,7 +286,6 @@
 		2394D1902B5C17780043287D /* ToDoItemModel */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD842B6B8B26003737A9 /* CoreData */,
 				2394D1912B5C17BD0043287D /* ToDoItem.swift */,
 				2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */,
 				2313DD692B6ACDF8003737A9 /* Localizable.strings */,
