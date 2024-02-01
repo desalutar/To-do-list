@@ -37,10 +37,6 @@ final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
         contentView.configure()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     func didCreate(todo: ToDoItem) {
         delegate?.didEditToDo(with: todo)
         coordinator?.popToRootVC()

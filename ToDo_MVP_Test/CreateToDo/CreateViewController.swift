@@ -13,8 +13,6 @@ protocol CreateViewControllerProtocol: AnyObject {
 }
 
 final class CreateViewController: UIViewController, CreateEditTodoViewDelegate {
-
-    
     
     var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
@@ -36,9 +34,6 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate {
         view = contentView
         contentView.delegate = self
         contentView.configure()
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     func didCreate(todo: ToDoItem) {
