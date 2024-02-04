@@ -7,9 +7,24 @@
 
 import UIKit
 
+struct ToDoItemData {
+    let id: UUID
+    let title: String
+    let description: String
+    let isCompleted: Bool
+    let date: Date?
+}
+
 protocol CreateEditTodoViewDelegate: AnyObject {
-    func didCreate(todo: ToDoItem)
+    func didCreate(with todoItemData: ToDoItemData)
+    func didEdit(with todoItemData: ToDoItemData)
     func didTappedAddPictureButton()
+}
+
+extension CreateEditTodoViewDelegate {
+    func didCreate(with todoItemData: ToDoItemData) {}
+    func didEdit(with todoItemData: ToDoItemData) {}
+    func didTappedAddPictureButton() {}
 }
 
 final class CreateEditTodoView: UIView {
@@ -102,23 +117,29 @@ final class CreateEditTodoView: UIView {
     }()
     
     @objc func handleSaveButtonTap() {
-        let todoItem: ToDoItem
         switch viewType {
         case .create:
-            todoItem = ToDoItem(title: textField.text ?? .empty,
-                                description: textView.text,
-                                picture: imageView.image,
-                                date: datePicker.date)
+            delegate?.didCreate(
+                with: ToDoItemData(
+                    id: UUID(),
+                    title: textField.text ?? .empty,
+                    description: textView.text,
+                    isCompleted: false,
+                    date: datePicker.date
+                )
+            )
         case .edit:
             guard let todo = self.todoItem else { return }
-            todoItem = ToDoItem(id: todo.id,
-                                isCompleted: todo.isCompleted,
-                                title: textField.text ?? .empty,
-                                description: textView.text,
-                                picture: imageView.image,
-                                date: datePicker.date)
+            delegate?.didEdit(
+                with: ToDoItemData(
+                    id: todo.id,
+                    title: textField.text ?? .empty,
+                    description: textView.text,
+                    isCompleted: todo.isCompleted,
+                    date: datePicker.date
+                )
+            )
         }
-        delegate?.didCreate(todo: todoItem)
     }
     
     

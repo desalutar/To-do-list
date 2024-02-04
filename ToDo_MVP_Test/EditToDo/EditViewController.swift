@@ -11,7 +11,8 @@ import PhotosUI
 protocol EditViewControllerProtocol: AnyObject {
     func didEditToDo(with todo: ToDoItem)
 }
-final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
+
+final class EditViewController: UIViewController, CreateEditTodoViewDelegate, EditViewControllerProtocol {
 
     weak var coordinator: AppCoordinator?
     var delegate: EditViewControllerProtocol?
@@ -36,7 +37,11 @@ final class EditViewController: UIViewController, CreateEditTodoViewDelegate {
         contentView.configure()
     }
     
-    func didCreate(todo: ToDoItem) {
+    func didEdit(with todoItemData: ToDoItemData) {
+        presenter.didEditTodo(with: todoItemData)
+    }
+    
+    func didEditToDo(with todo: ToDoItem) {
         delegate?.didEditToDo(with: todo)
         coordinator?.popToRootVC()
     }

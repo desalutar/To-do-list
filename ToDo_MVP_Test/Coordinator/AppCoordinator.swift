@@ -43,4 +43,8 @@ final class AppCoordinator: CoordinatorProtocol {
     func popToRootVC() {
         navigationController.popViewController(animated: true)
     }
+    
+    func dissmiss() {
+        navigationController.topViewController?.dismiss(animated: true)
+    }
 }

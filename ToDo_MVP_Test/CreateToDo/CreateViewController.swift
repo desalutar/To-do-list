@@ -12,7 +12,7 @@ protocol CreateViewControllerProtocol: AnyObject {
     func didCreateToDo(with item: ToDoItem)
 }
 
-final class CreateViewController: UIViewController, CreateEditTodoViewDelegate {
+final class CreateViewController: UIViewController, CreateEditTodoViewDelegate, CreateViewControllerProtocol {
     
     var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
@@ -36,9 +36,13 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate {
         contentView.configure()
     }
     
-    func didCreate(todo: ToDoItem) {
-        delegate?.didCreateToDo(with: todo)
-        dismiss(animated: true)
+    func didCreate(with todoItemData: ToDoItemData) {
+        presenter?.createToDo(with: todoItemData)
+        coordinator?.dissmiss()
+    }
+    
+    func didCreateToDo(with item: ToDoItem) {
+        delegate?.didCreateToDo(with: item)
     }
 }
 

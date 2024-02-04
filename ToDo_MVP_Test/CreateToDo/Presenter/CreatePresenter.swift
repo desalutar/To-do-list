@@ -9,10 +9,19 @@ import Foundation
 import UIKit
 
 protocol CreatePresentable: AnyObject {
-    
+    func createToDo(with todoItemData: ToDoItemData)
 }
 
-class CreatePresenter: CreatePresentable {
+final class CreatePresenter: CreatePresentable {
     weak var view: CreateViewControllerProtocol?
     
+    func createToDo(with todoItemData: ToDoItemData) {
+        let todoItem = ToDoItem(
+            id: todoItemData.id,
+            title: todoItemData.title,
+            description: todoItemData.description,
+            date: todoItemData.date
+        )
+        view?.didCreateToDo(with: todoItem)
+    }
 }

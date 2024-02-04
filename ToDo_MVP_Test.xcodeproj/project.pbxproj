@@ -19,6 +19,10 @@
 		2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD852B6B8B99003737A9 /* CoreDataManager.swift */; };
 		2313DD8B2B6BB717003737A9 /* EditViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */; };
 		2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */; };
+		2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */; };
+		234156312B6F936D003A2025 /* CreatePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156302B6F936D003A2025 /* CreatePresenterTests.swift */; };
+		234156342B6F93FE003A2025 /* CreatePresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156332B6F93FE003A2025 /* CreatePresenterMock.swift */; };
+		234156362B6F998F003A2025 /* CreateViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156352B6F998F003A2025 /* CreateViewControllerMock.swift */; };
 		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
@@ -30,7 +34,6 @@
 		2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1512B5BFA9E0043287D /* AppDelegate.swift */; };
 		2394D15B2B5BFAA00043287D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2394D15A2B5BFAA00043287D /* Assets.xcassets */; };
 		2394D15E2B5BFAA00043287D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2394D15C2B5BFAA00043287D /* LaunchScreen.storyboard */; };
-		2394D1692B5BFAA00043287D /* ToDo_MVP_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1682B5BFAA00043287D /* ToDo_MVP_TestTests.swift */; };
 		2394D1732B5BFAA00043287D /* ToDo_MVP_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1722B5BFAA00043287D /* ToDo_MVP_TestUITests.swift */; };
 		2394D1752B5BFAA00043287D /* ToDo_MVP_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1742B5BFAA00043287D /* ToDo_MVP_TestUITestsLaunchTests.swift */; };
 		2394D1862B5BFD920043287D /* ToDoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1842B5BFD920043287D /* ToDoListController.swift */; };
@@ -75,6 +78,10 @@
 		2313DD852B6B8B99003737A9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditViewController+Extension.swift"; sourceTree = "<group>"; };
 		2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateToDo+Extension.swift"; sourceTree = "<group>"; };
+		2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		234156302B6F936D003A2025 /* CreatePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterTests.swift; sourceTree = "<group>"; };
+		234156332B6F93FE003A2025 /* CreatePresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterMock.swift; sourceTree = "<group>"; };
+		234156352B6F998F003A2025 /* CreateViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewControllerMock.swift; sourceTree = "<group>"; };
 		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
@@ -89,7 +96,6 @@
 		2394D15D2B5BFAA00043287D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2394D15F2B5BFAA00043287D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2394D1642B5BFAA00043287D /* ToDo_MVP_TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDo_MVP_TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2394D1682B5BFAA00043287D /* ToDo_MVP_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo_MVP_TestTests.swift; sourceTree = "<group>"; };
 		2394D16E2B5BFAA00043287D /* ToDo_MVP_TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDo_MVP_TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2394D1722B5BFAA00043287D /* ToDo_MVP_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo_MVP_TestUITests.swift; sourceTree = "<group>"; };
 		2394D1742B5BFAA00043287D /* ToDo_MVP_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo_MVP_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -164,6 +170,24 @@
 			path = Coordinator/CoreData;
 			sourceTree = "<group>";
 		};
+		234156322B6F93AE003A2025 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				234156332B6F93FE003A2025 /* CreatePresenterMock.swift */,
+				234156352B6F998F003A2025 /* CreateViewControllerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		234156372B6FA49F003A2025 /* SupportingsFile */ = {
+			isa = PBXGroup;
+			children = (
+				2394D1512B5BFA9E0043287D /* AppDelegate.swift */,
+				2394D15A2B5BFAA00043287D /* Assets.xcassets */,
+			);
+			path = SupportingsFile;
+			sourceTree = "<group>";
+		};
 		2368046C2B6153350043EEA8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +229,8 @@
 		2394D1502B5BFA9E0043287D /* ToDo_MVP_Test */ = {
 			isa = PBXGroup;
 			children = (
+				234156372B6FA49F003A2025 /* SupportingsFile */,
+				2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */,
 				2394D19E2B5D4DB70043287D /* Builder */,
 				2394D1882B5BFFC70043287D /* Coordinator */,
 				2313DD842B6B8B26003737A9 /* CoreData */,
@@ -216,8 +242,7 @@
 				236804712B615D880043EEA8 /* PhotoPickerable */,
 				2394D1902B5C17780043287D /* ToDoItemModel */,
 				2313DD632B6ACB9B003737A9 /* CreateEditView */,
-				2394D1512B5BFA9E0043287D /* AppDelegate.swift */,
-				2394D15A2B5BFAA00043287D /* Assets.xcassets */,
+				234156322B6F93AE003A2025 /* Mocks */,
 				2394D15C2B5BFAA00043287D /* LaunchScreen.storyboard */,
 				2394D15F2B5BFAA00043287D /* Info.plist */,
 			);
@@ -228,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				2394D1712B5BFAA00043287D /* ToDo_MVP_TestUITests */,
-				2394D1682B5BFAA00043287D /* ToDo_MVP_TestTests.swift */,
+				234156302B6F936D003A2025 /* CreatePresenterTests.swift */,
 			);
 			path = ToDo_MVP_TestTests;
 			sourceTree = "<group>";
@@ -469,13 +494,16 @@
 			files = (
 				236804752B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift in Sources */,
 				236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */,
+				234156362B6F998F003A2025 /* CreateViewControllerMock.swift in Sources */,
 				2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */,
+				2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */,
 				2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */,
 				2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */,
 				2394D18D2B5C00080043287D /* AppCoordinator.swift in Sources */,
 				2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */,
 				2313DD7F2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld in Sources */,
 				236804702B6153770043EEA8 /* DateFormatter.swift in Sources */,
+				234156342B6F93FE003A2025 /* CreatePresenterMock.swift in Sources */,
 				2394D1992B5D44230043287D /* ToDoListPresenter.swift in Sources */,
 				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
 				2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */,
@@ -500,7 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2394D1692B5BFAA00043287D /* ToDo_MVP_TestTests.swift in Sources */,
+				234156312B6F936D003A2025 /* CreatePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

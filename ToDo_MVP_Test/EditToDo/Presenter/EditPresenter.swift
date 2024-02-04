@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EditViewControllerPresentable: AnyObject {
-    
+    func didEditTodo(with data: ToDoItemData)
 }
 
 final class EditPresenter: EditViewControllerPresentable {
@@ -19,4 +19,13 @@ final class EditPresenter: EditViewControllerPresentable {
         self.todoItem = todoItem
     }
     
+    func didEditTodo(with data: ToDoItemData) {
+        let todoItem = ToDoItem(
+            id: data.id,
+            title: data.title,
+            description: data.description,
+            date: data.date
+        )
+        view?.didEditToDo(with: todoItem)
+    }
 }
