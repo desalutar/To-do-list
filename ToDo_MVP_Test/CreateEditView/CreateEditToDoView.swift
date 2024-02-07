@@ -7,15 +7,6 @@
 
 import UIKit
 
-struct ToDoItemData {
-    let id: UUID
-    let title: String
-    let description: String
-    let isCompleted: Bool
-    let imageData: Data
-    let date: Date?
-}
-
 protocol CreateEditTodoViewDelegate: AnyObject {
     func didCreate(with todoItemData: ToDoItemData)
     func didEdit(with todoItemData: ToDoItemData)
@@ -64,11 +55,11 @@ final class CreateEditTodoView: UIView {
         case .create:
             if imageView.image == nil { imageView.isHidden = true }
         case .edit:
+            guard let imageData = todoItem?.imageData else { return }
             if todoItem?.imageData == nil { imageView.isHidden = true }
             textField.text = todoItem?.title
             textView.text = todoItem?.description
             dateLabel.text = todoItem?.date?.stringValue
-            guard let imageData = todoItem?.imageData else { return }
             imageView.image = UIImage(data: imageData)
         }
     }

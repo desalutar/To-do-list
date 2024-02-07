@@ -32,3 +32,12 @@ struct ToDoItem: Hashable {
         self.date = date
     }
 }
+
+struct ToDoItemData {
+    let id: UUID
+    let title: String
+    let description: String
+    let isCompleted: Bool
+    let imageData: Data
+    let date: Date?
+}
