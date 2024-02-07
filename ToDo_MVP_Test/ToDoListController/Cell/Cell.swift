@@ -42,18 +42,18 @@ class Cell: UITableViewCell {
         
         setupLabels(todoItem)
         setupButton(todoItem)
-        configureImageView(with: todoItem)
+        configureImageViewInCell(with: todoItem)
     }
     
-    func configureImageView(with toDoItem: ToDoItem) {
-        if toDoItem.picture != nil {
-            todoImageView.image = toDoItem.picture
-        }
-        
-        todoImageView.isHidden = toDoItem.picture == nil
+    func configureImageViewInCell(with toDoItem: ToDoItem) {
+        guard let pictureFromData = toDoItem.imageData,
+              let picture = UIImage(data: pictureFromData) else { return }
+        todoImageView.image = picture
+        todoImageView.isHidden = toDoItem.imageData == nil
         todoImageView.layer.cornerRadius = todoImageView.frame.size.height / 2
         todoImageView.layer.masksToBounds = true
     }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()

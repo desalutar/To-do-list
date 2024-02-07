@@ -12,6 +12,7 @@ struct ToDoItemData {
     let title: String
     let description: String
     let isCompleted: Bool
+    let imageData: Data
     let date: Date?
 }
 
@@ -34,7 +35,7 @@ final class CreateEditTodoView: UIView {
         case edit
     }
     
-    private let todoItem: ToDoItem?
+    private var todoItem: ToDoItem?
     private let viewType: ViewType
     private let appearance = Appearance()
     
@@ -48,7 +49,7 @@ final class CreateEditTodoView: UIView {
         layoutViews()
         backgroundColor = .systemBackground
     }
-   
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,11 +64,12 @@ final class CreateEditTodoView: UIView {
         case .create:
             if imageView.image == nil { imageView.isHidden = true }
         case .edit:
-            if todoItem?.picture == nil { imageView.isHidden = true }
+            if todoItem?.imageData == nil { imageView.isHidden = true }
             textField.text = todoItem?.title
             textView.text = todoItem?.description
-            imageView.image = todoItem?.picture
             dateLabel.text = todoItem?.date?.stringValue
+            guard let imageData = todoItem?.imageData else { return }
+            imageView.image = UIImage(data: imageData)
         }
     }
     
@@ -75,8 +77,8 @@ final class CreateEditTodoView: UIView {
         imageView.isHidden = false
         imageView.image = image
     }
-  
-// MARK: - UI Items
+    
+    // MARK: - UI Items
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -117,6 +119,7 @@ final class CreateEditTodoView: UIView {
     }()
     
     @objc func handleSaveButtonTap() {
+        guard let image = imageView.image?.pngData() else { return }
         switch viewType {
         case .create:
             delegate?.didCreate(
@@ -125,6 +128,7 @@ final class CreateEditTodoView: UIView {
                     title: textField.text ?? .empty,
                     description: textView.text,
                     isCompleted: false,
+                    imageData: image,
                     date: datePicker.date
                 )
             )
@@ -136,6 +140,7 @@ final class CreateEditTodoView: UIView {
                     title: textField.text ?? .empty,
                     description: textView.text,
                     isCompleted: todo.isCompleted,
+                    imageData: image,
                     date: datePicker.date
                 )
             )
@@ -199,121 +204,121 @@ final class CreateEditTodoView: UIView {
     }()
     
     // MARK: - NSLayoutConstraint
-
-        private lazy var mainStackView: UIStackView = {
-            let stackView = UIStackView(arrangedSubviews: [imageView, textField, textView,
-                                                           buttonStackView, datePicker, dateLabel])
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.axis = .vertical
-            stackView.spacing = appearance.stackViewSpacing
-            return stackView
-        }()
-        
-        private lazy var buttonStackView: UIStackView = {
-            let buttonStackView = UIStackView(arrangedSubviews: [addPicture, dateButton, saveButton])
-            buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-            buttonStackView.axis = .vertical
-            buttonStackView.spacing = appearance.buttonStackViewSpacing
-            return buttonStackView
-        }()
-        
-        enum layoutViewsConstants {
-            static let leadingPadding: CGFloat = 12.0
-            static let trailingPadding: CGFloat = -12.0
-            static let topMultiplier: CGFloat = 2.0
-        }
-        
-        private func layoutViews() {
-            let layoutGuide = safeAreaLayoutGuide
-            NSLayoutConstraint.activate([
-                mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutViewsConstants.leadingPadding),
-                mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: layoutGuide.topAnchor,
-                                                   multiplier: layoutViewsConstants.topMultiplier),
-                mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: layoutViewsConstants.trailingPadding)
-            ])
-            layoutTextView()
-            layoutImageView()
-            layoutButtons()
-        }
-        
-        private func layoutImageView() {
-            NSLayoutConstraint.activate([
-                imageView.heightAnchor.constraint(equalToConstant: appearance.imageViewHeight)
-            ])
-        }
-        
-        private func layoutTextView() {
-            NSLayoutConstraint.activate([
-                textField.heightAnchor.constraint(equalToConstant: textFieldConstants.textFiledHeight)
-            ])
-            
-            NSLayoutConstraint.activate([
-                textView.heightAnchor.constraint(equalToConstant: textViewConstants.textViewHeight)
-            ])
-        }
-        
-        private func layoutButtons() {
-            NSLayoutConstraint.activate([
-                saveButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
-                addPicture.heightAnchor.constraint(equalToConstant: addPictureLayoutConstants.addPictureButtonHeight),
-                dateButton.heightAnchor.constraint(equalToConstant: 50.0),
-            ])
-        }
-        
-        private func datePickerLayout() {
-            NSLayoutConstraint.activate([
-                datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
-            ])
-        }
-        
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [imageView, textField, textView,
+                                                       buttonStackView, datePicker, dateLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = appearance.stackViewSpacing
+        return stackView
+    }()
+    
+    private lazy var buttonStackView: UIStackView = {
+        let buttonStackView = UIStackView(arrangedSubviews: [addPicture, dateButton, saveButton])
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.axis = .vertical
+        buttonStackView.spacing = appearance.buttonStackViewSpacing
+        return buttonStackView
+    }()
+    
+    enum layoutViewsConstants {
+        static let leadingPadding: CGFloat = 12.0
+        static let trailingPadding: CGFloat = -12.0
+        static let topMultiplier: CGFloat = 2.0
     }
-
-    // MARK: - Appearance
-    private extension CreateEditTodoView {
-        enum textFieldConstants {
-            static let textFiledHeight: CGFloat = 32.0
-            static let textFieldPlaceholder: String = "What will the task be called".localized
-            static let textFieldLayerBorderWidth: CGFloat = 0.5
-            static let textFieldLayerCornerRadius: CGFloat = 8.0
-            static let textFieldLayerBorderColor: UIColor = .systemGray2
-        }
-        
-        enum textViewConstants {
-            static let textViewHeight: CGFloat = 150.0
-            static let textViewLayerBorderWidth: CGFloat = 0.5
-            static let textViewLayerCornerRadius: CGFloat = 5.0
-            static let textViewLayerBorderColor: UIColor = .systemGray2
-        }
-        
-        enum localizeStrings {
-            static let saveButtonTitle: String = "saveButtonTitle".localized
-            static let addPictureButtonTitle: String = "Set photo".localized
-            static let dateButtonTitle: String = "Set date".localized
-        }
-        
-        enum addPictureLayoutConstants {
-            static let addPictureLayerCornerRadius: CGFloat = 5
-            static let addPictureBackgroundColor: UIColor = .systemCyan
-            static let addPictureButtonHeight: CGFloat = 50.0
-        }
-        
-        enum deleteButtonConstants {
-            static let deleteButtonLayerCornerRadius: CGFloat = 5
-            static let deleteButtonBackgroundColor: UIColor = .systemRed
-        }
-        
-        enum saveButtonConstants {
-            static let saveButtonLayerCornerRadius: CGFloat = 5.0
-            static let saveButtonBackgroundColor: UIColor = .systemBlue
-            static let saveButtonHeight: CGFloat = 50.0
-        }
-        
-        struct Appearance {
-            let stackViewSpacing: CGFloat = 8.0
-            let imageViewHeight: CGFloat = 100
-            let buttonStackViewSpacing: CGFloat = 10.0
-            let calendarLocale: String = "ru_RU"
-            let valueMinDate: Int = 0
-            let animateWithDuration: Double = 0.5
-        }
+    
+    private func layoutViews() {
+        let layoutGuide = safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutViewsConstants.leadingPadding),
+            mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: layoutGuide.topAnchor,
+                                               multiplier: layoutViewsConstants.topMultiplier),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: layoutViewsConstants.trailingPadding)
+        ])
+        layoutTextView()
+        layoutImageView()
+        layoutButtons()
     }
+    
+    private func layoutImageView() {
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: appearance.imageViewHeight)
+        ])
+    }
+    
+    private func layoutTextView() {
+        NSLayoutConstraint.activate([
+            textField.heightAnchor.constraint(equalToConstant: textFieldConstants.textFiledHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            textView.heightAnchor.constraint(equalToConstant: textViewConstants.textViewHeight)
+        ])
+    }
+    
+    private func layoutButtons() {
+        NSLayoutConstraint.activate([
+            saveButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
+            addPicture.heightAnchor.constraint(equalToConstant: addPictureLayoutConstants.addPictureButtonHeight),
+            dateButton.heightAnchor.constraint(equalToConstant: 50.0),
+        ])
+    }
+    
+    private func datePickerLayout() {
+        NSLayoutConstraint.activate([
+            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+    
+}
+
+// MARK: - Appearance
+private extension CreateEditTodoView {
+    enum textFieldConstants {
+        static let textFiledHeight: CGFloat = 32.0
+        static let textFieldPlaceholder: String = "What will the task be called".localized
+        static let textFieldLayerBorderWidth: CGFloat = 0.5
+        static let textFieldLayerCornerRadius: CGFloat = 8.0
+        static let textFieldLayerBorderColor: UIColor = .systemGray2
+    }
+    
+    enum textViewConstants {
+        static let textViewHeight: CGFloat = 150.0
+        static let textViewLayerBorderWidth: CGFloat = 0.5
+        static let textViewLayerCornerRadius: CGFloat = 5.0
+        static let textViewLayerBorderColor: UIColor = .systemGray2
+    }
+    
+    enum localizeStrings {
+        static let saveButtonTitle: String = "saveButtonTitle".localized
+        static let addPictureButtonTitle: String = "Set photo".localized
+        static let dateButtonTitle: String = "Set date".localized
+    }
+    
+    enum addPictureLayoutConstants {
+        static let addPictureLayerCornerRadius: CGFloat = 5
+        static let addPictureBackgroundColor: UIColor = .systemCyan
+        static let addPictureButtonHeight: CGFloat = 50.0
+    }
+    
+    enum deleteButtonConstants {
+        static let deleteButtonLayerCornerRadius: CGFloat = 5
+        static let deleteButtonBackgroundColor: UIColor = .systemRed
+    }
+    
+    enum saveButtonConstants {
+        static let saveButtonLayerCornerRadius: CGFloat = 5.0
+        static let saveButtonBackgroundColor: UIColor = .systemBlue
+        static let saveButtonHeight: CGFloat = 50.0
+    }
+    
+    struct Appearance {
+        let stackViewSpacing: CGFloat = 8.0
+        let imageViewHeight: CGFloat = 100
+        let buttonStackViewSpacing: CGFloat = 10.0
+        let calendarLocale: String = "ru_RU"
+        let valueMinDate: Int = 0
+        let animateWithDuration: Double = 0.5
+    }
+}

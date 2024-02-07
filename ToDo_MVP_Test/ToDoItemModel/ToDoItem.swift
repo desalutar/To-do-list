@@ -13,7 +13,7 @@ struct ToDoItem: Hashable {
     let title: String
     let description: String
     var isCompleted: Bool
-    var picture: UIImage?
+    let imageData: Data?
     let date: Date?
     
     init(
@@ -21,14 +21,14 @@ struct ToDoItem: Hashable {
         isCompleted: Bool = false,
         title: String,
         description: String,
-        picture: UIImage? = nil,
+        picture: Data? = nil,
         date: Date?
     ) {
         self.id = id
         self.isCompleted = isCompleted
         self.title = title
         self.description = description
-        self.picture = picture
+        self.imageData = picture
         self.date = date
     }
 }

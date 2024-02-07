@@ -24,6 +24,7 @@ final class EditPresenter: EditViewControllerPresentable {
             id: data.id,
             title: data.title,
             description: data.description,
+            picture: data.imageData,
             date: data.date
         )
         view?.didEditToDo(with: todoItem)

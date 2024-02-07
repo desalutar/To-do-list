@@ -20,6 +20,7 @@ final class CreatePresenter: CreatePresentable {
             id: todoItemData.id,
             title: todoItemData.title,
             description: todoItemData.description,
+            picture: todoItemData.imageData,
             date: todoItemData.date
         )
         view?.didCreateToDo(with: todoItem)

@@ -25,7 +25,7 @@ final class MainBuilder: MainBuilderProtocol {
     func buildCreateVC() -> CreateViewController {
         let presenter = CreatePresenter()
         let createVC = CreateViewController(presenter: presenter)
-        presenter.view = createVC as? any CreateViewControllerProtocol
+        presenter.view = createVC
         return createVC
         
     }
@@ -33,7 +33,7 @@ final class MainBuilder: MainBuilderProtocol {
     func buildEditVC(todo: ToDoItem) -> EditViewController {
         let presenter = EditPresenter(todoItem: todo)
         let editVC = EditViewController(presenter: presenter)
-        presenter.view = editVC as? any EditViewControllerProtocol
+        presenter.view = editVC
         return editVC
     }
 }

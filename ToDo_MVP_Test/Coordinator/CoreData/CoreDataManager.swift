@@ -47,6 +47,7 @@ class CoreDataManager {
         todoEntity.title = todoItem.title
         todoEntity.descriptionTask = todoItem.description
         todoEntity.date = todoItem.date
+        todoEntity.image = todoItem.imageData
         todoEntity.isCompleted = todoItem.isCompleted
         
         saveContext()
@@ -62,7 +63,7 @@ class CoreDataManager {
                          isCompleted: $0.isCompleted,
                          title: $0.title ?? .empty,
                          description: $0.descriptionTask ?? .empty,
-                         picture: nil,
+                         picture: $0.image,
                          date: $0.date)
             }
             

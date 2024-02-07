@@ -188,6 +188,14 @@
 			path = SupportingsFile;
 			sourceTree = "<group>";
 		};
+		234156382B6FA66D003A2025 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		2368046C2B6153350043EEA8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				234156372B6FA49F003A2025 /* SupportingsFile */,
-				2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */,
 				2394D19E2B5D4DB70043287D /* Builder */,
 				2394D1882B5BFFC70043287D /* Coordinator */,
 				2313DD842B6B8B26003737A9 /* CoreData */,
@@ -238,6 +245,7 @@
 				2394D18F2B5C013A0043287D /* DiffableDataSource */,
 				2394D1822B5BFC510043287D /* EditToDo */,
 				2368046C2B6153350043EEA8 /* Extension */,
+				234156382B6FA66D003A2025 /* Notification */,
 				2394D1832B5BFC7C0043287D /* ToDoListController */,
 				236804712B615D880043EEA8 /* PhotoPickerable */,
 				2394D1902B5C17780043287D /* ToDoItemModel */,
