@@ -53,7 +53,7 @@ final class CreateEditTodoView: UIView {
     func configureView() {
         switch viewType {
         case .create:
-            if imageView.image == nil { imageView.isHidden = true }
+            if imageView.image == nil { imageView.isHidden = true  }
         case .edit:
             guard let imageData = todoItem?.imageData else { return }
             if todoItem?.imageData == nil { imageView.isHidden = true }
@@ -62,14 +62,16 @@ final class CreateEditTodoView: UIView {
             dateLabel.text = todoItem?.date?.stringValue
             imageView.image = UIImage(data: imageData)
         }
+        if imageView.image != nil { deletePictureButton.isHidden = false }
     }
     
     func configureImageView(with image: UIImage) {
         imageView.isHidden = false
+        deletePictureButton.isHidden = false
         imageView.image = image
     }
     
-    // MARK: - UI Items
+                        // MARK: - UI Items
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -96,6 +98,7 @@ final class CreateEditTodoView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
@@ -137,7 +140,7 @@ final class CreateEditTodoView: UIView {
         }
     }
     
-    private lazy var addPicture: UIButton = {
+    private lazy var addPictureButton: UIButton = {
         let addPicture = UIButton()
         addPicture.translatesAutoresizingMaskIntoConstraints = false
         addPicture.setTitle(localizeStrings.addPictureButtonTitle, for: .normal)
@@ -149,6 +152,22 @@ final class CreateEditTodoView: UIView {
     
     @objc func handlerAddPictureButton() {
         delegate?.didTappedAddPictureButton()
+    }
+    
+    private lazy var deletePictureButton: UIButton = {
+        let deletePicture = UIButton()
+        deletePicture.translatesAutoresizingMaskIntoConstraints = false
+        deletePicture.setTitle(localizeStrings.deletePictureButtonTitle, for: .normal)
+        deletePicture.layer.cornerRadius = addPictureLayoutConstants.addPictureLayerCornerRadius
+        deletePicture.backgroundColor = .systemCyan
+        deletePicture.addTarget(self, action: #selector(handlerDeletePicture), for: .touchUpInside)
+        deletePicture.isHidden = true
+        return deletePicture
+    }()
+    
+    @objc func handlerDeletePicture() {
+        imageView.image = nil
+        deletePictureButton.isHidden = true
     }
     
     private lazy var dateButton: UIButton = {
@@ -192,7 +211,7 @@ final class CreateEditTodoView: UIView {
         return dateLabel
     }()
     
-    // MARK: - NSLayoutConstraint
+                        // MARK: - NSLayoutConstraint
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, textField, textView,
@@ -204,7 +223,7 @@ final class CreateEditTodoView: UIView {
     }()
     
     private lazy var buttonStackView: UIStackView = {
-        let buttonStackView = UIStackView(arrangedSubviews: [addPicture, dateButton, saveButton])
+        let buttonStackView = UIStackView(arrangedSubviews: [addPictureButton, deletePictureButton, dateButton, saveButton])
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.axis = .vertical
         buttonStackView.spacing = appearance.buttonStackViewSpacing
@@ -249,7 +268,8 @@ final class CreateEditTodoView: UIView {
     private func layoutButtons() {
         NSLayoutConstraint.activate([
             saveButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
-            addPicture.heightAnchor.constraint(equalToConstant: addPictureLayoutConstants.addPictureButtonHeight),
+            addPictureButton.heightAnchor.constraint(equalToConstant: addPictureLayoutConstants.addPictureButtonHeight),
+            deletePictureButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
             dateButton.heightAnchor.constraint(equalToConstant: 50.0),
         ])
     }
@@ -259,7 +279,6 @@ final class CreateEditTodoView: UIView {
             datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-    
 }
 
 // MARK: - Appearance
@@ -283,6 +302,7 @@ private extension CreateEditTodoView {
         static let saveButtonTitle: String = "saveButtonTitle".localized
         static let addPictureButtonTitle: String = "Set photo".localized
         static let dateButtonTitle: String = "Set date".localized
+        static let deletePictureButtonTitle: String = "Delete picture".localized
     }
     
     enum addPictureLayoutConstants {
