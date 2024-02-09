@@ -46,15 +46,14 @@ class Cell: UITableViewCell {
     }
     
     func configureImageViewInCell(with toDoItem: ToDoItem) {
+        todoImageView.isHidden = toDoItem.imageData == nil
         guard let pictureFromData = toDoItem.imageData,
               let picture = UIImage(data: pictureFromData) else { return }
         todoImageView.image = picture
-        todoImageView.isHidden = toDoItem.imageData == nil
         todoImageView.layer.cornerRadius = todoImageView.frame.size.height / 2
         todoImageView.layer.masksToBounds = true
     }
 
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         todoImageView.image = nil

@@ -38,6 +38,6 @@ struct ToDoItemData {
     let title: String
     let description: String
     let isCompleted: Bool
-    let imageData: Data
+    let imageData: Data?
     let date: Date?
 }

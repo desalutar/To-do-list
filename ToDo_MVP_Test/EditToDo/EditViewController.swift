@@ -34,7 +34,7 @@ final class EditViewController: UIViewController, CreateEditTodoViewDelegate, Ed
         super.loadView()
         view = contentView
         contentView.delegate = self
-        contentView.configure()
+        contentView.configureView()
     }
     
     func didEdit(with todoItemData: ToDoItemData) {

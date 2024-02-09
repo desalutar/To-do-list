@@ -33,7 +33,7 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate, 
         super.loadView()
         view = contentView
         contentView.delegate = self
-        contentView.configure()
+        contentView.configureView()
     }
     
     func didCreate(with todoItemData: ToDoItemData) {

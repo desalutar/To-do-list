@@ -50,8 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         content.sound = .default
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: <#T##DateComponents#>, repeats: <#T##Bool#>)
-        
         let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
         notification.add(request)
     }

@@ -50,7 +50,7 @@ final class CreateEditTodoView: UIView {
         addSubview(mainStackView)
     }
     
-    func configure() {
+    func configureView() {
         switch viewType {
         case .create:
             if imageView.image == nil { imageView.isHidden = true }
@@ -110,7 +110,6 @@ final class CreateEditTodoView: UIView {
     }()
     
     @objc func handleSaveButtonTap() {
-        guard let image = imageView.image?.pngData() else { return }
         switch viewType {
         case .create:
             delegate?.didCreate(
@@ -119,7 +118,7 @@ final class CreateEditTodoView: UIView {
                     title: textField.text ?? .empty,
                     description: textView.text,
                     isCompleted: false,
-                    imageData: image,
+                    imageData: imageView.image?.pngData(),
                     date: datePicker.date
                 )
             )
@@ -131,13 +130,12 @@ final class CreateEditTodoView: UIView {
                     title: textField.text ?? .empty,
                     description: textView.text,
                     isCompleted: todo.isCompleted,
-                    imageData: image,
+                    imageData: imageView.image?.pngData(),
                     date: datePicker.date
                 )
             )
         }
     }
-    
     
     private lazy var addPicture: UIButton = {
         let addPicture = UIButton()

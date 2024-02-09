@@ -18,6 +18,7 @@ final class CreatePresenter: CreatePresentable {
     func createToDo(with todoItemData: ToDoItemData) {
         let todoItem = ToDoItem(
             id: todoItemData.id,
+            isCompleted: todoItemData.isCompleted,
             title: todoItemData.title,
             description: todoItemData.description,
             picture: todoItemData.imageData,
