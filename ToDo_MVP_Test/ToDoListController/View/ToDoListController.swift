@@ -15,7 +15,7 @@ typealias DataSource = DiffableDataSource
 typealias Snapshot = NSDiffableDataSourceSnapshot<ToDoListController.Section, ToDoItem>
 
 final class ToDoListController: UIViewController, UITableViewDelegate {
-    private var viewBackgroundColor = UIColor(red: 242/255, green: 242/255, blue: 248/255, alpha: 1)
+    private var viewBackgroundColor: UIColor = .systemBackground
     weak var coordinator: AppCoordinator?
     var presenter: ToDoListPresentProtocol?
     private var dataSource: DataSource?
@@ -38,6 +38,7 @@ final class ToDoListController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = viewBackgroundColor
+        tableView.backgroundColor = viewBackgroundColor
         setTableView()
         setNavigationItems()
         presenter?.makeDataSource(for: tableView)

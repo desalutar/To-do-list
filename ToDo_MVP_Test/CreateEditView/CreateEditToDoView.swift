@@ -51,16 +51,15 @@ final class CreateEditTodoView: UIView {
     }
     
     func configureView() {
+        guard let imageData = todoItem?.imageData else { return }
         switch viewType {
         case .create:
             if imageView.image == nil { imageView.isHidden = true  }
         case .edit:
-            guard let imageData = todoItem?.imageData else { return }
             if todoItem?.imageData == nil { imageView.isHidden = true }
             textField.text = todoItem?.title
             textView.text = todoItem?.description
             dateLabel.text = todoItem?.date?.stringValue
-            imageView.image = UIImage(data: imageData)
         }
         if imageView.image != nil { deletePictureButton.isHidden = false }
     }
