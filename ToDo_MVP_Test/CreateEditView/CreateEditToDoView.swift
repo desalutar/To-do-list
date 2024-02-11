@@ -47,7 +47,8 @@ final class CreateEditTodoView: UIView {
     }
     
     private func addSubviews() {
-        addSubview(mainStackView)
+        addSubview(scrollView)
+        layoutScrollView()
     }
     
     func configureView() {
@@ -66,13 +67,37 @@ final class CreateEditTodoView: UIView {
         if imageView.image != nil { deletePictureButton.isHidden = false }
     }
     
-    private func configureImageView(with image: UIImage) {
+    func configureImageView(with image: UIImage) {
         imageView.isHidden = false
         deletePictureButton.isHidden = false
         imageView.image = image
     }
     
                         // MARK: - UI Items
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.addSubview(mainStackView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .yellow
+        return scrollView
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [imageView, textField, textView,
+                                                       buttonStackView, datePicker, dateLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = appearance.stackViewSpacing
+        return stackView
+    }()
+    
+    private lazy var buttonStackView: UIStackView = {
+        let buttonStackView = UIStackView(arrangedSubviews: [addPictureButton, deletePictureButton, dateButton, saveButton])
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.axis = .vertical
+        buttonStackView.spacing = appearance.buttonStackViewSpacing
+        return buttonStackView
+    }()
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -214,22 +239,14 @@ final class CreateEditTodoView: UIView {
     
                         // MARK: - NSLayoutConstraint
     
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView, textField, textView,
-                                                       buttonStackView, datePicker, dateLabel])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = appearance.stackViewSpacing
-        return stackView
-    }()
-    
-    private lazy var buttonStackView: UIStackView = {
-        let buttonStackView = UIStackView(arrangedSubviews: [addPictureButton, deletePictureButton, dateButton, saveButton])
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonStackView.axis = .vertical
-        buttonStackView.spacing = appearance.buttonStackViewSpacing
-        return buttonStackView
-    }()
+    private func layoutScrollView() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 30),
+        ])
+    }
     
     enum layoutViewsConstants {
         static let leadingPadding: CGFloat = 12.0
