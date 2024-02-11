@@ -46,12 +46,8 @@ final class CreateEditTodoView: UIView {
     }
     
     private func addSubviews() {
-        
-        scrollView.addSubview(contentView)
-        contentView.addSubview(mainStackView)
         addSubview(scrollView)
         layoutScrollView()
-        addSubview(contentView)
         layoutContentView()
         layoutMainStackView()
     }
@@ -81,16 +77,17 @@ final class CreateEditTodoView: UIView {
                         // MARK: - UI Items
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.alwaysBounceVertical = true
-        scrollView.showsHorizontalScrollIndicator = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        scrollView.addSubview(contentView)
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .red
+        contentView.addSubview(mainStackView)
         return contentView
     }()
     
@@ -144,8 +141,8 @@ final class CreateEditTodoView: UIView {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.setTitle(localizeStrings.saveButtonTitle, for: .normal)
-        saveButton.layer.cornerRadius = saveButtonConstants.saveButtonLayerCornerRadius
-        saveButton.backgroundColor = saveButtonConstants.saveButtonBackgroundColor
+        saveButton.layer.cornerRadius = buttonConstant.saveButtonLayerCornerRadius
+        saveButton.backgroundColor = buttonConstant.saveButtonBackgroundColor
         saveButton.addTarget(self, action: #selector(handleSaveButtonTap), for: .touchUpInside)
         return saveButton
     }()
@@ -182,8 +179,8 @@ final class CreateEditTodoView: UIView {
         let addPicture = UIButton()
         addPicture.translatesAutoresizingMaskIntoConstraints = false
         addPicture.setTitle(localizeStrings.addPictureButtonTitle, for: .normal)
-        addPicture.layer.cornerRadius = addPictureLayoutConstants.addPictureLayerCornerRadius
-        addPicture.backgroundColor = addPictureLayoutConstants.addPictureBackgroundColor
+        addPicture.layer.cornerRadius = buttonConstant.addPictureLayerCornerRadius
+        addPicture.backgroundColor = buttonConstant.addPictureBackgroundColor
         addPicture.addTarget(self, action: #selector(handlerAddPictureButton), for: .touchUpInside)
         return addPicture
     }()
@@ -196,7 +193,7 @@ final class CreateEditTodoView: UIView {
         let deletePicture = UIButton()
         deletePicture.translatesAutoresizingMaskIntoConstraints = false
         deletePicture.setTitle(localizeStrings.deletePictureButtonTitle, for: .normal)
-        deletePicture.layer.cornerRadius = addPictureLayoutConstants.addPictureLayerCornerRadius
+        deletePicture.layer.cornerRadius = buttonConstant.addPictureLayerCornerRadius
         deletePicture.backgroundColor = .systemCyan
         deletePicture.addTarget(self, action: #selector(handlerDeletePicture), for: .touchUpInside)
         deletePicture.isHidden = true
@@ -212,8 +209,8 @@ final class CreateEditTodoView: UIView {
         let dateButton = UIButton()
         dateButton.translatesAutoresizingMaskIntoConstraints = false
         dateButton.setTitle(localizeStrings.dateButtonTitle, for: .normal)
-        dateButton.layer.cornerRadius = addPictureLayoutConstants.addPictureLayerCornerRadius
-        dateButton.backgroundColor = addPictureLayoutConstants.addPictureBackgroundColor
+        dateButton.layer.cornerRadius = buttonConstant.addPictureLayerCornerRadius
+        dateButton.backgroundColor = buttonConstant.addPictureBackgroundColor
         dateButton.addTarget(self, action: #selector(handlerDateButton), for: .touchUpInside)
         return dateButton
     }()
@@ -252,20 +249,17 @@ final class CreateEditTodoView: UIView {
                         // MARK: - NSLayoutConstraint
     
     private func layoutScrollView() {
+        let layoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
         ])
     }
     
     private func layoutContentView() {
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         ])
@@ -280,10 +274,10 @@ final class CreateEditTodoView: UIView {
     private func layoutMainStackView() {
         let layoutGuide = contentView.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutViewsConstants.leadingPadding),
+            mainStackView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: layoutViewsConstants.leadingPadding),
             mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: layoutGuide.topAnchor,
                                                multiplier: layoutViewsConstants.topMultiplier),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: layoutViewsConstants.trailingPadding)
+            mainStackView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: layoutViewsConstants.trailingPadding)
         ])
         layoutTextView()
         layoutImageView()
@@ -308,16 +302,11 @@ final class CreateEditTodoView: UIView {
     
     private func layoutButtons() {
         NSLayoutConstraint.activate([
-            saveButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
-            addPictureButton.heightAnchor.constraint(equalToConstant: addPictureLayoutConstants.addPictureButtonHeight),
-            deletePictureButton.heightAnchor.constraint(equalToConstant: saveButtonConstants.saveButtonHeight),
-            dateButton.heightAnchor.constraint(equalToConstant: 50.0),
-        ])
-    }
-    
-    private func datePickerLayout() {
-        NSLayoutConstraint.activate([
-            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            saveButton.heightAnchor.constraint(equalToConstant: buttonConstant.saveButtonHeight),
+            addPictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.addPictureButtonHeight),
+            deletePictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.saveButtonHeight),
+            dateButton.heightAnchor.constraint(equalToConstant: buttonConstant.dateButtonHeightConstant),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }
@@ -346,21 +335,19 @@ private extension CreateEditTodoView {
         static let deletePictureButtonTitle: String = "Delete picture".localized
     }
     
-    enum addPictureLayoutConstants {
+    enum buttonConstant {
         static let addPictureLayerCornerRadius: CGFloat = 5
         static let addPictureBackgroundColor: UIColor = .systemCyan
         static let addPictureButtonHeight: CGFloat = 50.0
-    }
-    
-    enum deleteButtonConstants {
+        
         static let deleteButtonLayerCornerRadius: CGFloat = 5
         static let deleteButtonBackgroundColor: UIColor = .systemRed
-    }
-    
-    enum saveButtonConstants {
+        
         static let saveButtonLayerCornerRadius: CGFloat = 5.0
         static let saveButtonBackgroundColor: UIColor = .systemBlue
         static let saveButtonHeight: CGFloat = 50.0
+        
+        static let dateButtonHeightConstant: CGFloat = 50.0
     }
     
     struct Appearance {
