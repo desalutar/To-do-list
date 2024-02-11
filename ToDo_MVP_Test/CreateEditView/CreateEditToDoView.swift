@@ -37,7 +37,6 @@ final class CreateEditTodoView: UIView {
         self.todoItem = todoItem
         super.init(frame: .zero)
         addSubviews()
-        layoutViews()
         backgroundColor = .systemBackground
     }
     
@@ -47,8 +46,14 @@ final class CreateEditTodoView: UIView {
     }
     
     private func addSubviews() {
+        
+        scrollView.addSubview(contentView)
+        contentView.addSubview(mainStackView)
         addSubview(scrollView)
         layoutScrollView()
+        addSubview(contentView)
+        layoutContentView()
+        layoutMainStackView()
     }
     
     func configureView() {
@@ -76,10 +81,17 @@ final class CreateEditTodoView: UIView {
                         // MARK: - UI Items
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.addSubview(mainStackView)
+        scrollView.alwaysBounceVertical = true
+        scrollView.showsHorizontalScrollIndicator = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .yellow
         return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .red
+        return contentView
     }()
     
     private lazy var mainStackView: UIStackView = {
@@ -244,7 +256,18 @@ final class CreateEditTodoView: UIView {
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 30),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+    
+    private func layoutContentView() {
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         ])
     }
     
@@ -254,8 +277,8 @@ final class CreateEditTodoView: UIView {
         static let topMultiplier: CGFloat = 2.0
     }
     
-    private func layoutViews() {
-        let layoutGuide = safeAreaLayoutGuide
+    private func layoutMainStackView() {
+        let layoutGuide = contentView.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layoutViewsConstants.leadingPadding),
             mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: layoutGuide.topAnchor,
@@ -294,7 +317,7 @@ final class CreateEditTodoView: UIView {
     
     private func datePickerLayout() {
         NSLayoutConstraint.activate([
-            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }
