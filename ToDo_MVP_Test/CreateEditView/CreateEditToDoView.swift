@@ -47,8 +47,9 @@ final class CreateEditTodoView: UIView {
     
     private func addSubviews() {
         addSubview(scrollView)
+        scrollView.addSubview(mainStackView)
+        
         layoutScrollView()
-        layoutContentView()
         layoutMainStackView()
     }
     
@@ -77,18 +78,10 @@ final class CreateEditTodoView: UIView {
                         // MARK: - UI Items
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = true
         scrollView.alwaysBounceVertical = true
-        scrollView.addSubview(contentView)
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
-    }()
-    
-    private lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(mainStackView)
-        return contentView
     }()
     
     private lazy var mainStackView: UIStackView = {
@@ -251,33 +244,28 @@ final class CreateEditTodoView: UIView {
     private func layoutScrollView() {
         let layoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
-        ])
-    }
-    
-    private func layoutContentView() {
-        NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.heightAnchor.constraint(equalTo: heightAnchor)
         ])
     }
     
     enum layoutViewsConstants {
         static let leadingPadding: CGFloat = 12.0
         static let trailingPadding: CGFloat = -12.0
-        static let topMultiplier: CGFloat = 2.0
+        static let topMultiplier: CGFloat = 10.0
     }
     
     private func layoutMainStackView() {
-        let layoutGuide = contentView.safeAreaLayoutGuide
+        let layoutGuide = scrollView.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: layoutViewsConstants.leadingPadding),
-            mainStackView.topAnchor.constraint(equalToSystemSpacingBelow: layoutGuide.topAnchor,
-                                               multiplier: layoutViewsConstants.topMultiplier),
-            mainStackView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: layoutViewsConstants.trailingPadding)
+            mainStackView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: layoutViewsConstants.trailingPadding),
+            mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: layoutViewsConstants.topMultiplier),
+            mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
         ])
         layoutTextView()
         layoutImageView()
@@ -306,7 +294,7 @@ final class CreateEditTodoView: UIView {
             addPictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.addPictureButtonHeight),
             deletePictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.saveButtonHeight),
             dateButton.heightAnchor.constraint(equalToConstant: buttonConstant.dateButtonHeightConstant),
-            datePicker.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+//            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
