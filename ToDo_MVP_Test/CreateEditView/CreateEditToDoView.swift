@@ -48,11 +48,17 @@ final class CreateEditTodoView: UIView {
     private func addSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(mainStackView)
-        
         layoutScrollView()
         layoutMainStackView()
+        hideKeyboard()
     }
     
+    private func hideKeyboard() {
+            let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+            tapper.cancelsTouchesInView = false
+            addGestureRecognizer(tapper)
+    }
+
     func configureView() {
         switch viewType {
         case .create:
@@ -103,6 +109,7 @@ final class CreateEditTodoView: UIView {
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
+        textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = textFieldConstants.textFieldPlaceholder.localized
         textField.layer.borderColor = textFieldConstants.textFieldLayerBorderColor.cgColor
@@ -115,6 +122,7 @@ final class CreateEditTodoView: UIView {
     
     private lazy var textView: UITextView = {
         let textView = UITextView()
+        textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.layer.borderColor = textViewConstants.textViewLayerBorderColor.cgColor
         textView.layer.borderWidth = textViewConstants.textViewLayerBorderWidth
@@ -126,7 +134,6 @@ final class CreateEditTodoView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
@@ -242,7 +249,6 @@ final class CreateEditTodoView: UIView {
                         // MARK: - NSLayoutConstraint
     
     private func layoutScrollView() {
-        let layoutGuide = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -294,7 +300,6 @@ final class CreateEditTodoView: UIView {
             addPictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.addPictureButtonHeight),
             deletePictureButton.heightAnchor.constraint(equalToConstant: buttonConstant.saveButtonHeight),
             dateButton.heightAnchor.constraint(equalToConstant: buttonConstant.dateButtonHeightConstant),
-//            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

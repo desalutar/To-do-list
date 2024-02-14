@@ -44,6 +44,7 @@
 		2394D1942B5C33280043287D /* TableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1932B5C33280043287D /* TableViewDiffableDataSource.swift */; };
 		2394D1992B5D44230043287D /* ToDoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D1982B5D44230043287D /* ToDoListPresenter.swift */; };
 		2394D19D2B5D4C3C0043287D /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2394D19C2B5D4C3C0043287D /* MainBuilder.swift */; };
+		23DE0F482B7CADBA000AB21D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE0F472B7CADBA000AB21D /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		2394D1932B5C33280043287D /* TableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		2394D1982B5D44230043287D /* ToDoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListPresenter.swift; sourceTree = "<group>"; };
 		2394D19C2B5D4C3C0043287D /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		23DE0F472B7CADBA000AB21D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */,
+				23DE0F472B7CADBA000AB21D /* ViewExtension.swift */,
 			);
 			path = CreateEditView;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				2394D1922B5C17BD0043287D /* ToDoItem.swift in Sources */,
 				2368046A2B611D220043EEA8 /* Cell.swift in Sources */,
 				2394D19D2B5D4C3C0043287D /* MainBuilder.swift in Sources */,
+				23DE0F482B7CADBA000AB21D /* ViewExtension.swift in Sources */,
 				236804772B615DFA0043EEA8 /* ViewControllerAlertPresentable.swift in Sources */,
 				2394D1942B5C33280043287D /* TableViewDiffableDataSource.swift in Sources */,
 				2394D18B2B5BFFF70043287D /* CoordinatorProtocol.swift in Sources */,
