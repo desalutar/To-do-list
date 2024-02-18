@@ -9,6 +9,7 @@ import Foundation
 
 protocol EditViewControllerPresentable: AnyObject {
     func didEditTodo(with data: ToDoItemData)
+    func makeNotificationWith(title: String, description: String?, date: Date?)
 }
 
 final class EditPresenter: EditViewControllerPresentable {
@@ -28,5 +29,11 @@ final class EditPresenter: EditViewControllerPresentable {
             date: data.date
         )
         view?.didEditToDo(with: todoItem)
+    }
+    
+    func makeNotificationWith(title: String, description: String?, date: Date?) {
+        guard let date else { return }
+        let notificationManager = LocalNotificationManager(notificationTitle: title, notificationDescription: description, notificationDate: date)
+        notificationManager.createLocalNotification()
     }
 }

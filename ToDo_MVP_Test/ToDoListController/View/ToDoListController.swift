@@ -87,6 +87,5 @@ extension ToDoListController: CreateViewControllerProtocol {
 extension ToDoListController: EditViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
         presenter?.editToDo(with: todo)
-        
     }
 }

@@ -42,6 +42,8 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate, 
     }
     
     func didCreateToDo(with item: ToDoItem) {
+        guard let date = item.date else { return }
+        presenter?.makeNotificationWith(title: item.title, description: item.description, date: date)
         delegate?.didCreateToDo(with: item)
     }
 }

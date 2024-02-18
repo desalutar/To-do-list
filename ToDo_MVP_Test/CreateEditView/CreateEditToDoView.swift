@@ -54,9 +54,9 @@ final class CreateEditTodoView: UIView {
     }
     
     private func hideKeyboard() {
-            let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
-            tapper.cancelsTouchesInView = false
-            addGestureRecognizer(tapper)
+        let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapper.cancelsTouchesInView = false
+        addGestureRecognizer(tapper)
     }
 
     func configureView() {
@@ -160,6 +160,9 @@ final class CreateEditTodoView: UIView {
                     date: datePicker.date
                 )
             )
+//            LocalNotificationManager.shared.sendNotification(title: textField.text ?? .empty,
+//                                                        body: textView.text ?? .empty,
+//                                                        date: datePicker.date)
         case .edit:
             guard let todo = self.todoItem else { return }
             delegate?.didEdit(
@@ -172,6 +175,9 @@ final class CreateEditTodoView: UIView {
                     date: datePicker.date
                 )
             )
+//            LocalNotificationManager.shared.sendNotification(title: textField.text ?? .empty,
+//                                                        body: textView.text ?? .empty,
+//                                                        date: datePicker.date)
         }
     }
     
@@ -227,7 +233,7 @@ final class CreateEditTodoView: UIView {
         let minDate = Calendar.current.date(byAdding: .day, value: appearance.valueMinDate, to: Date())
         datePicker.minimumDate = minDate
         datePicker.isHidden = true
-        datePicker.datePickerMode = .date
+        datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: appearance.calendarLocale)
         datePicker.addTarget(self, action: #selector(handlerDatePicker), for: .valueChanged)

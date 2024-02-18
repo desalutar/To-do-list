@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let self = self,
                        granted else { return }
             self.notification.getNotificationSettings { settings in
-                print(settings)
                 guard settings.authorizationStatus == .authorized else { return }
             }
         }
@@ -34,25 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-                
-        sendNotifications()
+        
         return true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         CoreDataManager.shared.saveContext()
     }
-    
-    func sendNotifications() {
-        let content = UNMutableNotificationContent()
-        content.title = "Title"
-        content.body = "Body"
-        content.sound = .default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-        notification.add(request)
-    }
-
 }
 

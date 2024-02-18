@@ -29,3 +29,6 @@
 
 "Set date" = "Установить крайний день ";
 
+"Enable Notifications" = "Включить уведомления";
+"To use this feature you must enable notifications in settings" = "Чтобы использовать эту функцию, необходимо включить уведомления в настройках.";
+"Settings" = "Настройки";
