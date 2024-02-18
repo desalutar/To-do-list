@@ -20,6 +20,9 @@ final class LocalNotificationManager: UIViewController {
         self.notificationDescription = notificationDescription
         self.notificationDate = notificationDate
         super.init(nibName: nil, bundle: nil)
+        notification.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
+            self.showSettingsNotifications()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +39,7 @@ final class LocalNotificationManager: UIViewController {
         }
     }
     
-    fileprivate func setDateForNotification() {
+    private func setDateForNotification() {
         let content = UNMutableNotificationContent()
         content.title = notificationTitle
         content.body = notificationDescription ?? .empty
@@ -53,7 +56,7 @@ final class LocalNotificationManager: UIViewController {
         }
     }
     
-    fileprivate func showSettingsNotifications() {
+    private func showSettingsNotifications() {
         let alertController = UIAlertController(title: "Enable Notifications?".localized,
                                                 message:  "To use this feature you must enable notifications in settings".localized, 
                                                 preferredStyle: .alert)

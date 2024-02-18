@@ -16,13 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notification = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        notification.requestAuthorization(options: [.alert, .badge, .sound]) { [ weak self] granted, error in
-            guard let self = self,
-                       granted else { return }
-            self.notification.getNotificationSettings { settings in
-                guard settings.authorizationStatus == .authorized else { return }
-            }
-        }
         
         let navigationController = UINavigationController()
         let builder = MainBuilder()
