@@ -29,7 +29,7 @@ final class LocalNotificationManager: UIViewController {
     func createLocalNotification() {
         notification.getNotificationSettings { settings in
             if settings.authorizationStatus == .notDetermined {
-                self.showNotificationSettings()
+                self.showSettingsNotifications()
             } else {
                 self.setDateForNotification()
             }
@@ -38,11 +38,11 @@ final class LocalNotificationManager: UIViewController {
     
     fileprivate func setDateForNotification() {
         let content = UNMutableNotificationContent()
-        content.title = self.notificationTitle
-        content.body = self.notificationDescription ?? .empty
+        content.title = notificationTitle
+        content.body = notificationDescription ?? .empty
         content.sound = .default
         
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self.notificationDate)
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: notificationDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         notification.add(request) { error in
@@ -53,7 +53,7 @@ final class LocalNotificationManager: UIViewController {
         }
     }
     
-    fileprivate func showNotificationSettings() {
+    fileprivate func showSettingsNotifications() {
         let alertController = UIAlertController(title: "Enable Notifications?".localized,
                                                 message:  "To use this feature you must enable notifications in settings".localized, 
                                                 preferredStyle: .alert)
