@@ -18,6 +18,7 @@ protocol ToDoListPresentProtocol: AnyObject {
     func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
     func editToDo(with item: ToDoItem)
     func fetchTodos()
+    func makeNotificationWith(title: String, description: String?, date: Date?)
 }
 
 final class ToDoListPresenter: ToDoListPresentProtocol {
@@ -105,6 +106,16 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
             todoItems[1].insert(item, at: secondIndex)
         }
         makeSnapshot()
+    }
+    
+    func makeNotificationWith(title: String, description: String?, date: Date?) {
+        guard let date else { return }
+        let notificationManager = LocalNotificationManager(notificationTitle: title,
+                                                           notificationDescription: description,
+                                                           notificationDate: date)
+        notificationManager.createLocalNotification {
+            self.view?.allowAccessToNotifications()
+        }
     }
 }
 

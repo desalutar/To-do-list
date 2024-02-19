@@ -10,9 +10,15 @@ import PhotosUI
 
 protocol CreateViewControllerProtocol: AnyObject {
     func didCreateToDo(with item: ToDoItem)
+    func presentAlert()
+}
+extension CreateViewControllerProtocol {
+    func presentAlert() {}
 }
 
-final class CreateViewController: UIViewController, CreateEditTodoViewDelegate, CreateViewControllerProtocol {
+final class CreateViewController: UIViewController,
+                                  CreateEditTodoViewDelegate,
+                                  CreateViewControllerProtocol {
     
     var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
@@ -42,9 +48,6 @@ final class CreateViewController: UIViewController, CreateEditTodoViewDelegate, 
     }
     
     func didCreateToDo(with item: ToDoItem) {
-        guard let date = item.date else { return }
-        presenter?.makeNotificationWith(title: item.title, description: item.description, date: date)
         delegate?.didCreateToDo(with: item)
     }
 }
-

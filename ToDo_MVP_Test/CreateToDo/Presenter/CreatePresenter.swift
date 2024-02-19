@@ -10,7 +10,6 @@ import UIKit
 
 protocol CreatePresentable: AnyObject {
     func createToDo(with todoItemData: ToDoItemData)
-    func makeNotificationWith(title: String, description: String?, date: Date?)
 }
 
 final class CreatePresenter: CreatePresentable {
@@ -26,11 +25,5 @@ final class CreatePresenter: CreatePresentable {
             date: todoItemData.date
         )
         view?.didCreateToDo(with: todoItem)
-    }
-    
-    func makeNotificationWith(title: String, description: String?, date: Date?) {
-        guard let date else { return }
-        let notificationManager = LocalNotificationManager(notificationTitle: title, notificationDescription: description, notificationDate: date)
-        notificationManager.createLocalNotification()
     }
 }

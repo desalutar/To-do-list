@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-final class LocalNotificationManager: UIViewController {
+final class LocalNotificationManager {
     private let notificationTitle: String
     private let notificationDescription: String?
     private let notificationDate: Date
@@ -19,55 +19,29 @@ final class LocalNotificationManager: UIViewController {
         self.notificationTitle = notificationTitle
         self.notificationDescription = notificationDescription
         self.notificationDate = notificationDate
-        super.init(nibName: nil, bundle: nil)
-        notification.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
-            self.showSettingsNotifications()
-        }
+        notification.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func createLocalNotification() {
+    func createLocalNotification(deniedStatusAction: @escaping () -> Void) {
         notification.getNotificationSettings { settings in
-            if settings.authorizationStatus == .notDetermined {
-                self.showSettingsNotifications()
+            if settings.authorizationStatus == .denied {
+                DispatchQueue.main.async {
+                    deniedStatusAction()
+                }
             } else {
                 self.setDateForNotification()
             }
         }
     }
-    
     private func setDateForNotification() {
         let content = UNMutableNotificationContent()
-        content.title = notificationTitle
-        content.body = notificationDescription ?? .empty
+        content.title = self.notificationTitle
+        content.body = self.notificationDescription ?? .empty
         content.sound = .default
         
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: notificationDate)
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self.notificationDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        notification.add(request) { error in
-            if error != nil {
-                print("Error" + error.debugDescription)
-                return
-            }
-        }
-    }
-    
-    private func showSettingsNotifications() {
-        let alertController = UIAlertController(title: "Enable Notifications?".localized,
-                                                message:  "To use this feature you must enable notifications in settings".localized, 
-                                                preferredStyle: .alert)
-        let goToSettings = UIAlertAction(title: "Settings".localized, style: .default) { _ in
-            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-            if UIApplication.shared.canOpenURL(settingsURL) {
-                UIApplication.shared.open(settingsURL)
-            }
-        }
-        alertController.addAction(goToSettings)
-        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .default))
-        self.present(alertController, animated: true)
+        self.notification.add(request)
     }
 }

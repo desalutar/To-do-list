@@ -8,6 +8,8 @@
 import Foundation
 
 final class CreateViewControllerMock: CreateViewControllerProtocol {
+    func presentAlert() { }
+    
     
     private(set) var didCreateToDoWasTapped = 0
     var didCreateToDoArgument: ToDoItem?

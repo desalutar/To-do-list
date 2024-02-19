@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ToDoListControllerProtocol: AnyObject {
-    func reload()
+    func allowAccessToNotifications()
 }
 
 typealias DataSource = DiffableDataSource
@@ -74,18 +74,32 @@ final class ToDoListController: UIViewController, UITableViewDelegate {
 }
 
 extension ToDoListController: ToDoListControllerProtocol {
-    func reload() {
-        debugPrint("reload")
+    func allowAccessToNotifications() {
+        let alertController = UIAlertController(title: "Enable Notifications?".localized,
+                                                message:  "To use this feature you must enable notifications in settings".localized,
+                                                preferredStyle: .alert)
+        let goToSettings = UIAlertAction(title: "Settings".localized, style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL)
+            }
+        }
+        
+        alertController.addAction(goToSettings)
+        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .default))
+        present(alertController, animated: true)
     }
 }
-extension ToDoListController: CreateViewControllerProtocol {
+extension ToDoListController: CreateViewControllerProtocol {    
     func didCreateToDo(with item: ToDoItem) {
+        presenter?.makeNotificationWith(title: item.title, description: item.description, date: item.date)
         presenter?.showToDo(with: item)
     }
 }
 
 extension ToDoListController: EditViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
+        presenter?.makeNotificationWith(title: todo.title, description: todo.description, date: todo.date)
         presenter?.editToDo(with: todo)
     }
 }

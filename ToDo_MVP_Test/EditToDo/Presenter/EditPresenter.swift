@@ -34,6 +34,9 @@ final class EditPresenter: EditViewControllerPresentable {
     func makeNotificationWith(title: String, description: String?, date: Date?) {
         guard let date else { return }
         let notificationManager = LocalNotificationManager(notificationTitle: title, notificationDescription: description, notificationDate: date)
-        notificationManager.createLocalNotification()
+        notificationManager.createLocalNotification {
+            print(123)
+        }
+        
     }
 }
