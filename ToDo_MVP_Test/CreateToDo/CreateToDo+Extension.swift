@@ -9,6 +9,7 @@ import Foundation
 
 import PhotosUI
 
+// А зачем это в отдельном файле ?
 extension CreateViewController: ViewControllerPhotosPickerable,
                                 ViewControllerAlertPresentable,
                                 CameraPresentableDelegate {

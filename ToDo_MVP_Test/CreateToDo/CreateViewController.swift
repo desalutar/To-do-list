@@ -15,7 +15,7 @@ protocol CreateViewControllerProtocol: AnyObject {
 extension CreateViewControllerProtocol {
     func presentAlert() {}
 }
-
+// CreateToDoViewController
 final class CreateViewController: UIViewController,
                                   CreateEditTodoViewDelegate,
                                   CreateViewControllerProtocol {
@@ -23,6 +23,9 @@ final class CreateViewController: UIViewController,
     var presenter: CreatePresenter?
     weak var coordinator: AppCoordinator?
     weak var delegate: CreateViewControllerProtocol?
+    
+    // Тут должно быть private или как минимум private(set)
+    // Я понимаю что это computed property, но идеальнее всего чтобы оно было приватным
     lazy var contentView: CreateEditTodoView = {
         CreateEditTodoView(viewType: .create)
     }()
@@ -31,6 +34,7 @@ final class CreateViewController: UIViewController,
         self.presenter = presenter
         super.init(nibName: nil, bundle: .main)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

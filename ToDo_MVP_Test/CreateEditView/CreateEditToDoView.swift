@@ -62,8 +62,11 @@ final class CreateEditTodoView: UIView {
     func configureView() {
         switch viewType {
         case .create:
-            if imageView.image == nil { imageView.isHidden = true  }
+            if imageView.image == nil {
+                imageView.isHidden = true
+            }
         case .edit:
+                                            // с новой строки, так как сделано выше
             if todoItem?.imageData == nil { imageView.isHidden = true }
             textField.text = todoItem?.title
             textView.text = todoItem?.description
@@ -160,6 +163,9 @@ final class CreateEditTodoView: UIView {
                     date: datePicker.date
                 )
             )
+            
+            // Закоменченный код не оставлять ! 💩
+            
 //            LocalNotificationManager.shared.sendNotification(title: textField.text ?? .empty,
 //                                                        body: textView.text ?? .empty,
 //                                                        date: datePicker.date)
@@ -206,6 +212,7 @@ final class CreateEditTodoView: UIView {
         return deletePicture
     }()
     
+    // 💩 deletePictureHandler
     @objc func handlerDeletePicture() {
         imageView.image = nil
         deletePictureButton.isHidden = true
@@ -221,6 +228,7 @@ final class CreateEditTodoView: UIView {
         return dateButton
     }()
     
+    // 💩 dateButtonHandler
     @objc func handlerDateButton() {
         UIView.animate(withDuration: appearance.animateWithDuration) {
             self.datePicker.isHidden.toggle()
@@ -240,6 +248,7 @@ final class CreateEditTodoView: UIView {
         return datePicker
     }()
     
+    // 💩 datePickerHandler
     @objc func handlerDatePicker(sender: UIDatePicker) {
         dateLabel.text = datePicker.date.stringValue
     }

@@ -113,6 +113,13 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
         let notificationManager = LocalNotificationManager(notificationTitle: title,
                                                            notificationDescription: description,
                                                            notificationDate: date)
+        /*
+         let notificationManager = LocalNotificationManager(
+             notificationTitle: title,
+             notificationDescription: description,
+             notificationDate: date
+         )
+         */
         notificationManager.createLocalNotification {
             self.view?.allowAccessToNotifications()
         }

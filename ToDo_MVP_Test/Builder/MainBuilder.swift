@@ -23,6 +23,10 @@ final class MainBuilder: MainBuilderProtocol {
     }
     
     func buildCreateVC() -> CreateViewController {
+        
+        // тут подумать над названием... `CreatePresenter` и `CreateViewController` как то не очень
+        // к примеру `CreateToDoPresenter`, `CreateToDoViewController`
+        // тоже самое с `Edit`
         let presenter = CreatePresenter()
         let createVC = CreateViewController(presenter: presenter)
         presenter.view = createVC
