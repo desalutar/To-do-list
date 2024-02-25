@@ -8,24 +8,31 @@
 import UIKit
 
 protocol ToDoListControllerProtocol: AnyObject {
-    func allowAccessToNotifications()
+    func alertToAccessNotifications()
 }
 
-typealias DataSource = DiffableDataSource
-typealias Snapshot = NSDiffableDataSourceSnapshot<ToDoListController.Section, ToDoItem>
-
-final class ToDoListController: UIViewController, UITableViewDelegate {
-    private var viewBackgroundColor: UIColor = .systemBackground
+final class ToDoListController: UIViewController {
+                        // MARK: - Alias
+    typealias DataSource = DiffableDataSource
+    typealias Snapshot = NSDiffableDataSourceSnapshot<ToDoListController.Section, ToDoItem>
+    
+                        // MARK: - IBOutlets
+    @IBOutlet weak var tableView: UITableView!
+    
+                        // MARK: -  Public  properties
     weak var coordinator: AppCoordinator?
     var presenter: ToDoListPresentProtocol?
+    
+                        // MARK: -  Private properties
+    private var viewBackgroundColor: UIColor = .systemBackground
     private var dataSource: DataSource?
-    @IBOutlet weak var tableView: UITableView!
     
     enum Section {
         case unfulfilled
         case completed
     }
     
+                        // MARK: - Initialization
     init(presenter: ToDoListPresentProtocol) {
         self.presenter = presenter
         super.init(nibName: String(describing: ToDoListController.self), bundle: .main)
@@ -35,21 +42,21 @@ final class ToDoListController: UIViewController, UITableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+                        // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = viewBackgroundColor
-        tableView.backgroundColor = viewBackgroundColor
-        setTableView()
-        setNavigationItems()
+        setupTableView()
+        setupNavigationItems()
         presenter?.makeDataSource(for: tableView)
         presenter?.makeSnapshot()
         presenter?.fetchTodos()
     }
     
-    private func setNavigationItems() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToDo))
+    private func setupNavigationItems() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToDoAction))
     }
-    @objc func addToDo(){
+    @objc func addToDoAction(){
         coordinator?.showCreateViewController()
     }
     
@@ -57,11 +64,16 @@ final class ToDoListController: UIViewController, UITableViewDelegate {
         static let nib: UINib = Cell.nib()
         static let cellID: String = Cell.cellID
     }
-    private func setTableView() {
+    
+    private func setupTableView() {
+        tableView.backgroundColor = viewBackgroundColor
         tableView.delegate = self
         tableView.register(TableViewConstants.nib, forCellReuseIdentifier: TableViewConstants.cellID)
     }
-    
+}
+
+                        // MARK: - UITableViewDelegate
+extension ToDoListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let todoItem = presenter?.getToDoItem(at: indexPath) else { return }
         coordinator?.showEditViewController(todo: todoItem)
@@ -72,32 +84,35 @@ final class ToDoListController: UIViewController, UITableViewDelegate {
         header.textLabel?.textColor = .darkGray
     }
 }
-
+                        // MARK: - ToDoListControllerProtocol
 extension ToDoListController: ToDoListControllerProtocol {
-    func allowAccessToNotifications() {
+    func alertToAccessNotifications() {
         let alertController = UIAlertController(title: "Enable Notifications?".localized,
                                                 message:  "To use this feature you must enable notifications in settings".localized,
                                                 preferredStyle: .alert)
-        let goToSettings = UIAlertAction(title: "Settings".localized, style: .default) { _ in
+        let goToSettingsAction = UIAlertAction(title: "Settings".localized, style: .default) { _ in
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(settingsURL) {
                 UIApplication.shared.open(settingsURL)
             }
         }
         
-        alertController.addAction(goToSettings)
+        alertController.addAction(goToSettingsAction)
         alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .default))
         present(alertController, animated: true)
     }
 }
-extension ToDoListController: CreateViewControllerProtocol {    
+
+                        // MARK: - CreateToDoViewControllerProtocol
+extension ToDoListController: CreateToDoViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
         presenter?.makeNotificationWith(title: item.title, description: item.description, date: item.date)
         presenter?.showToDo(with: item)
     }
 }
 
-extension ToDoListController: EditViewControllerProtocol {
+                        // MARK: - EditToDoViewControllerProtocol
+extension ToDoListController: EditToDoViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
         presenter?.makeNotificationWith(title: todo.title, description: todo.description, date: todo.date)
         presenter?.editToDo(with: todo)

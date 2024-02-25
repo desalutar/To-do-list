@@ -18,18 +18,18 @@ final class AppCoordinator: CoordinatorProtocol {
     }
     
     func showToDoList() {
-        let mainViewController = builder.buildTodoList()
-        mainViewController.coordinator = self
-        navigationController.pushViewController(mainViewController, animated: false)
+        let todoListController = builder.buildTodoList()
+        todoListController.coordinator = self
+        navigationController.pushViewController(todoListController, animated: false)
     }
     
     func showCreateViewController() {
-        let createViewController = builder.buildCreateVC()
-        createViewController.coordinator = self
+        let createToDoViewController = builder.buildCreateVC()
+        createToDoViewController.coordinator = self
         let todoListViewController = navigationController.viewControllers.first as? ToDoListController
-        createViewController.delegate = todoListViewController
+        createToDoViewController.delegate = todoListViewController
         
-        navigationController.present(createViewController, animated: true)
+        navigationController.present(createToDoViewController, animated: true)
     }
     
     func showEditViewController(todo: ToDoItem) {
@@ -40,7 +40,7 @@ final class AppCoordinator: CoordinatorProtocol {
         navigationController.pushViewController(editViewController, animated: true)
     }
     
-    func popToRootVC() {
+    func popToListToDoViewController() {
         navigationController.popViewController(animated: true)
     }
     

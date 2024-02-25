@@ -62,9 +62,13 @@ final class CreateEditTodoView: UIView {
     func configureView() {
         switch viewType {
         case .create:
-            if imageView.image == nil { imageView.isHidden = true  }
+            if imageView.image == nil {
+                imageView.isHidden = true
+            }
         case .edit:
-            if todoItem?.imageData == nil { imageView.isHidden = true }
+            if todoItem?.imageData == nil {
+                imageView.isHidden = true
+            }
             textField.text = todoItem?.title
             textView.text = todoItem?.description
             dateLabel.text = todoItem?.date?.stringValue
@@ -160,9 +164,6 @@ final class CreateEditTodoView: UIView {
                     date: datePicker.date
                 )
             )
-//            LocalNotificationManager.shared.sendNotification(title: textField.text ?? .empty,
-//                                                        body: textView.text ?? .empty,
-//                                                        date: datePicker.date)
         case .edit:
             guard let todo = self.todoItem else { return }
             delegate?.didEdit(
@@ -175,9 +176,6 @@ final class CreateEditTodoView: UIView {
                     date: datePicker.date
                 )
             )
-//            LocalNotificationManager.shared.sendNotification(title: textField.text ?? .empty,
-//                                                        body: textView.text ?? .empty,
-//                                                        date: datePicker.date)
         }
     }
     
@@ -201,12 +199,12 @@ final class CreateEditTodoView: UIView {
         deletePicture.setTitle(localizeStrings.deletePictureButtonTitle, for: .normal)
         deletePicture.layer.cornerRadius = buttonConstant.addPictureLayerCornerRadius
         deletePicture.backgroundColor = .systemCyan
-        deletePicture.addTarget(self, action: #selector(handlerDeletePicture), for: .touchUpInside)
+        deletePicture.addTarget(self, action: #selector(deletePictureHandler), for: .touchUpInside)
         deletePicture.isHidden = true
         return deletePicture
     }()
     
-    @objc func handlerDeletePicture() {
+    @objc func deletePictureHandler() {
         imageView.image = nil
         deletePictureButton.isHidden = true
     }
@@ -217,11 +215,11 @@ final class CreateEditTodoView: UIView {
         dateButton.setTitle(localizeStrings.dateButtonTitle, for: .normal)
         dateButton.layer.cornerRadius = buttonConstant.addPictureLayerCornerRadius
         dateButton.backgroundColor = buttonConstant.addPictureBackgroundColor
-        dateButton.addTarget(self, action: #selector(handlerDateButton), for: .touchUpInside)
+        dateButton.addTarget(self, action: #selector(dateButtonHandler), for: .touchUpInside)
         return dateButton
     }()
     
-    @objc func handlerDateButton() {
+    @objc func dateButtonHandler() {
         UIView.animate(withDuration: appearance.animateWithDuration) {
             self.datePicker.isHidden.toggle()
             self.dateLabel.isHidden = false
@@ -236,11 +234,11 @@ final class CreateEditTodoView: UIView {
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: appearance.calendarLocale)
-        datePicker.addTarget(self, action: #selector(handlerDatePicker), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerHandler), for: .valueChanged)
         return datePicker
     }()
     
-    @objc func handlerDatePicker(sender: UIDatePicker) {
+    @objc func datePickerHandler(sender: UIDatePicker) {
         dateLabel.text = datePicker.date.stringValue
     }
     

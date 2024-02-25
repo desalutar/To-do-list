@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol EditViewControllerPresentable: AnyObject {
+protocol EditToDoViewControllerPresentable: AnyObject {
     func didEditTodo(with data: ToDoItemData)
     func makeNotificationWith(title: String, description: String?, date: Date?)
 }
 
-final class EditPresenter: EditViewControllerPresentable {
-    weak var view: EditViewControllerProtocol?
+final class EditToDoPresenter: EditToDoViewControllerPresentable {
+    weak var view: EditToDoViewControllerProtocol?
     var todoItem: ToDoItem
 
     init(todoItem: ToDoItem) {

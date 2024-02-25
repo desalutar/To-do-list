@@ -7,23 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD4F2B6668A2003737A9 /* EditViewController.swift */; };
-		2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD542B6668C9003737A9 /* EditPresenter.swift */; };
+		2313DD512B6668A2003737A9 /* EditToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD4F2B6668A2003737A9 /* EditToDoViewController.swift */; };
+		2313DD552B6668C9003737A9 /* EditToDoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD542B6668C9003737A9 /* EditToDoPresenter.swift */; };
 		2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */; };
-		2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */; };
+		2313DD5D2B6AA8FF003737A9 /* CreateToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD5C2B6AA8FF003737A9 /* CreateToDoViewController.swift */; };
 		2313DD672B6ACDF8003737A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2313DD692B6ACDF8003737A9 /* Localizable.strings */; };
 		2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD6B2B6ACE53003737A9 /* StringsLocalizable.swift */; };
 		2313DD7F2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD7D2B6B8A8D003737A9 /* CoreDataModel.xcdatamodeld */; };
 		2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */; };
 		2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */; };
 		2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD852B6B8B99003737A9 /* CoreDataManager.swift */; };
-		2313DD8B2B6BB717003737A9 /* EditViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */; };
-		2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */; };
 		2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */; };
 		234156312B6F936D003A2025 /* CreatePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156302B6F936D003A2025 /* CreatePresenterTests.swift */; };
 		234156342B6F93FE003A2025 /* CreatePresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156332B6F93FE003A2025 /* CreatePresenterMock.swift */; };
 		234156362B6F998F003A2025 /* CreateViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156352B6F998F003A2025 /* CreateViewControllerMock.swift */; };
-		236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreatePresenter.swift */; };
+		236804612B6016580043EEA8 /* CreateToDoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804602B6016580043EEA8 /* CreateToDoPresenter.swift */; };
 		2368046A2B611D220043EEA8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236804682B611D220043EEA8 /* Cell.swift */; };
 		2368046B2B611D220043EEA8 /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236804692B611D220043EEA8 /* Cell.xib */; };
 		2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368046D2B61535E0043EEA8 /* Stings+Extension.swift */; };
@@ -65,10 +63,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2313DD4F2B6668A2003737A9 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		2313DD542B6668C9003737A9 /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		2313DD4F2B6668A2003737A9 /* EditToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoViewController.swift; sourceTree = "<group>"; };
+		2313DD542B6668C9003737A9 /* EditToDoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoPresenter.swift; sourceTree = "<group>"; };
 		2313DD5A2B6AA197003737A9 /* CreateEditToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditToDoView.swift; sourceTree = "<group>"; };
-		2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		2313DD5C2B6AA8FF003737A9 /* CreateToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateToDoViewController.swift; sourceTree = "<group>"; };
 		2313DD642B6ACDC6003737A9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2313DD682B6ACDF8003737A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2313DD6A2B6ACDFB003737A9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -77,13 +75,11 @@
 		2313DD802B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2313DD812B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2313DD852B6B8B99003737A9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditViewController+Extension.swift"; sourceTree = "<group>"; };
-		2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateToDo+Extension.swift"; sourceTree = "<group>"; };
 		2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		234156302B6F936D003A2025 /* CreatePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterTests.swift; sourceTree = "<group>"; };
 		234156332B6F93FE003A2025 /* CreatePresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterMock.swift; sourceTree = "<group>"; };
 		234156352B6F998F003A2025 /* CreateViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewControllerMock.swift; sourceTree = "<group>"; };
-		236804602B6016580043EEA8 /* CreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenter.swift; sourceTree = "<group>"; };
+		236804602B6016580043EEA8 /* CreateToDoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoPresenter.swift; sourceTree = "<group>"; };
 		236804682B611D220043EEA8 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		236804692B611D220043EEA8 /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
 		2368046D2B61535E0043EEA8 /* Stings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stings+Extension.swift"; sourceTree = "<group>"; };
@@ -139,7 +135,7 @@
 		2313DD562B6668D3003737A9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD542B6668C9003737A9 /* EditPresenter.swift */,
+				2313DD542B6668C9003737A9 /* EditToDoPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -147,7 +143,7 @@
 		2313DD582B667709003737A9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				236804602B6016580043EEA8 /* CreatePresenter.swift */,
+				236804602B6016580043EEA8 /* CreateToDoPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -281,8 +277,7 @@
 		2394D1812B5BFC440043287D /* CreateToDo */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD5C2B6AA8FF003737A9 /* CreateViewController.swift */,
-				2313DD8C2B6BB7CE003737A9 /* CreateToDo+Extension.swift */,
+				2313DD5C2B6AA8FF003737A9 /* CreateToDoViewController.swift */,
 				2313DD582B667709003737A9 /* Presenter */,
 			);
 			path = CreateToDo;
@@ -291,8 +286,7 @@
 		2394D1822B5BFC510043287D /* EditToDo */ = {
 			isa = PBXGroup;
 			children = (
-				2313DD4F2B6668A2003737A9 /* EditViewController.swift */,
-				2313DD8A2B6BB717003737A9 /* EditViewController+Extension.swift */,
+				2313DD4F2B6668A2003737A9 /* EditToDoViewController.swift */,
 				2313DD562B6668D3003737A9 /* Presenter */,
 			);
 			path = EditToDo;
@@ -504,7 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				236804752B615DDF0043EEA8 /* ViewControllerPhotosPickerable.swift in Sources */,
-				236804612B6016580043EEA8 /* CreatePresenter.swift in Sources */,
+				236804612B6016580043EEA8 /* CreateToDoPresenter.swift in Sources */,
 				234156362B6F998F003A2025 /* CreateViewControllerMock.swift in Sources */,
 				2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */,
 				2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */,
@@ -516,14 +510,12 @@
 				236804702B6153770043EEA8 /* DateFormatter.swift in Sources */,
 				234156342B6F93FE003A2025 /* CreatePresenterMock.swift in Sources */,
 				2394D1992B5D44230043287D /* ToDoListPresenter.swift in Sources */,
-				2313DD512B6668A2003737A9 /* EditViewController.swift in Sources */,
-				2313DD8D2B6BB7CE003737A9 /* CreateToDo+Extension.swift in Sources */,
+				2313DD512B6668A2003737A9 /* EditToDoViewController.swift in Sources */,
 				2368046E2B61535E0043EEA8 /* Stings+Extension.swift in Sources */,
 				2313DD822B6B8B0F003737A9 /* TodoEntity+CoreDataClass.swift in Sources */,
-				2313DD8B2B6BB717003737A9 /* EditViewController+Extension.swift in Sources */,
-				2313DD5D2B6AA8FF003737A9 /* CreateViewController.swift in Sources */,
+				2313DD5D2B6AA8FF003737A9 /* CreateToDoViewController.swift in Sources */,
 				2313DD5B2B6AA197003737A9 /* CreateEditToDoView.swift in Sources */,
-				2313DD552B6668C9003737A9 /* EditPresenter.swift in Sources */,
+				2313DD552B6668C9003737A9 /* EditToDoPresenter.swift in Sources */,
 				2394D1922B5C17BD0043287D /* ToDoItem.swift in Sources */,
 				2368046A2B611D220043EEA8 /* Cell.swift in Sources */,
 				2394D19D2B5D4C3C0043287D /* MainBuilder.swift in Sources */,

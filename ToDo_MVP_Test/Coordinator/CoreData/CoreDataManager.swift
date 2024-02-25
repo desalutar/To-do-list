@@ -9,7 +9,7 @@ import Foundation
 
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     static let shared = CoreDataManager()
     private init() {}
     
@@ -73,7 +73,9 @@ class CoreDataManager {
             allTodoItems.append(unCompleted)
             allTodoItems.append(completedTodos)
             
-        } catch { print("error in featureAllTodos ") }
+        } catch {
+            print("error in featureAllTodos ")
+        }
         
         return allTodoItems
     }
@@ -85,7 +87,9 @@ class CoreDataManager {
             guard let entity = try viewContext.fetch(fetchRequest).first else { return }
             entity.isCompleted = todoItem.isCompleted
             saveContext()
-        } catch { print("error update(todoItem: ToDoItem)") }
+        } catch {
+            print("error update(todoItem: ToDoItem)")
+        }
     }
     
     func swipeDeletion(todoItem: ToDoItem) {
@@ -96,6 +100,8 @@ class CoreDataManager {
             guard let entity = try viewContext.fetch(fetchRequest).first else { return }
             viewContext.delete(entity)
             saveContext()
-        } catch { print("error in delete(todoItem: )") }
+        } catch {
+            print("error in delete(todoItem: )")
+        }
     }
 }

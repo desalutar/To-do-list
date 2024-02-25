@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-protocol CreatePresentable: AnyObject {
+protocol CreateToDoPresentable: AnyObject {
     func createToDo(with todoItemData: ToDoItemData)
 }
 
-final class CreatePresenter: CreatePresentable {
-    weak var view: CreateViewControllerProtocol?
+final class CreateToDoPresenter: CreateToDoPresentable {
+    weak var view: CreateToDoViewControllerProtocol?
     
     func createToDo(with todoItemData: ToDoItemData) {
         let todoItem = ToDoItem(

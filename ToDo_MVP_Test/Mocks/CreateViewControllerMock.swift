@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CreateViewControllerMock: CreateViewControllerProtocol {
+final class CreateViewControllerMock: CreateToDoViewControllerProtocol {
     func presentAlert() { }
     
     

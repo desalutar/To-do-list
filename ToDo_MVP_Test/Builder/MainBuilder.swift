@@ -9,8 +9,8 @@ import UIKit
 
 protocol MainBuilderProtocol: AnyObject {
     func buildTodoList() -> ToDoListController
-    func buildCreateVC() -> CreateViewController
-    func buildEditVC(todo: ToDoItem) -> EditViewController
+    func buildCreateVC() -> CreateToDoViewController
+    func buildEditVC(todo: ToDoItem) -> EditToDoViewController
 }
 
 final class MainBuilder: MainBuilderProtocol {
@@ -22,17 +22,17 @@ final class MainBuilder: MainBuilderProtocol {
         return todoListVC
     }
     
-    func buildCreateVC() -> CreateViewController {
-        let presenter = CreatePresenter()
-        let createVC = CreateViewController(presenter: presenter)
+    func buildCreateVC() -> CreateToDoViewController {
+        let presenter = CreateToDoPresenter()
+        let createVC = CreateToDoViewController(presenter: presenter)
         presenter.view = createVC
         return createVC
         
     }
     
-    func buildEditVC(todo: ToDoItem) -> EditViewController {
-        let presenter = EditPresenter(todoItem: todo)
-        let editVC = EditViewController(presenter: presenter)
+    func buildEditVC(todo: ToDoItem) -> EditToDoViewController {
+        let presenter = EditToDoPresenter(todoItem: todo)
+        let editVC = EditToDoViewController(presenter: presenter)
         presenter.view = editVC
         return editVC
     }

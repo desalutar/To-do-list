@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol ToDoListPresentProtocol: AnyObject {
-    var dataSource: DataSource? { get set }
+    var dataSource: ToDoListController.DataSource? { get set }
     
     func showToDo(with item: ToDoItem)
     func makeDataSource(for tableView: UITableView)
@@ -23,7 +23,7 @@ protocol ToDoListPresentProtocol: AnyObject {
 
 final class ToDoListPresenter: ToDoListPresentProtocol {
 
-    var dataSource: DataSource?
+    var dataSource: ToDoListController.DataSource?
     private var todoItems: [[ToDoItem]] = []
     weak var view: ToDoListControllerProtocol?
     private var selectedToDo: UITableView?
@@ -34,7 +34,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
     }
     
     func makeDataSource(for tableView: UITableView) {
-        dataSource = DataSource(tableView: tableView) { tableView, indexPath, todo in
+        dataSource = ToDoListController.DataSource(tableView: tableView) { tableView, indexPath, todo in
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: Cell.cellID,
                 for: indexPath
@@ -48,7 +48,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
     }
     
     func makeSnapshot() {
-        var snapshot = Snapshot()
+        var snapshot = ToDoListController.Snapshot()
         if todoItems.isEmpty {
             dataSource?.apply(snapshot, animatingDifferences: true)
             return
@@ -110,11 +110,12 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
     
     func makeNotificationWith(title: String, description: String?, date: Date?) {
         guard let date else { return }
-        let notificationManager = LocalNotificationManager(notificationTitle: title,
-                                                           notificationDescription: description,
-                                                           notificationDate: date)
+        let notificationManager = LocalNotificationManager(
+            notificationTitle: title,
+            notificationDescription: description,
+            notificationDate: date)
         notificationManager.createLocalNotification {
-            self.view?.allowAccessToNotifications()
+            self.view?.alertToAccessNotifications()
         }
     }
 }

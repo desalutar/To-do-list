@@ -10,12 +10,12 @@ import XCTest
 
 final class CreatePresenterTests: XCTestCase {
 
-    var presenter: CreatePresenter!
+    var presenter: CreateToDoPresenter!
     var viewMock: CreateViewControllerMock!
     
     
     override func setUpWithError() throws {
-        presenter = CreatePresenter()
+        presenter = CreateToDoPresenter()
         viewMock = CreateViewControllerMock()
         presenter.view = viewMock
     }
