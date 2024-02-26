@@ -105,7 +105,6 @@ extension ToDoListController: ToDoListControllerProtocol {
 // MARK: - CreateToDoViewControllerProtocol
 extension ToDoListController: CreateToDoViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
-        presenter?.makeNotificationWith(title: item.title, description: item.description, date: item.date)
         presenter?.showToDo(with: item)
     }
 }
@@ -113,7 +112,6 @@ extension ToDoListController: CreateToDoViewControllerProtocol {
 // MARK: - EditToDoViewControllerProtocol
 extension ToDoListController: EditToDoViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
-        presenter?.makeNotificationWith(title: todo.title, description: todo.description, date: todo.date)
         presenter?.editToDo(with: todo)
     }
 }

@@ -18,7 +18,8 @@ protocol ToDoListPresentProtocol: AnyObject {
     func switchTaskBy(sectionAt indexPath: IndexPath, withItem item: ToDoItem)
     func editToDo(with item: ToDoItem)
     func fetchTodos()
-    func makeNotificationWith(title: String, description: String?, date: Date?)
+    func makeNotificationWith()
+    func showPermissionToReceiveNotifications() 
 }
 
 final class ToDoListPresenter: ToDoListPresentProtocol {
@@ -87,6 +88,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
         case false:
             if todoItems.isEmpty {
                 todoItems.append([todoItem])
+                showPermissionToReceiveNotifications()
             } else if !todoItems[0].isEmpty && (todoItems[0].firstIndex(where: {$0.isCompleted == false}) != nil){
                 todoItems[0].append(todoItem)
             } else if todoItems.count == 1 {
@@ -114,14 +116,26 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
         makeSnapshot()
     }
     
-    func makeNotificationWith(title: String, description: String?, date: Date?) {
-        guard let date else { return }
+    func makeNotificationWith() {
+        guard let todosTitle = todoItems.first?.first?.title,
+              let todosDescription = todoItems.first?.first?.description,
+              let todosDate = todoItems.first?.first?.date else {
+            return
+        }
+        
         let notificationManager = LocalNotificationManager(
-            notificationTitle: title,
-            notificationDescription: description,
-            notificationDate: date)
+            notificationTitle: todosTitle,
+            notificationDescription: todosDescription,
+            notificationDate: todosDate
+        )
         notificationManager.createLocalNotification {
             self.view?.alertToAccessNotifications()
+        }
+    }
+    
+    func showPermissionToReceiveNotifications() {
+        if todoItems.count >= 1 {
+            makeNotificationWith()
         }
     }
 }
