@@ -223,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2394D1502B5BFA9E0043287D /* ToDo_MVP_Test */,
+				2394D1712B5BFAA00043287D /* ToDo_MVP_TestUITests */,
 				2394D1672B5BFAA00043287D /* ToDo_MVP_TestTests */,
 				2394D14F2B5BFA9E0043287D /* Products */,
 			);
@@ -264,7 +265,6 @@
 		2394D1672B5BFAA00043287D /* ToDo_MVP_TestTests */ = {
 			isa = PBXGroup;
 			children = (
-				2394D1712B5BFAA00043287D /* ToDo_MVP_TestUITests */,
 				234156302B6F936D003A2025 /* CreatePresenterTests.swift */,
 				23404F252B8BE03F00B92A13 /* CreateToDoPresenterTests.swift */,
 			);

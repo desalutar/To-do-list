@@ -36,9 +36,6 @@ final class EditToDoPresenter: EditToDoViewControllerPresentable {
     func makeNotificationWith(title: String, description: String?, date: Date?) {
         guard let date else { return }
         let notificationManager = LocalNotificationManager(notificationTitle: title, notificationDescription: description, notificationDate: date)
-        notificationManager.createLocalNotification {
-            print(123)
-        }
-        
+        notificationManager.createLocalNotification { }
     }
 }
