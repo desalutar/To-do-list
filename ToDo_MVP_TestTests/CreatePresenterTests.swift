@@ -13,7 +13,6 @@ final class CreatePresenterTests: XCTestCase {
     var presenter: CreateToDoPresenter!
     var viewMock: CreateViewControllerMock!
     
-    
     override func setUpWithError() throws {
         presenter = CreateToDoPresenter()
         viewMock = CreateViewControllerMock()
@@ -26,15 +25,14 @@ final class CreatePresenterTests: XCTestCase {
     }
 
     func test_createToDo_shouldCreateNewToDo() {
-        // given
-        let data = ToDoItemData(title: "foo", description: "baz", isCompleted: false, date: nil)
+        // given/дано
+        let data = ToDoItemData(id: UUID(), title: "foo", description: "baz", isCompleted: false, imageData: nil, date: nil)
         
         // when
         presenter.createToDo(with: data)
         viewMock.didCreateToDoArgument = ToDoItem(title: "foo", description: "baz", date: nil)
         
         // then
-        
         XCTAssertEqual(viewMock.didCreateToDoWasTapped, 1)
         
     }

@@ -9,8 +9,6 @@ import Foundation
 
 final class CreatePresenterMock: CreateToDoPresentable {
     
-    
-    
     private(set) var createToDoWasTapped = 0
     private(set) var createToDoDataArgument: ToDoItemData?
     

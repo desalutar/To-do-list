@@ -14,14 +14,17 @@ protocol EditToDoViewControllerProtocol: AnyObject {
 
 final class EditToDoViewController: UIViewController, CreateEditTodoViewDelegate, EditToDoViewControllerProtocol {
 
+    // MARK: - Public properties
     weak var coordinator: AppCoordinator?
     var delegate: EditToDoViewControllerProtocol?
     var presenter: EditToDoPresenter
     
+    // MARK: - Private properties
     private lazy var contentView: CreateEditTodoView = {
         CreateEditTodoView(viewType: .edit, todoItem: presenter.todoItem)
     }()
     
+    // MARK: - Initialization
     init(presenter: EditToDoPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: .main)

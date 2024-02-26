@@ -19,14 +19,16 @@ extension CreateToDoViewControllerProtocol {
 final class CreateToDoViewController: UIViewController,
                                   CreateEditTodoViewDelegate,
                                   CreateToDoViewControllerProtocol {
-    
+    // MARK: - Public properties
     var presenter: CreateToDoPresenter?
     weak var coordinator: AppCoordinator?
     weak var delegate: CreateToDoViewControllerProtocol?
+    // MARK: - Private properties
     private lazy var contentView: CreateEditTodoView = {
         CreateEditTodoView(viewType: .create)
     }()
     
+    // MARK: - Initialization
     init(presenter: CreateToDoPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: .main)

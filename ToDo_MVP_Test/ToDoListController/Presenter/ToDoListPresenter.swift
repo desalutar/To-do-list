@@ -10,7 +10,7 @@ import UIKit
 
 protocol ToDoListPresentProtocol: AnyObject {
     var dataSource: ToDoListController.DataSource? { get set }
-    
+
     func showToDo(with item: ToDoItem)
     func makeDataSource(for tableView: UITableView)
     func makeSnapshot()
@@ -22,13 +22,17 @@ protocol ToDoListPresentProtocol: AnyObject {
 }
 
 final class ToDoListPresenter: ToDoListPresentProtocol {
-
+    
+    // MARK: -  Public  properties
     var dataSource: ToDoListController.DataSource?
-    private var todoItems: [[ToDoItem]] = []
     weak var view: ToDoListControllerProtocol?
+    
+    // MARK: -  Private properties
+    private var todoItems: [[ToDoItem]] = []
     private var selectedToDo: UITableView?
     private let coreDataManager = CoreDataManager.shared
     
+    // MARK: - Initialization
     init(todoItems: [[ToDoItem]]) {
         self.todoItems = todoItems
     }
@@ -38,7 +42,9 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: Cell.cellID,
                 for: indexPath
-            ) as? Cell else { return UITableViewCell() }
+            ) as? Cell else {
+                return UITableViewCell()
+            }
             self.selectedToDo = tableView
             cell.delegate = self
             cell.configureCell(with: todo)
@@ -120,6 +126,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
     }
 }
 
+//MARK: - TableViewCellDelegate
 extension ToDoListPresenter: TableViewCellDelegate {
     func toggleTaskAtSection(_ cell: Cell) {
          guard let indexPath = selectedToDo?.indexPath(for: cell),
@@ -168,6 +175,7 @@ extension ToDoListPresenter: TableViewCellDelegate {
     }
 }
 
+// MARK: - TableViewDiffableDataSourceDelegate
 extension ToDoListPresenter: TableViewDiffableDataSourceDelegate {
     func tableView(_ tableView: UITableView, didDeleteRowWithSwipeActionAt indexPath: IndexPath) {
         let todo = todoItems[indexPath.section].remove(at: indexPath.row)

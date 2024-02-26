@@ -13,19 +13,23 @@ protocol TableViewCellDelegate: AnyObject {
 
 class Cell: UITableViewCell {
 
+    //MARK: - Public properties
+    weak var delegate: TableViewCellDelegate?
+    
+    //MARK: - @IBOutlets
     @IBOutlet weak var todoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var circleButton: UIButton!
     
-    weak var delegate: TableViewCellDelegate?
-    
+    //MARK: - Static let
     static let cellID = String(describing: Cell.self)
     static func nib() -> UINib {
         return UINib(nibName: "Cell", bundle: nil )
     }
     
+    //MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
@@ -73,6 +77,7 @@ class Cell: UITableViewCell {
         circleButton.setImage(buttonImage, for: .normal)
     }
     
+    //MARK: - @IBAction
     @IBAction func circleButtonAction(_ sender: Any) {
         delegate?.toggleTaskAtSection(self)
     }

@@ -1,34 +1,47 @@
-/* 
-  Localizable.strings
-  ToDo_MVP_Test
+/* (No Comment) */
+"createEditTodoView.textFieldPlaceholders" = "Как назвать задачу ?";
 
-  Created by Ишхан Багратуни on 31.01.24.
-  
-*/
+/* (No Comment) */
+"createEditToDoView.deletePicture" = "Удалить фото";
 
-"First section name unfulfilled" = "Невыполненные";
-"Second section name completed" = "Выполненные";
-"Enter name" = "Введите имя";
-"Enter title" = "Введите название";
-"Enter a description" = "Введите описание";
-"Save" = "Сохранить";
-"Delete" = "Удалить";
-"title_of_the_deletion_pop_up_window" = "Вы уверены, что хотите удалить?";
-"description_of_the_pop_up_deletion_window" = "Выберите одно из действий.";
-"Cancel" = "Отменить";
+/* (No Comment) */
+"createEditToDoView.saveButtonTitle" = "Сохранить ";
 
-"showPhotoPicker_AlertController_Title" = "Укажите";
-"showPhotoPicker_AlertController_Message" = "Откуда взять фотографию ?";
-"Open gallery" = "Открыть галерею";
-"Take Camera" = "Сделать фото";
+/* (No Comment) */
+"createEditToDoView.dateButtonTitle" = "Указать дату";
 
-"What will the task be called"  = "Как назвать задачу ? ";
-"saveButtonTitle" = "Сохранить ";
-"Delete picture" = "Удалить фото";
-"Set photo" = "Добавить фото  ";
+/* (No Comment) */
+"createEditToDoView.addPhoto" = "Добавить фото ";
 
-"Set date" = "Установить крайний день ";
+/* (No Comment) */
+"tableViewDiffableDataSource.Unfulfilled" = "Невыполненные";
 
-"Enable Notifications?" = "Включить уведомления?";
-"To use this feature you must enable notifications in settings" = "Чтобы использовать эту функцию, необходимо включить уведомления в настройках.";
-"Settings" = "Настройки";
+/* (No Comment) */
+"tableViewDiffableDataSource.Completed" = "Выполненные";
+
+/* (No Comment) */
+"toDoListController.alertTitle" = "Включить уведомления?";
+
+/* (No Comment) */
+"toDoListController.cancel" = "Назад";
+
+/* (No Comment) */
+"toDoListController.settings" = "Настройки";
+
+/* (No Comment) */
+"toDoListController.alertMessage" = "Чтобы использовать эту функцию, необходимо включить уведомления в настройках.";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.cancel" = "Отмена";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.message" = "Откуда взять фото ?";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.alertTitle" = "Укажите";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.takeCamera" = "Открыть камеру";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.galleryAlertTitle" = "Открыть галерею";

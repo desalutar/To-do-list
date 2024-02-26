@@ -1,33 +1,52 @@
-/* 
-  Localizable.strings
-  ToDo_MVP_Test
 
-  Created by Ишхан Багратуни on 31.01.24.
-  
-*/
-"First section name unfulfilled" = "Unfulfilled";
-"Second section name completed" = "Completed";
-"Enter name" = "Enter a name";
-"Enter title" = "Enter a title";
-"Enter a description" = "Enter a description";
-"title_of_the_deletion_pop_up_window" = "Are you sure you want to delete?";
-"description_of_the_pop_up_deletion_window" = "Choose one of the actions.";
-"Delete" = "Delete";
-"Save" = "Save";
-"Cancel" = "Cancel";
+/* (No Comment) */
+"tableViewDiffableDataSource.Unfulfilled" = "Unfulfilled";
 
-"showPhotoPicker_AlertController_Title" = "Specify";
-"showPhotoPicker_AlertController_Message" = "Where to get the photo from.";
-"Open gallery" = "Open gallery";
-"Take Camera" = "Take camera";
+/* (No Comment) */
+"tableViewDiffableDataSource.Completed" = "Completed";
 
-"What will the task be called" = "What will the task be called ";
-"saveButtonTitle" = "Save ";
-"Delete picture" = "Delete picture";
-"Set photo " = "Attach photo ";
 
-"Set date" = "Set date ";
+/* (No Comment) */
+"createEditToDoView.dateButtonTitle" = "Set date";
 
-"Enable Notifications?" = "Enable Notifications?";
-"To use this feature you must enable notifications in settings" = "To use this feature you must enable notifications in settings";
-"Settings" = "Settings";
+/* (No Comment) */
+"createEditToDoView.addPhoto" = "Add photo";
+
+/* (No Comment) */
+"createEditToDoView.saveButtonTitle" = "Save ";
+
+/* (No Comment) */
+"createEditTodoView.textFieldPlaceholders" = "What will the task be called ";
+
+/* (No Comment) */
+"createEditToDoView.deletePicture" = "Delete picture";
+
+
+/* (No Comment) */
+"viewControllerAlertPresentable.message" = "Where to get the photo from.";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.alertTitle" = "Specify";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.takeCamera" = "Take camera example";
+
+/* (No Comment) */
+"viewControllerAlertPresentable.galleryAlertTitle" = "Open gallery";
+/* (No Comment) */
+"viewControllerAlertPresentable.cancel" = "Cancel";
+
+
+/* (No Comment) */
+"toDoListController.alertMessage" = "To use this feature you must enable notifications in settings";
+
+/* (No Comment) */
+"toDoListController.alertTitle" = "Enable Notifications?";
+
+/* (No Comment) */
+"toDoListController.settings" = "Settings";
+
+/* (No Comment) */
+"toDoListController.cancel" = "Cancel";
+
+

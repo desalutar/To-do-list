@@ -13,9 +13,11 @@ protocol EditToDoViewControllerPresentable: AnyObject {
 }
 
 final class EditToDoPresenter: EditToDoViewControllerPresentable {
-    weak var view: EditToDoViewControllerProtocol?
+    // MARK: - Public properties
     var todoItem: ToDoItem
-
+    weak var view: EditToDoViewControllerProtocol?
+    
+    // MARK: - Initialization
     init(todoItem: ToDoItem) {
         self.todoItem = todoItem
     }

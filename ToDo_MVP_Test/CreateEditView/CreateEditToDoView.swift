@@ -21,17 +21,20 @@ extension CreateEditTodoViewDelegate {
 
 final class CreateEditTodoView: UIView {
     
+    // MARK: -  Public  properties
+    weak var delegate: CreateEditTodoViewDelegate?
+    
+    //MARK: - Private properties
+    private var todoItem: ToDoItem?
+    private let viewType: ViewType
+    private let appearance = Appearance()
+    
     enum ViewType {
         case create
         case edit
     }
     
-    private var todoItem: ToDoItem?
-    private let viewType: ViewType
-    private let appearance = Appearance()
-    
-    weak var delegate: CreateEditTodoViewDelegate?
-    
+    // MARK: - Initialization
     init(viewType: ViewType, todoItem: ToDoItem? = nil) {
         self.viewType = viewType
         self.todoItem = todoItem
@@ -85,7 +88,7 @@ final class CreateEditTodoView: UIView {
         imageView.image = image
     }
     
-                        // MARK: - UI Items
+    // MARK: - UI Items
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
@@ -250,8 +253,7 @@ final class CreateEditTodoView: UIView {
         return dateLabel
     }()
     
-                        // MARK: - NSLayoutConstraint
-    
+    // MARK: - NSLayoutConstraint
     private func layoutScrollView() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -312,7 +314,7 @@ final class CreateEditTodoView: UIView {
 private extension CreateEditTodoView {
     enum textFieldConstants {
         static let textFiledHeight: CGFloat = 32.0
-        static let textFieldPlaceholder: String = "What will the task be called".localized
+        static let textFieldPlaceholder: String = "createEditTodoView.textFieldPlaceholders".localized
         static let textFieldLayerBorderWidth: CGFloat = 0.5
         static let textFieldLayerCornerRadius: CGFloat = 8.0
         static let textFieldLayerBorderColor: UIColor = .systemGray2
@@ -326,10 +328,10 @@ private extension CreateEditTodoView {
     }
     
     enum localizeStrings {
-        static let saveButtonTitle: String = "saveButtonTitle".localized
-        static let addPictureButtonTitle: String = "Set photo".localized
-        static let dateButtonTitle: String = "Set date".localized
-        static let deletePictureButtonTitle: String = "Delete picture".localized
+        static let saveButtonTitle: String = "createEditToDoView.saveButtonTitle".localized
+        static let addPictureButtonTitle: String = "createEditToDoView.addPhoto".localized
+        static let dateButtonTitle: String = "createEditToDoView.dateButtonTitle".localized
+        static let deletePictureButtonTitle: String = "createEditToDoView.deletePicture".localized
     }
     
     enum buttonConstant {

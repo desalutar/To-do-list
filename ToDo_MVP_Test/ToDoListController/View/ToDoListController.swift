@@ -12,18 +12,17 @@ protocol ToDoListControllerProtocol: AnyObject {
 }
 
 final class ToDoListController: UIViewController {
-                        // MARK: - Alias
     typealias DataSource = DiffableDataSource
     typealias Snapshot = NSDiffableDataSourceSnapshot<ToDoListController.Section, ToDoItem>
     
-                        // MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
-                        // MARK: -  Public  properties
+    // MARK: -  Public  properties
     weak var coordinator: AppCoordinator?
     var presenter: ToDoListPresentProtocol?
     
-                        // MARK: -  Private properties
+    // MARK: -  Private properties
     private var viewBackgroundColor: UIColor = .systemBackground
     private var dataSource: DataSource?
     
@@ -32,7 +31,7 @@ final class ToDoListController: UIViewController {
         case completed
     }
     
-                        // MARK: - Initialization
+    // MARK: - Initialization
     init(presenter: ToDoListPresentProtocol) {
         self.presenter = presenter
         super.init(nibName: String(describing: ToDoListController.self), bundle: .main)
@@ -42,7 +41,7 @@ final class ToDoListController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-                        // MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = viewBackgroundColor
@@ -72,7 +71,7 @@ final class ToDoListController: UIViewController {
     }
 }
 
-                        // MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension ToDoListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let todoItem = presenter?.getToDoItem(at: indexPath) else { return }
@@ -84,13 +83,13 @@ extension ToDoListController: UITableViewDelegate {
         header.textLabel?.textColor = .darkGray
     }
 }
-                        // MARK: - ToDoListControllerProtocol
+// MARK: - ToDoListControllerProtocol
 extension ToDoListController: ToDoListControllerProtocol {
     func alertToAccessNotifications() {
-        let alertController = UIAlertController(title: "Enable Notifications?".localized,
-                                                message:  "To use this feature you must enable notifications in settings".localized,
+        let alertController = UIAlertController(title: "toDoListController.alertTitle".localized,
+                                                message:  "toDoListController.alertMessage".localized,
                                                 preferredStyle: .alert)
-        let goToSettingsAction = UIAlertAction(title: "Settings".localized, style: .default) { _ in
+        let goToSettingsAction = UIAlertAction(title: "toDoListController.settings".localized, style: .default) { _ in
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(settingsURL) {
                 UIApplication.shared.open(settingsURL)
@@ -98,12 +97,12 @@ extension ToDoListController: ToDoListControllerProtocol {
         }
         
         alertController.addAction(goToSettingsAction)
-        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .default))
+        alertController.addAction(UIAlertAction(title: "toDoListController.cancel".localized, style: .default))
         present(alertController, animated: true)
     }
 }
 
-                        // MARK: - CreateToDoViewControllerProtocol
+// MARK: - CreateToDoViewControllerProtocol
 extension ToDoListController: CreateToDoViewControllerProtocol {
     func didCreateToDo(with item: ToDoItem) {
         presenter?.makeNotificationWith(title: item.title, description: item.description, date: item.date)
@@ -111,7 +110,7 @@ extension ToDoListController: CreateToDoViewControllerProtocol {
     }
 }
 
-                        // MARK: - EditToDoViewControllerProtocol
+// MARK: - EditToDoViewControllerProtocol
 extension ToDoListController: EditToDoViewControllerProtocol {
     func didEditToDo(with todo: ToDoItem) {
         presenter?.makeNotificationWith(title: todo.title, description: todo.description, date: todo.date)
