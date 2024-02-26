@@ -10,10 +10,6 @@ import PhotosUI
 
 protocol CreateToDoViewControllerProtocol: AnyObject {
     func didCreateToDo(with item: ToDoItem)
-    func presentAlert()
-}
-extension CreateToDoViewControllerProtocol {
-    func presentAlert() {}
 }
 
 final class CreateToDoViewController: UIViewController,

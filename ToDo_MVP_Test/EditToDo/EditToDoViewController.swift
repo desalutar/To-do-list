@@ -46,7 +46,6 @@ final class EditToDoViewController: UIViewController, CreateEditTodoViewDelegate
     
     func didEditToDo(with todo: ToDoItem) {
         delegate?.didEditToDo(with: todo)
-        presenter.makeNotificationWith(title: todo.title, description: todo.description, date: todo.date)
         coordinator?.popToListToDoViewController()
     }
 }
