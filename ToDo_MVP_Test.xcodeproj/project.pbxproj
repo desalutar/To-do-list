@@ -20,6 +20,8 @@
 		2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */; };
 		23404F262B8BE03F00B92A13 /* CreateToDoPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23404F252B8BE03F00B92A13 /* CreateToDoPresenterTests.swift */; };
 		23404F282B8BE1CB00B92A13 /* CreateToDoViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23404F272B8BE1CB00B92A13 /* CreateToDoViewMock.swift */; };
+		23404F362B8CA30600B92A13 /* EiditToDoPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23404F352B8CA30600B92A13 /* EiditToDoPresenterTests.swift */; };
+		23404F382B8CA32900B92A13 /* EditToDoViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23404F372B8CA32900B92A13 /* EditToDoViewMock.swift */; };
 		234156312B6F936D003A2025 /* CreatePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156302B6F936D003A2025 /* CreatePresenterTests.swift */; };
 		234156342B6F93FE003A2025 /* CreatePresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156332B6F93FE003A2025 /* CreatePresenterMock.swift */; };
 		234156362B6F998F003A2025 /* CreateViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234156352B6F998F003A2025 /* CreateViewControllerMock.swift */; };
@@ -80,6 +82,8 @@
 		2313DD8E2B6CF2C2003737A9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		23404F252B8BE03F00B92A13 /* CreateToDoPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoPresenterTests.swift; sourceTree = "<group>"; };
 		23404F272B8BE1CB00B92A13 /* CreateToDoViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoViewMock.swift; sourceTree = "<group>"; };
+		23404F352B8CA30600B92A13 /* EiditToDoPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EiditToDoPresenterTests.swift; sourceTree = "<group>"; };
+		23404F372B8CA32900B92A13 /* EditToDoViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoViewMock.swift; sourceTree = "<group>"; };
 		234156302B6F936D003A2025 /* CreatePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterTests.swift; sourceTree = "<group>"; };
 		234156332B6F93FE003A2025 /* CreatePresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePresenterMock.swift; sourceTree = "<group>"; };
 		234156352B6F998F003A2025 /* CreateViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewControllerMock.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				234156332B6F93FE003A2025 /* CreatePresenterMock.swift */,
 				234156352B6F998F003A2025 /* CreateViewControllerMock.swift */,
 				23404F272B8BE1CB00B92A13 /* CreateToDoViewMock.swift */,
+				23404F372B8CA32900B92A13 /* EditToDoViewMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			children = (
 				234156302B6F936D003A2025 /* CreatePresenterTests.swift */,
 				23404F252B8BE03F00B92A13 /* CreateToDoPresenterTests.swift */,
+				23404F352B8CA30600B92A13 /* EiditToDoPresenterTests.swift */,
 			);
 			path = ToDo_MVP_TestTests;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				2313DD832B6B8B0F003737A9 /* TodoEntity+CoreDataProperties.swift in Sources */,
 				2313DD8F2B6CF2C2003737A9 /* LocalNotificationManager.swift in Sources */,
 				2394D1522B5BFA9E0043287D /* AppDelegate.swift in Sources */,
+				23404F382B8CA32900B92A13 /* EditToDoViewMock.swift in Sources */,
 				2313DD6C2B6ACE53003737A9 /* StringsLocalizable.swift in Sources */,
 				2394D18D2B5C00080043287D /* AppCoordinator.swift in Sources */,
 				2313DD862B6B8B99003737A9 /* CoreDataManager.swift in Sources */,
@@ -541,6 +548,7 @@
 			files = (
 				23404F262B8BE03F00B92A13 /* CreateToDoPresenterTests.swift in Sources */,
 				234156312B6F936D003A2025 /* CreatePresenterTests.swift in Sources */,
+				23404F362B8CA30600B92A13 /* EiditToDoPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
