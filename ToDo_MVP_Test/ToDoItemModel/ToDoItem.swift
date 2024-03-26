@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct ToDoItem: Hashable {
+struct ToDoItem: Hashable, Equatable {
     let id: UUID
     let title: String
     let description: String

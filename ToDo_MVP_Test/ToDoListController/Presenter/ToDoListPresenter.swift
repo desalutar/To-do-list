@@ -28,7 +28,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
     weak var view: ToDoListControllerProtocol?
     
     // MARK: -  Private properties
-    private var todoItems: [[ToDoItem]] = []
+    private(set) var todoItems: [[ToDoItem]] = []
     private var selectedToDo: UITableView?
     private let coreDataManager = CoreDataManager.shared
     
