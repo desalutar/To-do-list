@@ -76,7 +76,7 @@ final class ToDoListPresenterTests: XCTestCase {
         XCTAssertEqual(presenter.todoItems[0][1], ToDoItems.unfulfilledSectionItem)
     }
     
-    func test_showToDo_shouldInsertionAtTheBeginningOfAnArray() {
+    func test_showToDo_shouldInsertIntoEmptyUnfulfilledSection() {
         // given
         presenter = ToDoListPresenter(todoItems: [[ToDoItems.completedSectionItem]])
         // when
@@ -84,6 +84,76 @@ final class ToDoListPresenterTests: XCTestCase {
         // then
         XCTAssertEqual(presenter.todoItems[0][0], ToDoItems.item)
     }
+    
+    func test_shouldEditUnfulfilledTodoItem() {
+        // given
+        let todo = presenter.todoItems[0][0]
+        // when
+        presenter.editToDo(with: todo)
+        // then
+        XCTAssertEqual(presenter.todoItems[0][0], todo)
+    }
+    
+    func test_shouldEditCompletedTodoItem() {
+        // given
+        let todo = presenter.todoItems[1][0]
+        // when
+        presenter.editToDo(with: todo)
+        // then
+        XCTAssertEqual(presenter.todoItems[1][0], todo)
+    }
+    
+    func test_makeNotification() {
+        // given
+        let title = "Title"
+        let description = "Description"
+        let date = Date()
+        // when
+        presenter.makeNotificationWith(title: title, description: description, date: date)
+        // then
+        XCTAssertTrue(true)
+    }
+    
+    func test_switchTaskBySection_shouldSwitchToUnfulfilledSection() {
+        // given
+        let index = IndexPath()
+        presenter = ToDoListPresenter(todoItems: [[ToDoItems.item]])
+        // when
+        presenter.switchTaskBy(sectionAt: index, withItem: ToDoItems.unfulfilledSectionItem)
+        // then
+        XCTAssertEqual(presenter.todoItems[0][0], ToDoItems.unfulfilledSectionItem)
+    }
+    
+    func test_switchTaskBySection_shouldAppendToEmptyUnfulfilledSection() {
+        // given
+        let index = IndexPath()
+        // when
+        presenter.switchTaskBy(sectionAt: index, withItem: ToDoItems.unfulfilledSectionItem)
+        // then
+        XCTAssertEqual(presenter.todoItems[0].count, 2)
+    }
+    
+    func test_switchTaskBySection_shouldAppendToEmptyCompletedSection() {
+        // given
+        let index = IndexPath()
+        presenter = ToDoListPresenter(todoItems: [[ToDoItems.unfulfilledSectionItem]])
+        // when
+        presenter.switchTaskBy(sectionAt: index, withItem: ToDoItems.completedSectionItem)
+        // then
+        XCTAssertEqual(presenter.todoItems[1].count, 1)
+        XCTAssertEqual(presenter.todoItems[1][0], ToDoItems.completedSectionItem)
+    }
+    
+    func test_switchTaskBySection_shouldSwitchToCompletedSection() {
+        // given
+        let index = IndexPath()
+        // when
+        presenter.switchTaskBy(sectionAt: index, withItem: ToDoItems.completedSectionItem)
+        // then
+        XCTAssertEqual(presenter.todoItems[1][1], ToDoItems.completedSectionItem)
+    }
+    
+    
 }
 
 private extension ToDoListPresenterTests {

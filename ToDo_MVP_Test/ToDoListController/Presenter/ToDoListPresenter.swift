@@ -81,7 +81,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
         case true:
             if todoItems.count != 2 {
                 todoItems.append([todoItem])
-            } else if todoItems.count == 2 {
+            } else {
                 todoItems[1].append(todoItem)
             }
         case false:
@@ -91,7 +91,7 @@ final class ToDoListPresenter: ToDoListPresentProtocol {
                 todoItems[0].append(todoItem)
             } else if todoItems.count == 1 {
                 todoItems.insert([todoItem], at: 0)
-            } else if todoItems.count == 2 {
+            } else {
                 todoItems[0].append(todoItem)
             }
         }
